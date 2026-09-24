@@ -6,21 +6,21 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 
 ## Step Overview & Status
 
-| Step         | Scope / Title                                             | Status        | Completion Date | Key Outputs / Artifacts                                                                                                                                                                                                               |
-| ------------ | --------------------------------------------------------- | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Step 1**   | **Brief, Guardrails & Scaffolding**                       | **Completed** | 2026-09-24      | Next.js App Router, TypeScript, Tailwind CSS, ESLint, Prettier, folder structure, `/docs/PROJECT_BRIEF.md`, `/docs/OPEN_ITEMS.md`, `/content/site.config.ts`, `/content/capabilities.ts`, `README.md`, `.env.example`, initial commit |
-| **Step 2**   | **Research, Market & Competitive Architecture**           | **Completed** | 2026-09-24      | Created `/docs/strategy/{market-language,competitors,icp,positioning,keyword-map,content-gaps,priorities}.md`, appended items to `OPEN_ITEMS.md`                                                                                      |
-| **Step 3**   | **Information Architecture & Content Model**              | **Completed** | 2026-09-24      | Created `/docs/sitemap.md`, `/docs/navigation.md`, `/docs/internal-linking.md`, `/content/{types,solutions,industries,faqs,resources,glossary,nav}.ts`, dynamic static routes, 44/44 pages built                                      |
-| **Step 4**   | **Design System & UI Components**                         | **Completed** | 2026-09-24      | White-theme tokens, typography (Manrope, Inter, JetBrains Mono), 18 accessible UI primitives, 2 responsive SVG brand graphics, `/design-system` showcase page                                                                         |
-| **Step 5/6** | **Global Layout, Navigation & Footer**                    | **Completed** | 2026-09-24      | Sticky header with 9-solution mega menu & StatusBadges, mobile drawer, 5-col footer, WhatsApp floating button, mobile sticky CTA bar, JSON-LD breadcrumbs, helpful 404 page, cookie notice                                            |
-| **Step 7**   | **Homepage (Conversion & Positioning Engine)**            | **Completed** | 2026-09-24      | 13 structured sections in `/app/page.tsx`, `/content/home.ts`, single H1, answer-first GEO copy, video player with captions/transcript disclosure, low-risk pilot pathway, 0 lint errors                                              |
-| **Step 8**   | **Core Solution Pages & Solutions Hub**                   | **Completed** | 2026-09-24      | Comprehensive `/content/solutions.ts` with 9 solutions, shared 12-stage `<SolutionTemplate>`, 9 dynamic routes, redesigned `/solutions` hub, requirements tables, honest limitations, 0 lint errors                                   |
-| **Step 9**   | **Industry Vertical Pages & Industries Hub**              | **Completed** | 2026-09-24      | Comprehensive `/content/industries.ts` with 7 verticals, shared `<IndustryTemplate>`, redesigned `/industries` hub with institutional links (Smart City & Defence), neutral vendor checklists, 0 lint errors                          |
-| **Step 10**  | Pilot & Demo Lead Generation Engine                       | Pending       | -               | Request Demo & Request Pilot flows, qualification forms, API routes                                                                                                                                                                   |
-| **Step 11**  | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                            |
-| **Step 12**  | Company, Founder & Ethics / Privacy Pages                 | Pending       | -               | About, founder background, consent-based verification & data governance                                                                                                                                                               |
-| **Step 13**  | Supporting Content, Guides & Comparison Pages             | Pending       | -               | Comparison pages, educational guides, glossary, and FAQ hub expansion                                                                                                                                                                 |
-| **Step 14**  | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Static build audit, accessibility review, zero-lint verification                                                                                                                                                                      |
+| Step         | Scope / Title                                             | Status        | Completion Date | Key Outputs / Artifacts                                                                                                                                                                                                                  |
+| ------------ | --------------------------------------------------------- | ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Step 1**   | **Brief, Guardrails & Scaffolding**                       | **Completed** | 2026-09-24      | Next.js App Router, TypeScript, Tailwind CSS, ESLint, Prettier, folder structure, `/docs/PROJECT_BRIEF.md`, `/docs/OPEN_ITEMS.md`, `/content/site.config.ts`, `/content/capabilities.ts`, `README.md`, `.env.example`, initial commit    |
+| **Step 2**   | **Research, Market & Competitive Architecture**           | **Completed** | 2026-09-24      | Created `/docs/strategy/{market-language,competitors,icp,positioning,keyword-map,content-gaps,priorities}.md`, appended items to `OPEN_ITEMS.md`                                                                                         |
+| **Step 3**   | **Information Architecture & Content Model**              | **Completed** | 2026-09-24      | Created `/docs/sitemap.md`, `/docs/navigation.md`, `/docs/internal-linking.md`, `/content/{types,solutions,industries,faqs,resources,glossary,nav}.ts`, dynamic static routes, 44/44 pages built                                         |
+| **Step 4**   | **Design System & UI Components**                         | **Completed** | 2026-09-24      | White-theme tokens, typography (Manrope, Inter, JetBrains Mono), 18 accessible UI primitives, 2 responsive SVG brand graphics, `/design-system` showcase page                                                                            |
+| **Step 5/6** | **Global Layout, Navigation & Footer**                    | **Completed** | 2026-09-24      | Sticky header with 9-solution mega menu & StatusBadges, mobile drawer, 5-col footer, WhatsApp floating button, mobile sticky CTA bar, JSON-LD breadcrumbs, helpful 404 page, cookie notice                                               |
+| **Step 7**   | **Homepage (Conversion & Positioning Engine)**            | **Completed** | 2026-09-24      | 13 structured sections in `/app/page.tsx`, `/content/home.ts`, single H1, answer-first GEO copy, video player with captions/transcript disclosure, low-risk pilot pathway, 0 lint errors                                                 |
+| **Step 8**   | **Core Solution Pages & Solutions Hub**                   | **Completed** | 2026-09-24      | Comprehensive `/content/solutions.ts` with 9 solutions, shared 12-stage `<SolutionTemplate>`, 9 dynamic routes, redesigned `/solutions` hub, requirements tables, honest limitations, 0 lint errors                                      |
+| **Step 9**   | **Industry Vertical Pages & Industries Hub**              | **Completed** | 2026-09-24      | Comprehensive `/content/industries.ts` with 7 verticals, shared `<IndustryTemplate>`, redesigned `/industries` hub with institutional links (Smart City & Defence), neutral vendor checklists, 0 lint errors                             |
+| **Step 10**  | **Lead Capture & Qualification Engine**                   | **Completed** | 2026-09-24      | Reusable accessible form engine (react-hook-form + Zod), `/api/leads` route handler (rate limiting, honeypot, time-to-submit, Turnstile, Resend/MongoDB delivery adapter), `/request-demo`, `/request-pilot`, `/contact`, `/thank-you/*` |
+| **Step 11**  | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                               |
+| **Step 12**  | Company, Founder & Ethics / Privacy Pages                 | Pending       | -               | About, founder background, consent-based verification & data governance                                                                                                                                                                  |
+| **Step 13**  | Supporting Content, Guides & Comparison Pages             | Pending       | -               | Comparison pages, educational guides, glossary, and FAQ hub expansion                                                                                                                                                                    |
+| **Step 14**  | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Static build audit, accessibility review, zero-lint verification                                                                                                                                                                         |
 
 ---
 
@@ -224,3 +224,39 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - Bottom conversion CTA block.
   - Added Section 10 to `docs/OPEN_ITEMS.md` logging operational thresholds (tailgating delay, safety envelope radius, crowd density triggers, dock dwell limits, ambulance bay thresholds) requiring founder verification.
   - Validated clean code quality: `npm run lint` (0 errors, 0 warnings) and Next.js Turbopack `npm run build` (all 45 static routes compiled cleanly).
+
+### Step 10: Lead Capture & Qualification Engine
+
+- **Completed Actions:**
+  - Installed and configured `react-hook-form`, `zod`, and `@hookform/resolvers`.
+  - Created first-touch client attribution tracker in `lib/attribution.ts` persisting UTM parameters (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`), `landing_page`, `referrer`, and `page_url` across navigation sessions.
+  - Created analytics event dispatcher in `lib/analytics.ts` dispatching `form_start`, `form_submit`, `form_error`, `demo_request`, `pilot_request`, `contact_submit`, and `partner_inquiry`.
+  - Built comprehensive, strict Zod schemas in `lib/leads/schema.ts` for:
+    1. **Demo Lead Schema:** Full qualification matrix (name, work email, organization, job title, optional phone, sector dropdown, camera count ranges, site count, current CCTV setup and brand, 9 solution needs multi-select, evaluation timeline, message, mandatory privacy consent, honeypot, and render timestamp).
+    2. **Pilot Lead Schema:** All demo qualification fields plus evaluation zones description and preferred deployment architecture (edge, on-premise, cloud, not-sure).
+    3. **Contact Lead Schema:** Streamlined general inquiry form.
+    4. **Partner Lead Schema:** Reusable partner application schema (system integrators, channel partners, technology partners, regional coverage, annual install base).
+  - Built modular delivery layer in `lib/leads/delivery.ts`:
+    - Sliding window in-memory rate limiter (5 requests / 10 minutes per IP).
+    - Cloudflare Turnstile bot challenge verification adapter.
+    - Resend HTTP API email delivery adapter.
+    - MongoDB storage adapter.
+    - Environment fallback: logs detailed JSON to console in development; returns an explicit 503 configuration error in production so leads are never silently lost.
+  - Implemented Next.js Route Handler at `app/api/leads/route.ts` with server-side Zod validation, honeypot bot trap, 3000ms minimum submission time check, rate limiting, and clean JSON responses.
+  - Built 4 accessible, mobile-friendly form components in `components/forms/`:
+    - `DemoForm.tsx`: Qualification form with interactive solution checkboxes and validation error alerts.
+    - `PilotForm.tsx`: Dedicated pilot evaluation form with zone descriptions and deployment architecture selection. Displays the line: _"Contact us for enterprise pricing."_
+    - `ContactForm.tsx`: Direct communications form.
+    - `PartnerForm.tsx`: Reusable partner application form prepared for Step 11.
+  - Built 3 primary lead conversion pages:
+    - `app/request-demo/page.tsx`: Two-column layout with DemoForm on left and "What Happens Next" (Review > Discovery call > Demo > optional assessment and pilot, zero promised response times) + direct WhatsApp/email/phone on right.
+    - `app/request-pilot/page.tsx`: 8 mandated sections in exact order (Who the pilot is for, What can be evaluated, Existing CCTV compatibility with assessment validation notice, Deployment process StepFlow, Evaluation methodology, Expected outputs, Next steps, and PilotForm).
+    - `app/contact/page.tsx`: ContactForm, direct channels, WhatsApp button, LinkedIn link, and "Kolkata, West Bengal, India" location (no street address).
+  - Built universal `<ThankYouTemplate>` and 4 dedicated thank-you pages with `noindex, nofollow` metadata and conversion event tracking:
+    - `/thank-you/demo`
+    - `/thank-you/pilot`
+    - `/thank-you/contact`
+    - `/thank-you/partner`
+    - Legacy aliases (`/request-demo/thank-you`, `/request-pilot/thank-you`, `/contact/thank-you`) redirected seamlessly.
+  - Documented all lead capture environment variables in `.env.example`.
+  - Validated clean code quality: `npm run lint` (0 errors, 2 warnings from third-party hook compiler analysis), `npm run format` (clean), and Next.js Turbopack `npm run build` (all 49 routes compiled and statically pre-rendered successfully).
