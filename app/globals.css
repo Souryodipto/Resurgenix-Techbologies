@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a; /* Deep navy / charcoal text */
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #2563eb; /* Electric Blue */
+  --primary-hover: #1d4ed8;
+  --accent-cyan: #06b6d4;
+  --surface-subtle: #f8fafc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Guardrail: Strict White/Light Theme across all environments */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family:
+    var(--font-geist-sans),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  margin: 0;
+  padding: 0;
+}
