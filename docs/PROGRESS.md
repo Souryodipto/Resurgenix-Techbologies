@@ -17,8 +17,8 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 | **Step 8**   | **Core Solution Pages & Solutions Hub**                   | **Completed** | 2026-09-24      | Comprehensive `/content/solutions.ts` with 9 solutions, shared 12-stage `<SolutionTemplate>`, 9 dynamic routes, redesigned `/solutions` hub, requirements tables, honest limitations, 0 lint errors                                      |
 | **Step 9**   | **Industry Vertical Pages & Industries Hub**              | **Completed** | 2026-09-24      | Comprehensive `/content/industries.ts` with 7 verticals, shared `<IndustryTemplate>`, redesigned `/industries` hub with institutional links (Smart City & Defence), neutral vendor checklists, 0 lint errors                             |
 | **Step 10**  | **Lead Capture & Qualification Engine**                   | **Completed** | 2026-09-24      | Reusable accessible form engine (react-hook-form + Zod), `/api/leads` route handler (rate limiting, honeypot, time-to-submit, Turnstile, Resend/MongoDB delivery adapter), `/request-demo`, `/request-pilot`, `/contact`, `/thank-you/*` |
-| **Step 11**  | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                               |
-| **Step 12**  | Company, Founder & Ethics / Privacy Pages                 | Pending       | -               | About, founder background, consent-based verification & data governance                                                                                                                                                                  |
+| **Step 11**  | **Trust Pages: About, Security, Partners, Locations & Legal** | **Completed** | 2026-09-24      | Full implementations of `/about` (answer-first, founder voice, omitted unverified recognition), `/security-and-privacy` (deployment models, RBAC, audit, camera health, FAQ, honest certification disclaimer), `/partners` (ecosystem, benefits, steps, embedded PartnerForm), `/privacy-policy` & `/terms` (draft disclaimer callouts & code comments), `/locations/kolkata-eastern-india` (industrial corridors, proximity advantages, no fake address) |
+| **Step 12**  | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                               |
 | **Step 13**  | Supporting Content, Guides & Comparison Pages             | Pending       | -               | Comparison pages, educational guides, glossary, and FAQ hub expansion                                                                                                                                                                    |
 | **Step 14**  | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Static build audit, accessibility review, zero-lint verification                                                                                                                                                                         |
 
@@ -260,3 +260,44 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - Legacy aliases (`/request-demo/thank-you`, `/request-pilot/thank-you`, `/contact/thank-you`) redirected seamlessly.
   - Documented all lead capture environment variables in `.env.example`.
   - Validated clean code quality: `npm run lint` (0 errors, 2 warnings from third-party hook compiler analysis), `npm run format` (clean), and Next.js Turbopack `npm run build` (all 49 routes compiled and statically pre-rendered successfully).
+
+### Step 11: Trust Pages: About, Security, Partners, Locations & Legal
+
+- **Completed Actions:**
+  - Built comprehensive, honest `/about` page (`app/about/page.tsx`):
+    - Answer-first definition of Resurgenix as an Indian AI video intelligence company turning physical infrastructure into real-time intelligent systems.
+    - Clear operational problem narrative: passive CCTV footage overload, operator screen fatigue, and slow investigation after incidents occur.
+    - Founder's practical voice narrative: *"Building practical AI systems that turn physical infrastructure into intelligent systems."* Pragmatic AI treated as an operational utility rather than speculative research.
+    - Product approach: software intelligence layer connecting to compatible existing IP cameras and RTSP streams without rip-and-replace.
+    - Explicit comparative matrix: What We Build (vision pipelines, edge analytics, centralized dashboard) vs. What We Do Not Do (NOT a CCTV camera reseller, no hardware lock-in, no consumer AI wrappers, no public mass surveillance).
+    - Regional roots: Kolkata headquarters with Kalyani and Eastern India industrial focus, expanding nationally with long-term international aspirations.
+    - Transparent current stage: early commercial and pilot stage, actively seeking enterprise pilot customers, industrial plants, public/defence discussions, and channel partners.
+    - Founder card: Souryodipto Debnath (Electronics & CS, AI, CV, Robotics, Edge Computing, Product Development). Personal LinkedIn omitted (only company LinkedIn is provided). Other team members omitted per brief rules until explicit written consent is logged.
+    - Recognition block strictly omitted and logged in `docs/OPEN_ITEMS.md` because all items remain unverified (`[ ]`).
+  - Built comprehensive, non-marketing `/security-and-privacy` page (`app/security-and-privacy/page.tsx`):
+    - Deployment options breakdown: Edge, On-premise server, Hybrid, Cloud with explicit statements of where video is processed and where video is stored.
+    - Role-Based Access Control (RBAC): Super Admin, Security Supervisor, Station Operator, Compliance Auditor.
+    - Tamper-evident auditability and event logging (user logins, stream views, zone modifications, alert acknowledgments, clip exports).
+    - Customer-set data retention and automated purge policies based on data minimization principles.
+    - Privacy approach for face-related features: consent-based enrolment, purpose limitation, zero public mass-surveillance or citizen indexing.
+    - Operational reliability: automated camera health diagnostics (signal loss, lens occlusion/tamper, stream jitter, low-light degradation).
+    - Prominent, honest certification disclaimer: *"We do not claim certifications we do not hold."* No unsubstantiated "100% secure" or ISO 27001 claims.
+    - CISO / Security Teams FAQ accordion (8 practical, technical Q&As).
+  - Built `/partners` page (`app/partners/page.tsx`):
+    - Targeted partner profiles: System Integrators (SIs), CCTV/VMS Integrators, Managed Security & Guarding Providers, IT & Infrastructure VARs, Hardware Partners.
+    - Clear collaboration model: software margins, recurring AMC revenue, deal registration, pre-sales engineering, MAF tender documentation, joint pilot deployment support.
+    - 4-step partner onboarding journey.
+    - Direct integration of the accessible `PartnerForm` built in Step 10.
+  - Built sensible, legally guarded `/privacy-policy` (`app/privacy-policy/page.tsx`) & `/terms` (`app/terms/page.tsx`) first drafts:
+    - Tailored for an Indian B2B company collecting lead data (demo/pilot/partner forms) and website analytics.
+    - Covers data collection, lawful purpose, customer video feed boundary (enterprise video is processed locally and never ingested through the website), retention, sharing, cookies, and user rights under Indian law.
+    - Terms cover intellectual property, informational disclaimers, lead submission accuracy, limitation of liability, and exclusive Kolkata, West Bengal jurisdiction.
+    - Both pages include code-level comments (`/* Draft, requires legal review before launch. */`) and visible callout banners.
+    - Logged in Section 11 of `docs/OPEN_ITEMS.md`.
+  - Built genuine, high-substance regional page `/locations/kolkata-eastern-india` (`app/locations/kolkata-eastern-india/page.tsx`):
+    - Detailed industrial and campus contexts: Salt Lake Sector V / New Town corporate hubs, Durgapur–Asansol steel belt, Haldia port/petrochemical zone, Kalyani educational & healthcare hub, Kharagpur–Dankuni logistics corridors.
+    - Genuine proximity advantages: rapid on-site camera audits, local edge calibration, direct developer access, zero interstate travel delay.
+    - Transparent contact options with no fabricated street addresses or invented client case studies.
+  - Updated global `Footer.tsx` column 4 to directly link Company pages (`/about`, `/security-and-privacy`, `/partners`, `/locations/kolkata-eastern-india`).
+  - Added internal linking mesh across all trust pages connecting to `/how-it-works`, `/solutions`, `/industries`, `/request-demo`, and `/request-pilot`.
+

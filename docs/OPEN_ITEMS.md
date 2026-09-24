@@ -45,6 +45,7 @@ Participation in an event or incubation program must never imply government proc
 - [ ] **JC Bose Science Fair:** Confirm award/recognition title for Autonomous Disaster Drone project.
 - [ ] **SIGNASS-2026:** Confirm participation context and approved public summary.
 - [ ] **Smart Irrigation AI Research:** Confirm publication or institutional affiliation details if relevant to computer vision credibility.
+- [x] _Step 11 Implementation Log (About Page Recognition Block):_ Because none of the recognition or program items above have been marked as approved with verified wording, the "Recognition and programs" block on `/about` currently renders nothing, adhering strictly to the rule: "If none are approved yet, render nothing and log it."
 - [ ] _Note on Customer Proof:_ Until verified customer case studies are approved, trust sections will use a clearly marked placeholder (`[Add verified customer proof]`) that is excluded from production builds.
 
 ---
@@ -114,3 +115,10 @@ The following operational rules, temporal thresholds, and integration points wer
 - [ ] **Healthcare Ambulance Bay Dwell Limits:** Confirm that 2-minute stationary vehicle alert thresholds for emergency drop-off bays and silent visual alerts on nursing stations reflect intended hospital operations.
 - [ ] **Retail Checkout Queue Alert Parameters:** Confirm that "queue count exceeding 5 people for more than 90 seconds" is the recommended operational alert threshold for retail store managers.
 - [ ] **Hospitality Pool After-Hours Safety:** Confirm that time-scheduled virtual boundaries (e.g., 22:00 to 06:00) with silent security dispatch match standard hotel deployment practices.
+
+---
+
+## 11. Legal Documents Review (From Step 11)
+
+- [ ] **Privacy Policy (`/privacy-policy`) & Terms of Service (`/terms`):** Draft, requires legal review before launch. Must be reviewed by qualified Indian corporate legal counsel for formal compliance under the Digital Personal Data Protection (DPDP) Act, 2023, Information Technology Act, 2000, and Indian Contract Act, 1872.
+

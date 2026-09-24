@@ -147,12 +147,24 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Column 4: Contact & Operations */}
+            {/* Column 4: Company & Operations */}
             <div>
               <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#0B1F3A] mb-4">
-                Operations
+                Company &amp; Operations
               </div>
-              <div className="space-y-3 text-xs text-[#5B6B7F]">
+              <ul className="space-y-2 text-xs mb-6" role="list">
+                {footerNav.column4Company.slice(0, 4).map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-[#5B6B7F] hover:text-[#2563EB] transition-colors focus:outline-none focus:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div className="space-y-3 text-xs text-[#5B6B7F] pt-2 border-t border-[#E2E8F0]">
                 <div>
                   <span className="block text-[11px] font-mono text-[#0B1F3A] font-semibold">
                     Headquarters:
