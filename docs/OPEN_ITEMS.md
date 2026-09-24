@@ -65,3 +65,13 @@ Per brief rules, team members cannot be publicly displayed until role and explic
 
 - [ ] Confirm any formal certifications (e.g. ISO 27001, SOC2, CE, BIS). _Guardrail: none are claimed on the website currently._
 - [ ] Confirm privacy guidelines regarding Digital Personal Data Protection (DPDP) Act alignment for consent-based enterprise facial verification workflows.
+
+---
+
+## 6. Commercial, Infrastructure & Procurement Questions (From Step 2 Research)
+
+- [ ] **Startup & GeM Registration:** Does Resurgenix currently possess a DPIIT Startup Recognition number and/or an active Government e-Marketplace (GeM) OEM profile? This determines whether GeM-specific procurement tags and Make in India (MII) preference badges can be displayed on tender/government pages.
+- [ ] **Recommended Edge Hardware Baseline:** For on-premise edge deployments, what are the recommended minimum hardware specifications (e.g., standard workstation with NVIDIA RTX GPU vs. edge industrial box such as Jetson / x86 edge server) to list in technical compatibility guides?
+- [ ] **Standard Pilot Evaluation Parameters:** Confirm whether describing a typical pilot as "3 to 5 high-priority camera streams for 14 to 30 days" aligns with operational delivery bandwidth, or if wording should remain strictly open-ended.
+- [ ] **Kalyani Operational Footprint:** Confirm whether Kalyani should be described as an R&D/academic collaboration center or an operational branch alongside the Kolkata headquarters.
+- [ ] **System Integrator Channel Policy:** Confirm whether Resurgenix provides formal Manufacturer Authorization Forms (MAF) and lead protection for regional security system integrators bidding on enterprise and public RFPs.
