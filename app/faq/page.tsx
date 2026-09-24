@@ -6,16 +6,27 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { Accordion } from "@/components/ui/Accordion";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getBreadcrumbListSchema, getFAQPageSchema } from "@/components/seo/schema";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions (FAQ) | Resurgenix Technologies",
+  title: "Frequently Asked Questions: AI CCTV Systems | Resurgenix",
   description:
     "Direct, practical answers to frequent questions regarding camera compatibility, pilot deployments, edge computing, DPDP privacy compliance, and enterprise security.",
 };
 
 export default function FAQHubPage() {
+  const allFaqItems = faqsData.flatMap((cat) => cat.items);
+  const breadcrumbsSchema = getBreadcrumbListSchema([
+    { name: "Home", url: "/" },
+    { name: "Resources", url: "/resources" },
+    { name: "FAQ", url: "/faq" },
+  ]);
+  const faqSchema = getFAQPageSchema(allFaqItems);
+
   return (
     <main className="min-h-screen bg-white text-[#1F2937]">
+      <JsonLd schema={[breadcrumbsSchema, faqSchema]} />
       {/* Page Header */}
       <Section background="white" className="pt-8 pb-12 border-b border-[#E2E8F0]">
         <Container>

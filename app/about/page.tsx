@@ -5,16 +5,25 @@ import { Section } from "@/components/ui/Section";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getAboutPageSchema, getBreadcrumbListSchema } from "@/components/seo/schema";
 
 export const metadata: Metadata = {
-  title: "About Resurgenix Technologies | Indian AI Video Intelligence",
+  title: "About Resurgenix: Practical AI Video Systems | Resurgenix",
   description:
     "Resurgenix Technologies builds the AI intelligence layer for existing CCTV infrastructure. Founded in Kolkata, West Bengal, focused on practical computer vision for enterprise and industrial physical security.",
 };
 
 export default function AboutPage() {
+  const breadcrumbsSchema = getBreadcrumbListSchema([
+    { name: "Home", url: "/" },
+    { name: "About", url: "/about" },
+  ]);
+  const aboutSchema = getAboutPageSchema();
+
   return (
     <main className="min-h-screen bg-white text-[#1F2937]">
+      <JsonLd schema={[breadcrumbsSchema, aboutSchema]} />
       {/* 1. Page Header & Answer-First Summary */}
       <Section background="white" className="pt-8 pb-12 border-b border-[#E2E8F0]">
         <Container>

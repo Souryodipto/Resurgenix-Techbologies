@@ -8,6 +8,13 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { Accordion } from "@/components/ui/Accordion";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { siteConfig } from "@/content/site.config";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  getBreadcrumbListSchema,
+  getArticleSchema,
+  getFAQPageSchema,
+} from "@/components/seo/schema";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -24,19 +31,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
+  const canonicalUrl = `${siteConfig.siteUrl}/resources/${article.slug}`;
+  const ogUrl = `${siteConfig.siteUrl}/api/og?title=${encodeURIComponent(
+    article.title
+  )}&category=${encodeURIComponent(article.category || "Resource Guide")}`;
+
   return {
     title: article.seoTitle,
     description: article.metaDescription,
     alternates: {
-      canonical: `/resources/${article.slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: article.seoTitle,
       description: article.metaDescription,
+      url: canonicalUrl,
+      siteName: siteConfig.company.brandName,
       type: "article",
       publishedTime: article.publishDate,
       modifiedTime: article.updatedDate || article.publishDate,
       authors: [article.author?.name || "Souryodipto Debnath"],
+      images: [
+        {
+          url: ogUrl,
+          width: 1200,
+          height: 630,
+          alt: `${article.title} — Resurgenix`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.seoTitle,
+      description: article.metaDescription,
+      images: [ogUrl],
     },
   };
 }
@@ -49,8 +77,31 @@ export default async function ResourceArticlePage({ params }: Props) {
     notFound();
   }
 
+  const breadcrumbsSchema = getBreadcrumbListSchema([
+    { name: "Home", url: "/" },
+    { name: "Resources", url: "/resources" },
+    { name: article.title, url: `/resources/${article.slug}` },
+  ]);
+
+  const articleSchema = getArticleSchema({
+    title: article.title,
+    description: article.shortAnswer || article.metaDescription,
+    url: `/resources/${article.slug}`,
+    datePublished: article.publishDate,
+    dateModified: article.updatedDate || article.publishDate,
+    authorName: article.author?.name,
+  });
+
+  const schemas: Record<string, unknown>[] = [breadcrumbsSchema, articleSchema];
+
+  // FAQPage schema only when FAQs are visibly present on this article
+  if (article.faqs && article.faqs.length > 0) {
+    schemas.push(getFAQPageSchema(article.faqs));
+  }
+
   return (
     <main className="min-h-screen bg-white text-[#1F2937]">
+      <JsonLd schema={schemas} />
       {/* 1. Header & Breadcrumbs */}
       <Section background="white" className="pt-8 pb-10 border-b border-[#E2E8F0]">
         <Container>

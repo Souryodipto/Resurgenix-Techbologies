@@ -19,8 +19,8 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 | **Step 10**  | **Lead Capture & Qualification Engine**                   | **Completed** | 2026-09-24      | Reusable accessible form engine (react-hook-form + Zod), `/api/leads` route handler (rate limiting, honeypot, time-to-submit, Turnstile, Resend/MongoDB delivery adapter), `/request-demo`, `/request-pilot`, `/contact`, `/thank-you/*` |
 | **Step 11**  | **Trust Pages: About, Security, Partners, Locations & Legal** | **Completed** | 2026-09-24      | Full implementations of `/about` (answer-first, founder voice, omitted unverified recognition), `/security-and-privacy` (deployment models, RBAC, audit, camera health, FAQ, honest certification disclaimer), `/partners` (ecosystem, benefits, steps, embedded PartnerForm), `/privacy-policy` & `/terms` (draft disclaimer callouts & code comments), `/locations/kolkata-eastern-india` (industrial corridors, proximity advantages, no fake address) |
 | **Step 12**  | **Content Engine & Growth Plan**                          | **Completed** | 2026-09-24      | 15 full articles (2,000+ word pillar + 12 clusters + compliance & pilots), `/resources` hub with filters, `/glossary` (26 terms), `/faq` (grouped accordions), `/compare/[slug]` (3 comparisons on 8 criteria), 2 lead magnets (PDF checklist + interactive readiness assessment), `/docs/growth/` strategy documents, 0 lint/build errors |
-| **Step 13**  | Supporting Content, Technical SEO & Performance           | Pending       | -               | Schema.org JSON-LD expansions, canonicals, XML sitemap verification, robots.txt, Core Web Vitals optimizations                                                                                                                            |
-| **Step 14**  | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Static build audit, accessibility review, zero-lint verification, final launch checklist                                                                                                                                                 |
+| **Step 13**  | **Technical SEO, GEO & Structured Data**                  | **Completed** | 2026-09-24      | Complete Next.js Metadata API, `/app/api/og/route.tsx` social image generation, `app/sitemap.ts` (real routes, accurate lastModified), `app/robots.ts` (AI crawlers allowed), JSON-LD schemas (Organization, WebSite, Service, BlogPosting, FAQPage, AboutPage, BreadcrumbList), `/content/facts.ts`, `/docs/seo-metadata.md`, `/docs/geo-audit.md`, `/docs/image-seo.md`, `/public/llms.txt`, security headers & CSP in `next.config.ts`, 0 build/lint errors |
+| **Step 14**  | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Final comprehensive audit, accessibility validation, Core Web Vitals, and launch readiness verification                                                                                                                                  |
 
 ---
 
@@ -357,5 +357,48 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
   - **Validation & Code Quality:**
     - `npm run lint`: Passed with 0 errors.
     - `npm run build`: Successfully built all 63 static routes (15 articles, 3 comparisons, 2 lead magnets, glossary, faq, solutions, industries, forms) via Next.js Turbopack SSG.
+
+### Step 13: Technical SEO, GEO and Structured Data
+
+- **Completed Actions:**
+  - **Single-Source Facts & Entity Grounding:**
+    - Created `content/facts.ts` storing verified entity attributes: legal company name (`Resurgenix Technologies Pvt. Ltd.`), brand name (`Resurgenix`), founder (`Souryodipto Debnath`), headquarters (`Kolkata, West Bengal, India`), operational corridors, contact points, core technical specifications (RTSP, ONVIF Profile S/T/G, H.264/H.265, 30–80ms latency), and institutional recognitions (IIM Calcutta Innovation Park, Startup India DPIIT).
+    - Created `content/seoData.ts` providing typed SEO metadata for every page across the platform (unique title < 60 chars, description < 160 chars, canonical URL, H1, primary/secondary keywords, intent, funnel stage).
+    - Saved `docs/seo-metadata.md` cataloging every page's SEO attributes.
+  - **Dynamic Open Graph Social Sharing Image Engine:**
+    - Implemented `app/api/og/route.tsx` using `next/og` (`ImageResponse`) with Node.js runtime.
+    - Dynamically generates 1200×630 branded social cards featuring white background (`#FFFFFF`), dark navy typography (`#0B1F3A`), electric blue accent bar (`#2563EB`), Resurgenix aperture brandmark, page title, and category badge.
+    - Connected dynamically across all solutions, articles, comparisons, and industry pages.
+  - **XML Sitemap & Search/AI Crawlers (`app/sitemap.ts` & `app/robots.ts`):**
+    - Built `app/sitemap.ts` generating `sitemap.xml` with real routes: 18 base platform pages, 9 solutions, 7 industries, 15 resource articles (using verified frontmatter dates for `lastModified`), and 3 comparisons.
+    - Strictly excluded all thank-you pages, `/design-system`, and utility paths.
+    - Built `app/robots.ts` explicitly authorizing leading search and AI-search bots (`Googlebot`, `Bingbot`, `OAI-SearchBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `Applebot`), disallowing private routes, and referencing `sitemap.xml` and host URL.
+    - Configured `robots: { index: false, follow: false }` layout wrappers for `/design-system` and `/thank-you/*`.
+  - **Server-Side Schema.org JSON-LD Infrastructure:**
+    - Built `components/seo/JsonLd.tsx` for server-side HTML script injection.
+    - Built typed schema factory functions in `components/seo/schema.ts`:
+      - **Sitewide `Organization` & `WebSite`:** Injected in `app/layout.tsx` (`@id`, legal name, alternate name, logo, sameAs, contactPoint, postalAddress, founder Person, knowsAbout list). Strictly skipped street addresses, fake reviews, ratings, awards, prices, and employee counts per truth rules.
+      - **`Service`:** Injected on solution pages with provider linked to Organization `@id`, serviceType `AI Video Analytics`, and target audience.
+      - **`SoftwareApplication`:** Applied to platform pillar solution page (`/solutions/ai-video-analytics`) omitting fake offers/prices.
+      - **`BlogPosting` / `Article`:** Injected on all resource articles (`/resources/[slug]`) with author Person (`Souryodipto Debnath`), publisher `@id`, datePublished, dateModified, and dynamic OG image.
+      - **`FAQPage`:** Injected ONLY on pages whose FAQs are visibly rendered in the DOM (`/faq`, solutions with FAQs, articles with FAQs).
+      - **`AboutPage`:** Injected on `/about` linked to Organization `@id`.
+      - **`BreadcrumbList`:** Injected on all solution, industry, resource, comparison, and utility pages.
+      - **`VideoObject` (Skipped Rationale):** Explicitly skipped on homepage because the joined master MP4 video file has not yet been supplied by the founder (logged as open item in `docs/OPEN_ITEMS.md`). Generating a VideoObject with an unverified upload date or duration would violate strict truth guardrails.
+  - **Generative Engine Optimization (GEO) & AI Search:**
+    - Authored `docs/geo-audit.md` answering the 15 core questions an AI assistant might be asked about Resurgenix with verbatim passage mappings to live pages.
+    - Created `public/llms.txt` summarizing company positioning, core differentiators, technical specifications, and canonical URLs for LLM crawlers.
+  - **Technical Performance & Security Standards:**
+    - Enhanced `next.config.ts` with security headers (`X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`, and a tight `Content-Security-Policy` allowing only self, Cloudflare Turnstile, and Google Fonts).
+    - Enabled Gzip/Brotli compression, `trailingSlash: false`, and long-lived 1-year caching for `/images/*`.
+    - Added 301 permanent redirects for legacy thank-you and alias URLs.
+    - Implemented `preload: true` for the primary body font (Inter) with `preload: false` for secondary fonts in `app/layout.tsx`.
+    - Implemented dynamic imports for heavy client interactive components (`VideoPlayer`, `PilotChecklistClient`, `CCTVReadinessAssessment`).
+    - Documented image specifications in `docs/image-seo.md`.
+  - **Validation & Code Quality:**
+    - `npm run lint`: Passed with 0 errors.
+    - `npm run build`: Compiled all 65 static routes and API endpoints successfully.
+    - Verified `sitemap.xml` (316 lines) and `robots.txt` render properly in build output.
+
 
 

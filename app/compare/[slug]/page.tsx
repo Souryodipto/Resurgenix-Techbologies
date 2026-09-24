@@ -7,6 +7,9 @@ import { Section } from "@/components/ui/Section";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { siteConfig } from "@/content/site.config";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getBreadcrumbListSchema } from "@/components/seo/schema";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -23,11 +26,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const comparison = getComparisonBySlug(slug);
   if (!comparison) return {};
 
+  const canonicalUrl = `${siteConfig.siteUrl}/compare/${comparison.slug}`;
+  const ogUrl = `${siteConfig.siteUrl}/api/og?title=${encodeURIComponent(
+    comparison.title
+  )}&category=${encodeURIComponent("Technical Comparison")}`;
+
   return {
     title: comparison.seoTitle,
     description: comparison.metaDescription,
     alternates: {
-      canonical: `/compare/${comparison.slug}`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: comparison.seoTitle,
+      description: comparison.metaDescription,
+      url: canonicalUrl,
+      siteName: siteConfig.company.brandName,
+      type: "article",
+      images: [
+        {
+          url: ogUrl,
+          width: 1200,
+          height: 630,
+          alt: `${comparison.title} — Resurgenix`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: comparison.seoTitle,
+      description: comparison.metaDescription,
+      images: [ogUrl],
     },
   };
 }
@@ -40,8 +69,15 @@ export default async function ComparisonDetailPage({ params }: Props) {
     notFound();
   }
 
+  const breadcrumbsSchema = getBreadcrumbListSchema([
+    { name: "Home", url: "/" },
+    { name: "Resources", url: "/resources" },
+    { name: comparison.title, url: `/compare/${comparison.slug}` },
+  ]);
+
   return (
     <main className="min-h-screen bg-white text-[#1F2937]">
+      <JsonLd schema={breadcrumbsSchema} />
       {/* 1. Page Header */}
       <Section background="white" className="pt-8 pb-10 border-b border-[#E2E8F0]">
         <Container>

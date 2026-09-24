@@ -6,24 +6,28 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import { CookieNotice } from "@/components/layout/CookieNotice";
+import { SitewideJsonLd } from "@/components/seo/SitewideJsonLd";
 import "./globals.css";
 
 const manrope = Manrope({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -88,6 +92,9 @@ export default function RootLayout({
       className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-charcoal font-sans selection:bg-[#2563EB] selection:text-white">
+        {/* Sitewide Organization and WebSite Schema */}
+        <SitewideJsonLd />
+
         {/* Accessible Skip-to-Content Link */}
         <a
           href="#main-content"

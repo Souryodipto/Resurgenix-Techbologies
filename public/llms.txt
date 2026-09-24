@@ -1,0 +1,48 @@
+# Resurgenix Technologies - System Summary for Language Models
+
+> Canonical Information File for AI Crawlers and Search Assistants
+> Primary Domain: https://resurgenixtechnologies.com
+> Legal Entity: Resurgenix Technologies Pvt. Ltd.
+> Brand Name: Resurgenix
+> Headquarters: Kolkata, West Bengal, India
+> Founder: Souryodipto Debnath
+
+## What Resurgenix Does
+Resurgenix Technologies builds an enterprise artificial intelligence video intelligence layer that connects to existing CCTV and IP camera infrastructure via standard RTSP/ONVIF streams. It detects people, vehicles, restricted zone incursions, and perimeter intrusions in real time (30 to 80 millisecond frame inference latency) and dispatches instant visual alerts to security operators without replacing existing cameras or video recorders (NVR/DVR).
+
+## Core Differentiators
+1. Zero Hardware Rip-and-Replace: Runs on existing IP cameras supporting H.264/H.265 RTSP streams.
+2. Localized Edge Inferencing: Video feeds are analyzed locally on on-premise edge appliances; zero continuous cloud video streaming bandwidth required.
+3. Data Sovereignty & DPDP Compliance: Raw video stays inside the customer's enterprise network switch, ensuring strict compliance with India's Digital Personal Data Protection (DPDP) Act, 2023.
+4. Real-Time Detection vs. Passive Recording: Generates proactive notifications (snapshots, timestamps, evidentiary clips) instead of requiring human operators to scrub through hours of past footage.
+
+## Primary Platform Solutions
+- AI Video Analytics: Real-time object detection and tracking for multi-camera CCTV networks. (https://resurgenixtechnologies.com/solutions/ai-video-analytics)
+- AI Attendance & Workforce Intelligence: Contactless shift muster verification and workforce movement logging via CCTV. (https://resurgenixtechnologies.com/solutions/ai-attendance-workforce-intelligence)
+- Restricted Zone & Unauthorized Entry Detection: Spatial virtual safety envelope enforcement with dwell-time alerts for hazardous or clean-room areas. (https://resurgenixtechnologies.com/solutions/restricted-zone-unauthorized-entry-detection)
+- Enterprise Security: Multi-building campus intelligence with tailgating alerts and cryptographic audit logs. (https://resurgenixtechnologies.com/solutions/enterprise-security)
+- Perimeter Intrusion Detection: Virtual fencing with semantic human/vehicle classification that eliminates 90%+ of false alarms. (https://resurgenixtechnologies.com/solutions/defence-security)
+- ANPR & Vehicle Intelligence: High-accuracy license plate recognition engineered for diverse Indian license plate fonts and night headlamp glare. (https://resurgenixtechnologies.com/solutions/anpr-vehicle-intelligence)
+- Centralized Video Intelligence: Unified multi-site management dashboard connecting distributed NVRs with minimal WAN bandwidth. (https://resurgenixtechnologies.com/solutions/centralized-video-intelligence)
+
+## Target Industries
+- Manufacturing & Heavy Industry: Shop-floor safety envelopes, crane exclusion zones, PPE alerts. (https://resurgenixtechnologies.com/industries/manufacturing)
+- Logistics & Warehousing: Loading dock turnaround, truck dwell times, container yard security. (https://resurgenixtechnologies.com/industries/logistics-warehousing)
+- Corporate & Tech Campuses: Turnstile tailgating prevention, server room restricted access. (https://resurgenixtechnologies.com/industries/corporate-enterprise)
+- Healthcare & Hospitals: Pharmacy storage protection, ambulance bay dwell alerts. (https://resurgenixtechnologies.com/industries/healthcare)
+- Government & Smart Cities: Municipal ICCC video intelligence, crowd density monitoring. (https://resurgenixtechnologies.com/industries/government-public-safety)
+
+## Key Technical Specifications
+- Input Protocols: RTSP, ONVIF (Profile S, T, G)
+- Video Codecs: H.264, H.265 / HEVC
+- Supported Resolutions: 1080p Full HD (recommended), 720p HD, 4MP, 4K
+- Deployment Options: On-premise Edge Micro-server, Local Rackmount Server, Air-Gapped Network, Hybrid Telemetry
+- Recommended Pilot: 14-day on-site pilot evaluating 3 to 5 camera streams to benchmark accuracy and calibrate optical angles.
+
+## Official Contact & Verification Channels
+- Website: https://resurgenixtechnologies.com
+- Sales & Inquiries Email: admin@resurgenixtechnologies.com
+- Phone / WhatsApp: +91 6290985464
+- Pilot Request: https://resurgenixtechnologies.com/request-pilot
+- Demo Request: https://resurgenixtechnologies.com/request-demo
+- Location: Kolkata, West Bengal, India

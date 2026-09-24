@@ -1,19 +1,42 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
-import { CCTVReadinessAssessment } from "@/components/sections/CCTVReadinessAssessment";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getBreadcrumbListSchema } from "@/components/seo/schema";
+
+const CCTVReadinessAssessment = dynamic(
+  () =>
+    import("@/components/sections/CCTVReadinessAssessment").then(
+      (mod) => mod.CCTVReadinessAssessment
+    ),
+  {
+    loading: () => (
+      <div className="p-8 text-center bg-[#F7F9FC] border border-[#E2E8F0] rounded-2xl text-xs text-[#5B6B7F]">
+        Loading readiness assessment...
+      </div>
+    ),
+  }
+);
 
 export const metadata: Metadata = {
-  title: "Is Your CCTV Ready for AI? Interactive Self-Assessment | Resurgenix",
+  title: "Is Your CCTV Ready for AI? Self-Assessment | Resurgenix",
   description:
     "Evaluate your existing CCTV camera hardware, resolution, network architecture, and operational environment with our 2-minute qualitative readiness assessment.",
 };
 
 export default function CCTVReadinessAssessmentPage() {
+  const breadcrumbsSchema = getBreadcrumbListSchema([
+    { name: "Home", url: "/" },
+    { name: "Resources", url: "/resources" },
+    { name: "CCTV AI Readiness Assessment", url: "/resources/cctv-ai-readiness-assessment" },
+  ]);
+
   return (
     <main className="min-h-screen bg-white text-[#1F2937]">
+      <JsonLd schema={breadcrumbsSchema} />
       <Section background="white" className="pt-8 pb-12 border-b border-[#E2E8F0]">
         <Container>
           <Breadcrumbs

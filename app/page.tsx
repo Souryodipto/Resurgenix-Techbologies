@@ -5,11 +5,22 @@ import { Section } from "@/components/ui/Section";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Accordion } from "@/components/ui/Accordion";
-import { VideoPlayer } from "@/components/ui/VideoPlayer";
+import dynamic from "next/dynamic";
 import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
 import { IllustrativeDashboard } from "@/components/ui/IllustrativeDashboard";
 import { homeContent } from "@/content/home";
 import { siteConfig } from "@/content/site.config";
+
+const VideoPlayer = dynamic(
+  () => import("@/components/ui/VideoPlayer").then((mod) => mod.VideoPlayer),
+  {
+    loading: () => (
+      <div className="aspect-video w-full bg-slate-100 flex items-center justify-center text-xs text-[#5B6B7F]">
+        Loading video player...
+      </div>
+    ),
+  }
+);
 
 export const metadata: Metadata = {
   title: "Resurgenix — AI Video Intelligence for Existing CCTV Infrastructure",

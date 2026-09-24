@@ -1,19 +1,42 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
-import { PilotChecklistClient } from "@/components/sections/PilotChecklistClient";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getBreadcrumbListSchema } from "@/components/seo/schema";
+
+const PilotChecklistClient = dynamic(
+  () =>
+    import("@/components/sections/PilotChecklistClient").then(
+      (mod) => mod.PilotChecklistClient
+    ),
+  {
+    loading: () => (
+      <div className="p-8 text-center bg-[#F7F9FC] border border-[#E2E8F0] rounded-2xl text-xs text-[#5B6B7F]">
+        Loading evaluation checklist...
+      </div>
+    ),
+  }
+);
 
 export const metadata: Metadata = {
-  title: "AI CCTV Pilot Readiness Checklist | Enterprise Evaluation Guide | Resurgenix",
+  title: "AI CCTV Pilot Readiness Checklist (PDF) | Resurgenix",
   description:
     "Download our free, objective AI CCTV Pilot Readiness Checklist for CSOs and IT Heads. Audit camera protocols, pixel density, network bandwidth, and lighting before launching a pilot.",
 };
 
 export default function PilotReadinessChecklistPage() {
+  const breadcrumbsSchema = getBreadcrumbListSchema([
+    { name: "Home", url: "/" },
+    { name: "Resources", url: "/resources" },
+    { name: "Pilot Readiness Checklist", url: "/resources/pilot-readiness-checklist" },
+  ]);
+
   return (
     <main className="min-h-screen bg-white text-[#1F2937]">
+      <JsonLd schema={breadcrumbsSchema} />
       <Section background="white" className="pt-8 pb-12 border-b border-[#E2E8F0]">
         <Container>
           <Breadcrumbs
