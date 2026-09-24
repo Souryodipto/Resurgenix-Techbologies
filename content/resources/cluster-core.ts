@@ -114,7 +114,7 @@ export const clusterCoreArticles: ResourceArticle[] = [
       {
         question: "Does AI video analytics store all our video in the cloud?",
         answer:
-          "No. Enterprise platforms like Resurgenix primarily deploy on local on-premise edge appliances or private servers. Video feeds are processed locally on your facility LAN, ensuring 100% data sovereignty and zero external internet bandwidth consumption.",
+          "No. Enterprise platforms like Resurgenix primarily deploy on local on-premise edge appliances or private servers. Video feeds are processed locally on your facility LAN, ensuring complete data sovereignty and zero external internet bandwidth consumption.",
       },
     ],
     relatedSolutions: [
@@ -302,7 +302,7 @@ export const clusterCoreArticles: ResourceArticle[] = [
         paragraphs: [
           "One of the most persistent misconceptions in physical security procurement is that adopting artificial intelligence requires a complete hardware replacement: discarding functional IP cameras, running new network cabling, and purchasing proprietary smart cameras. In enterprise environments with 50, 200, or 1,000 cameras, the capital cost of a complete hardware overhaul is often prohibitive.",
           "In modern surveillance engineering, camera hardware and computer vision intelligence are completely decoupled. Surveillance cameras are essentially optical capture devices that convert light into digital video packets. As long as a camera can output a standard network video stream, computer vision algorithms can analyze that video on external edge hardware without any modification to the camera itself.",
-          "By deploying an intelligent software layer that taps into standard RTSP streams on your local network, facilities can upgrade their surveillance posture to real-time intelligence while preserving 100% of their existing camera and cabling capital investments.",
+          "By deploying an intelligent software layer that taps into standard RTSP streams on your local network, facilities can upgrade their surveillance posture to real-time intelligence while preserving their existing camera and cabling capital investments.",
         ],
       },
       {

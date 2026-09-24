@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { footerNav } from "@/content/nav";
 import { siteConfig } from "@/content/site.config";
 import { ResurgenixLogo } from "./Header";
+import { trackOutboundClick, trackEmailClick, trackPhoneClick } from "@/lib/analytics";
 
 /**
  * Global Corporate Footer
@@ -56,6 +59,7 @@ export function Footer() {
                     href={siteConfig.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackOutboundClick("linkedin", siteConfig.social.linkedin)}
                     className="p-2 rounded-lg bg-white border border-[#E2E8F0] text-[#0B1F3A] hover:text-[#2563EB] hover:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 transition-colors"
                     aria-label="Resurgenix LinkedIn Company Page (opens in new tab)"
                   >
@@ -74,6 +78,7 @@ export function Footer() {
                     href={siteConfig.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackOutboundClick("instagram", siteConfig.social.instagram)}
                     className="p-2 rounded-lg bg-white border border-[#E2E8F0] text-[#0B1F3A] hover:text-[#2563EB] hover:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 transition-colors"
                     aria-label="Resurgenix Instagram Profile (opens in new tab)"
                   >
@@ -177,6 +182,7 @@ export function Footer() {
                   </span>
                   <a
                     href={`mailto:${siteConfig.contact.email}`}
+                    onClick={() => trackEmailClick("footer")}
                     className="text-[#2563EB] hover:underline"
                   >
                     {siteConfig.contact.email}
@@ -188,6 +194,7 @@ export function Footer() {
                   </span>
                   <a
                     href={`tel:${siteConfig.contact.phone}`}
+                    onClick={() => trackPhoneClick("footer")}
                     className="text-[#2563EB] hover:underline"
                   >
                     {siteConfig.contact.displayPhone}

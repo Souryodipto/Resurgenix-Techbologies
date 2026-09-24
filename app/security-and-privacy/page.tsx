@@ -193,7 +193,7 @@ export default function SecurityAndPrivacyPage() {
                 <div>
                   <span className="font-semibold text-[#0B1F3A]">External Bandwidth:</span>{" "}
                   <span className="text-[#5B6B7F]">
-                    Fully air-gapped capable; 100% internal network containment.
+                    Fully air-gapped capable; complete internal network containment.
                   </span>
                 </div>
               </div>

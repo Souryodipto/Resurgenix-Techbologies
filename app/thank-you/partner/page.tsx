@@ -16,7 +16,7 @@ export default function PartnerThankYouPage() {
       type="partner"
       title="Partner Application Received"
       subtitle="Thank you for your interest in partnering with Resurgenix Technologies as a System Integrator or Technology Partner."
-      conversionEvent="partner_inquiry"
+      conversionEvent="partner_submit"
       nextSteps={[
         {
           number: "1",

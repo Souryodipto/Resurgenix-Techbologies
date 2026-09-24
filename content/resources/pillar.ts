@@ -123,7 +123,7 @@ export const pillarArticle: ResourceArticle = {
         },
         {
           subtitle: "2. Private On-Premise Server Deployment",
-          text: "Inference pipelines deployed on dedicated rackmount servers or virtualized clusters in the customer's internal enterprise data center. Video streams stay contained within the corporate intranet, ensuring 100% data residency and strict compliance with corporate security governance.",
+          text: "Inference pipelines deployed on dedicated rackmount servers or virtualized clusters in the customer's internal enterprise data center. Video streams stay contained within the corporate intranet, ensuring complete local data residency and strict compliance with corporate security governance.",
         },
         {
           subtitle: "3. Hybrid Architecture (Distributed Enterprise)",
@@ -181,8 +181,8 @@ export const pillarArticle: ResourceArticle = {
       title: "10. Key Takeaways",
       paragraphs: [
         "1. Active Intelligence vs. Passive Recording: AI video analytics transforms CCTV from an unwatched forensic recording archive into a real-time event detection and alerting system.",
-        "2. Works with Existing Cameras: Organizations can deploy cutting-edge computer vision by connecting to standard RTSP streams from existing compatible IP cameras, avoiding costly hardware replacement.",
-        "3. Edge & Sovereign Processing: Local edge appliances and on-premise servers process video frames locally, eliminating external internet bandwidth consumption and guaranteeing 100% data sovereignty.",
+        "2. Works with Existing Cameras: Organizations can deploy advanced computer vision by connecting to standard RTSP streams from existing compatible IP cameras, avoiding costly hardware replacement.",
+        "3. Edge & Sovereign Processing: Local edge appliances and on-premise servers process video frames locally, eliminating external internet bandwidth consumption and ensuring complete data sovereignty.",
         "4. Modular Capabilities: Deploy only the specific detection pipelines required—from restricted zone intrusion and virtual fencing to ANPR and workforce attendance.",
         "5. Pilot-First Evaluation: Always evaluate video analytics on your active camera streams through a structured 14-day pilot before executing facility-wide rollouts.",
       ],

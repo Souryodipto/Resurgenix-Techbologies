@@ -1,4 +1,4 @@
-import React from "react";
+import { trackVideoPlay, trackVideoComplete } from "@/lib/analytics";
 
 export interface VideoPlayerProps {
   src?: string;
@@ -40,6 +40,8 @@ export function VideoPlayer({
           controls
           preload="none"
           playsInline
+          onPlay={() => trackVideoPlay(title)}
+          onEnded={() => trackVideoComplete(title)}
           aria-label={title}
         >
           <source src={src} type="video/mp4" />

@@ -117,7 +117,7 @@ export const comparisonsData: ComparisonEntry[] = [
       {
         feature: "Security & Data Sovereignty",
         descriptionA:
-          "100% data residency; raw video streams never leave the enterprise intranet, aligning directly with strict corporate policies and India's DPDP Act requirements.",
+          "Complete data residency; raw video streams never leave the enterprise intranet, aligning directly with strict corporate policies and India's DPDP Act requirements.",
         descriptionB:
           "Continuous transmission of identifiable video data to external cloud servers; requires third-party data processing agreements and recurring audits.",
       },

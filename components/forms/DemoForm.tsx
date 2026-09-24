@@ -83,7 +83,6 @@ export function DemoForm() {
 
   const onSubmit = async (data: DemoLeadInput) => {
     setServerError(null);
-    trackEvent("form_submit", { formId: "request-demo-form", formType: "demo" });
 
     const el = document.getElementById("demo-form");
     const renderedAt = el?.dataset.renderedAt ? parseInt(el.dataset.renderedAt, 10) : 0;
@@ -108,6 +107,11 @@ export function DemoForm() {
       if (!response.ok || !result.success) {
         throw new Error(result.error || "Submission failed. Please try again.");
       }
+
+      trackEvent("demo_request", {
+        organizationType: data.orgType,
+        cameraCount: data.cameraCount,
+      });
 
       router.push("/thank-you/demo");
     } catch (err: unknown) {

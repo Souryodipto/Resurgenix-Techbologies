@@ -354,7 +354,7 @@ export const industries: IndustryEntry[] = [
       {
         question: "Does the system require an internet connection to run safety zone alerts?",
         answer:
-          "No. Resurgenix is architected for 100% on-premise edge and local server deployment. Safety zone detection, perimeter monitoring, and siren relay triggering function entirely on closed plant industrial LANs.",
+          "No. Resurgenix is architected for fully on-premise edge and local server deployment. Safety zone detection, perimeter monitoring, and siren relay triggering function entirely on closed plant industrial LANs.",
       },
       {
         question: "Can Resurgenix trigger physical sirens or automated machine shutoffs?",
@@ -913,7 +913,7 @@ export const industries: IndustryEntry[] = [
       vendorChecklist: [
         "How does the platform ensure zero video recording or facial indexing inside patient consultation rooms or wards?",
         "Can virtual tripwires and restricted zone alerts function without storing persistent biometric patient profiles?",
-        "Does the system maintain 100% on-premise local inference to prevent health data transfer outside hospital firewalls?",
+        "Does the system maintain fully on-premise local inference to prevent health data transfer outside hospital firewalls?",
         "What is the false positive rate in busy hospital corridors with medical carts and IV poles moving continuously?",
         "Can alerts be routed silently to nursing station terminals without disturbing patients?",
       ],

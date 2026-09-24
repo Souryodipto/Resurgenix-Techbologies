@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { trackAssessmentComplete } from "@/lib/analytics";
 
 interface QuestionOption {
   label: string;
@@ -89,7 +90,7 @@ const questions: Question[] = [
       {
         label: "Completely air-gapped network with zero external internet access",
         score: 2,
-        note: "Supported: Our on-premise edge appliances operate 100% offline in air-gapped environments.",
+        note: "Supported: Our on-premise edge appliances operate completely offline in air-gapped environments.",
       },
       {
         label: "Cameras are standalone with local SD cards or isolated NVRs",
@@ -223,7 +224,11 @@ export function CCTVReadinessAssessment() {
             <button
               type="button"
               disabled={!allAnswered}
-              onClick={() => setIsCompleted(true)}
+              onClick={() => {
+                const category = totalScore >= 8 ? "High Readiness" : totalScore >= 5 ? "Moderate Readiness" : "Requires Adaptation";
+                trackAssessmentComplete(totalScore, category);
+                setIsCompleted(true);
+              }}
               className="px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold text-sm shadow-xs transition cursor-pointer"
             >
               Calculate AI Readiness Score &rarr;

@@ -69,7 +69,7 @@ export const clusterOperationsArticles: ResourceArticle[] = [
         title: "4. Data Sovereignty & DPDP Act Compliance",
         paragraphs: [
           "Under India's Digital Personal Data Protection (DPDP) Act, 2023, video surveillance footage containing identifiable human images is classified as digital personal data. Transmitting continuous raw video feeds to external commercial cloud servers exposes enterprises to third-party data processing liabilities, cross-border data transfer concerns, and potential regulatory audits.",
-          "Edge architecture guarantees 100% data residency and local containment. Raw video stays physically inside the customer's facility on private NVRs or edge disks. The software enforces data minimization by storing only cropped alert snapshots and structured metadata, insulating enterprise leadership from privacy non-compliance penalties.",
+          "Edge architecture guarantees complete local data residency and containment. Raw video stays physically inside the customer's facility on private NVRs or edge disks. The software enforces data minimization by storing only cropped alert snapshots and structured metadata, insulating enterprise leadership from privacy non-compliance penalties.",
         ],
       },
       {
@@ -92,9 +92,9 @@ export const clusterOperationsArticles: ResourceArticle[] = [
     keyTakeaways: [
       "Edge AI processes video locally on the LAN with zero external internet bandwidth consumption; cloud AI requires continuous heavy upload bandwidth.",
       "Edge inference delivers sub-second alert latency (<500ms), enabling real-time physical siren and boom barrier triggering.",
-      "Edge architecture ensures 100% data residency and DPDP Act compliance; raw video frames never leave the physical facility.",
+      "Edge architecture ensures complete local data residency and DPDP Act compliance; raw video frames never leave the physical facility.",
       "Edge deployments remain fully operational during local ISP or fiber outages, avoiding surveillance blackouts.",
-      "Hybrid architectures provide the best of both worlds: local edge processing with centralized multi-site dashboard aggregation.",
+      "Hybrid architectures provide a balanced solution: local edge processing with centralized multi-site dashboard aggregation.",
     ],
     faqs: [
       {
@@ -223,7 +223,7 @@ export const clusterOperationsArticles: ResourceArticle[] = [
       },
     ],
     keyTakeaways: [
-      "A structured pilot on 3 to 5 active camera feeds over 14 to 30 days is the best way to evaluate AI video analytics.",
+      "A structured pilot on 3 to 5 active camera feeds over 14 to 30 days is the recommended practical method to evaluate AI video analytics.",
       "Select diverse camera feeds: an outdoor boundary, an indoor restricted zone, a vehicle gate, and an active operational area.",
       "Measure five core metrics: detection recall, false alarm suppression, sub-second alert latency, network stability, and guard usability.",
       "Execute staged real-world drills: nighttime walks, running targets, adverse weather, and lens tamper simulations.",
@@ -309,7 +309,7 @@ export const clusterOperationsArticles: ResourceArticle[] = [
           "2. Can the platform operate completely offline in an air-gapped network with zero external internet access?",
           "3. How does the system handle facial data? (Is facial verification strictly opt-in and consent-based, or does the system build unconsented facial databases?)",
           "4. Does your company build or position software for public mass surveillance or citizen indexing? (Look for an unequivocal 'No'.)",
-          "5. How are retention and automated purge policies configured? (Can our administrators set retention to 30 or 60 days with guaranteed automated deletion?)",
+          "5. How are retention and automated purge policies configured? (Can our administrators set retention to 30 or 60 days with enforced automated deletion?)",
           "6. What data minimization controls exist? (Does the platform store raw video streams, or only extracted metadata and cropped alert snapshots?)",
           "7. What granular access controls are enforced? (Does the software provide granular Role-Based Access Control to restrict who can view streams and export clips?)",
           "8. Is there an immutable, tamper-evident audit log? (Can compliance officers audit every operator login, stream view, and video export?)",

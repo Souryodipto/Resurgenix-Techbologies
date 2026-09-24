@@ -217,7 +217,7 @@ export default function IndustriesHubPage() {
                   <ul className="space-y-1.5 text-xs text-slate-700">
                     <li className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold shrink-0">•</span>
-                      <span>100% air-gapped local server inference</span>
+                      <span>Fully air-gapped local server inference</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold shrink-0">•</span>

@@ -86,7 +86,6 @@ export function PilotForm() {
 
   const onSubmit = async (data: PilotLeadInput) => {
     setServerError(null);
-    trackEvent("form_submit", { formId: "request-pilot-form", formType: "pilot" });
 
     const el = document.getElementById("pilot-form");
     const renderedAt = el?.dataset.renderedAt ? parseInt(el.dataset.renderedAt, 10) : 0;
@@ -110,6 +109,12 @@ export function PilotForm() {
       if (!response.ok || !result.success) {
         throw new Error(result.error || "Submission failed. Please try again.");
       }
+
+      trackEvent("pilot_request", {
+        organizationType: data.orgType,
+        cameraCount: data.cameraCount,
+        architecture: data.preferredDeployment,
+      });
 
       router.push("/thank-you/pilot");
     } catch (err: unknown) {

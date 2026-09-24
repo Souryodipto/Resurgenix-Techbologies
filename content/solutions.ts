@@ -755,7 +755,7 @@ export const solutions: SolutionEntry[] = [
         model: "Local Edge Appliance",
         fit: "Industrial plants, server rooms, and critical facilities requiring sub-second physical alarm triggering.",
         details:
-          "Runs 100% on-premise. Can close a hardware dry-contact relay to sound a physical siren or flash a strobe light.",
+          "Runs entirely on-premise. Can close a hardware dry-contact relay to sound a physical siren or flash a strobe light.",
       },
       {
         model: "Centralized Campus Server",
@@ -1395,7 +1395,7 @@ export const solutions: SolutionEntry[] = [
       {
         question: "Can this system function completely without an internet connection?",
         answer:
-          "Yes. Our defense architecture is designed specifically for air-gapped environments. Model inference, database logging, and user authentication operate 100% on local hardware with zero external network connectivity.",
+          "Yes. Our defense architecture is designed specifically for air-gapped environments. Model inference, database logging, and user authentication operate entirely on local hardware with zero external network connectivity.",
       },
       {
         question: "Are foreign cloud services or external model APIs used?",

@@ -48,7 +48,6 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactLeadInput) => {
     setServerError(null);
-    trackEvent("form_submit", { formId: "contact-form", formType: "contact" });
 
     const el = document.getElementById("contact-form");
     const renderedAt = el?.dataset.renderedAt ? parseInt(el.dataset.renderedAt, 10) : 0;
@@ -72,6 +71,11 @@ export function ContactForm() {
       if (!response.ok || !result.success) {
         throw new Error(result.error || "Submission failed. Please try again.");
       }
+
+      trackEvent("contact_submit", {
+        formId: "contact-form",
+        inquiryType: data.inquiryType,
+      });
 
       router.push("/thank-you/contact");
     } catch (err: unknown) {

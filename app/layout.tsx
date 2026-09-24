@@ -7,6 +7,7 @@ import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import { CookieNotice } from "@/components/layout/CookieNotice";
 import { SitewideJsonLd } from "@/components/seo/SitewideJsonLd";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -94,6 +95,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white text-charcoal font-sans selection:bg-[#2563EB] selection:text-white">
         {/* Sitewide Organization and WebSite Schema */}
         <SitewideJsonLd />
+
+        {/* Privacy-Respecting, Consent-Aware Google Analytics */}
+        <GoogleAnalytics />
 
         {/* Accessible Skip-to-Content Link */}
         <a

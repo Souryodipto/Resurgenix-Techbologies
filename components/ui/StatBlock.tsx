@@ -21,8 +21,11 @@ export function StatBlock({
   citationSource,
   className = "",
 }: StatBlockProps) {
-  // Guardrail check: if unverified, render as clearly labeled placeholder
+  // Guardrail check: if unverified, never render in production
   if (!isVerified) {
+    if (process.env.NODE_ENV === "production") {
+      return null;
+    }
     return (
       <div
         className={`p-5 rounded-[12px] border border-dashed border-[#E2E8F0] bg-[#F7F9FC] text-center ${className}`}

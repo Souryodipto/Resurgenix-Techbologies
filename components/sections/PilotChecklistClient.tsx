@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { trackResourceDownload } from "@/lib/analytics";
 
 interface ChecklistItem {
   id: string;
@@ -132,6 +133,7 @@ export function PilotChecklistClient() {
     e.preventDefault();
     if (workEmail.trim().includes("@")) {
       setDownloadSuccess(true);
+      trackResourceDownload("AI CCTV Pilot Readiness Checklist", "pdf");
       // Trigger download
       const link = document.createElement("a");
       link.href = "/docs/ai-cctv-pilot-readiness-checklist.pdf";

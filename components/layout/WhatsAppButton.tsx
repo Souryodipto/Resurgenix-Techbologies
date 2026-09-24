@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/site.config";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 /**
  * Global Floating WhatsApp Button
@@ -35,22 +36,7 @@ export function WhatsAppButton() {
     pathname === "/" ? "Homepage" : pathname.replace(/^\//, "").split("/")[0].replace(/-/g, " ");
 
   const handleWhatsAppClick = () => {
-    // Analytics hook event wired for Step 14
-    if (typeof window !== "undefined") {
-      try {
-        const title = document.title ? document.title.split("|")[0].trim() : pageLabel;
-        const event = new CustomEvent("whatsapp_click", {
-          detail: {
-            page: pathname,
-            title,
-            timestamp: new Date().toISOString(),
-          },
-        });
-        window.dispatchEvent(event);
-      } catch {
-        // Safe no-op
-      }
-    }
+    trackWhatsAppClick(pathname);
   };
 
   const prefilledText = encodeURIComponent(

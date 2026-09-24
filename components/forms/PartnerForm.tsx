@@ -51,7 +51,6 @@ export function PartnerForm() {
 
   const onSubmit = async (data: PartnerLeadInput) => {
     setServerError(null);
-    trackEvent("form_submit", { formId: "partner-form", formType: "partner" });
 
     const el = document.getElementById("partner-form");
     const renderedAt = el?.dataset.renderedAt ? parseInt(el.dataset.renderedAt, 10) : 0;
@@ -75,6 +74,8 @@ export function PartnerForm() {
       if (!response.ok || !result.success) {
         throw new Error(result.error || "Submission failed. Please try again.");
       }
+
+      trackEvent("partner_submit", { partnerType: data.partnerType });
 
       router.push("/thank-you/partner");
     } catch (err: unknown) {
