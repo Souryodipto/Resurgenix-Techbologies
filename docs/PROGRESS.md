@@ -13,8 +13,8 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 | **Step 3**   | **Information Architecture & Content Model**              | **Completed** | 2026-09-24      | Created `/docs/sitemap.md`, `/docs/navigation.md`, `/docs/internal-linking.md`, `/content/{types,solutions,industries,faqs,resources,glossary,nav}.ts`, dynamic static routes, 44/44 pages built                                      |
 | **Step 4**   | **Design System & UI Components**                         | **Completed** | 2026-09-24      | White-theme tokens, typography (Manrope, Inter, JetBrains Mono), 18 accessible UI primitives, 2 responsive SVG brand graphics, `/design-system` showcase page                                                                         |
 | **Step 5/6** | **Global Layout, Navigation & Footer**                    | **Completed** | 2026-09-24      | Sticky header with 9-solution mega menu & StatusBadges, mobile drawer, 5-col footer, WhatsApp floating button, mobile sticky CTA bar, JSON-LD breadcrumbs, helpful 404 page, cookie notice                                            |
-| **Step 7**   | **Homepage (Conversion & Positioning Engine)**            | **Completed** | 2026-09-24      | 13 structured sections in `/app/page.tsx`, `/content/home.ts`, single H1, answer-first GEO copy, video player with captions/transcript disclosure, low-risk pilot pathway, 0 lint errors |
-| **Step 8**   | Core Solution Pages                                       | Pending       | -               | Dedicated solution routes with status badges & technical specifications                                                                                                                                                               |
+| **Step 7**   | **Homepage (Conversion & Positioning Engine)**            | **Completed** | 2026-09-24      | 13 structured sections in `/app/page.tsx`, `/content/home.ts`, single H1, answer-first GEO copy, video player with captions/transcript disclosure, low-risk pilot pathway, 0 lint errors                                              |
+| **Step 8**   | **Core Solution Pages & Solutions Hub**                   | **Completed** | 2026-09-24      | Comprehensive `/content/solutions.ts` with 9 solutions, shared 12-stage `<SolutionTemplate>`, 9 dynamic routes, redesigned `/solutions` hub, requirements tables, honest limitations, 0 lint errors |
 | **Step 9**   | Industry Vertical Pages                                   | Pending       | -               | Vertical-specific pages (Enterprise, Manufacturing, Defence, Smart City, etc.)                                                                                                                                                        |
 | **Step 10**  | Pilot & Demo Lead Generation Engine                       | Pending       | -               | Request Demo & Request Pilot flows, qualification forms, API routes                                                                                                                                                                   |
 | **Step 11**  | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                            |
@@ -148,11 +148,11 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 - **Completed Actions:**
   - Authored `/content/home.ts` containing typed models and answer-first copy for all 13 sections with zero buzzwords and zero placeholders.
   - Implemented `/app/page.tsx` adhering to strict white-theme tokens (`#FFFFFF`, `#F7F9FC`, `#E2E8F0`):
-    1. **Hero:** Eyebrow `"AI Video Intelligence"`, single `<h1>` (*"Your cameras already see. Resurgenix helps them understand."*), ~25-word high-clarity subhead, primary `"Request a Demo"` and secondary `"See How It Works"` CTAs, inline `PipelineDiagram` architecture card, and compatibility validation notice.
-    2. **Video Section:** Accessible `<VideoPlayer>` utilizing verified poster `/images/resurgenix-video-poster.jpg`, captions track `/video/resurgenix-video-captions.vtt`, honest disclosure (*"Illustrative visualization"*), and full 60-second transcript in an accessible `<details><summary>` element.
-    3. **Trust Strip:** Truth-governed 4-block strip (*"Built in India. Founder-Led Architecture. Pilot-Stage Deployments. Zero Hardware Rip-and-Replace"*) with zero fake client logos or unverified partner claims.
+    1. **Hero:** Eyebrow `"AI Video Intelligence"`, single `<h1>` (_"Your cameras already see. Resurgenix helps them understand."_), ~25-word high-clarity subhead, primary `"Request a Demo"` and secondary `"See How It Works"` CTAs, inline `PipelineDiagram` architecture card, and compatibility validation notice.
+    2. **Video Section:** Accessible `<VideoPlayer>` utilizing verified poster `/images/resurgenix-video-poster.jpg`, captions track `/video/resurgenix-video-captions.vtt`, honest disclosure (_"Illustrative visualization"_), and full 60-second transcript in an accessible `<details><summary>` element.
+    3. **Trust Strip:** Truth-governed 4-block strip (_"Built in India. Founder-Led Architecture. Pilot-Stage Deployments. Zero Hardware Rip-and-Replace"_) with zero fake client logos or unverified partner claims.
     4. **Problem:** 6 concrete buyer pain points in industrial/enterprise terminology (forensic scrubbing delays, screen monitoring fatigue, unenforced restricted zones, rip-and-replace costs, bandwidth bottlenecks, multi-site isolation).
-    5. **Solution Architecture:** 6-step transformation pipeline (`Existing CCTV` > `AI Vision Layer` > `Detection` > `Understanding` > `Instant Alerts` > `Actionable Intelligence`), featuring *"Building the brain of the eyes"* and *"Dekhe Bhi, Samjhe Bhi."*, paired with the `IllustrativeDashboard` mockup.
+    5. **Solution Architecture:** 6-step transformation pipeline (`Existing CCTV` > `AI Vision Layer` > `Detection` > `Understanding` > `Instant Alerts` > `Actionable Intelligence`), featuring _"Building the brain of the eyes"_ and _"Dekhe Bhi, Samjhe Bhi."_, paired with the `IllustrativeDashboard` mockup.
     6. **Capabilities:** 6 structured cards with `whatItDoes`, `whyItMatters`, live `StatusBadge` chips, and direct links to dedicated solution pages.
     7. **How It Works:** 5-step numbered deployment lifecycle (`Connect` > `Configure` > `Detect` > `Alert` > `Review`) linking to `/how-it-works`.
     8. **Use Cases:** 6 concrete operational scenarios with scenario context, detection trigger, and immediate physical outcome.
@@ -160,7 +160,37 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     10. **Why Resurgenix:** 6 concrete differentiators highlighting technical reality with zero unsupported superiority claims.
     11. **Pilot Proof:** Low-risk 5-phase evaluation pathway (`Discovery Call` > `Compatibility Assessment` > `Controlled Pilot` > `Operational Review` > `Enterprise Rollout`) with transparent pilot protocol notice.
     12. **FAQ:** 7 high-intent buyer questions with direct answers rendered in an accessible accordion.
-    13. **Final CTA:** High-conversion closing section with dual CTAs (*"Request a Demo"*, *"Request a Pilot Program"*) and direct Kolkata HQ contact details.
+    13. **Final CTA:** High-conversion closing section with dual CTAs (_"Request a Demo"_, _"Request a Pilot Program"_) and direct Kolkata HQ contact details.
   - Logged master MP4 video file tracking in `docs/OPEN_ITEMS.md`.
   - Statically generated all 45 routes with zero ESLint warnings and zero TypeScript errors.
+
+### Step 8: Core Solution Pages & Solutions Hub
+
+- **Completed Actions:**
+  - Expanded `/content/solutions.ts` with deep, unique, domain-specific technical models for all 9 platform capabilities:
+    1. **AI Video Analytics** (`/solutions/ai-video-analytics`): Platform pillar page covering person/vehicle/spatial detection, multi-camera tracking, crowd density, and stream health.
+    2. **AI Attendance & Workforce Intelligence** (`/solutions/ai-attendance-workforce-intelligence`): Voluntary consent-based enrollment, DPDP Act compliance, turnstile verification, anti-spoofing, and zero covert tracking.
+    3. **Restricted Zone & Unauthorized Entry Detection** (`/solutions/restricted-zone-unauthorized-entry-detection`): Virtual boundary polygons, directional tripwires, time schedules, physical relay alarms, and sub-second evidence capture.
+    4. **Enterprise Security Intelligence** (`/solutions/enterprise-security`): Multi-building IT campus monitoring, SD-WAN metadata telemetry sync, operator response auditing, and compliance PDF/CSV exports.
+    5. **Defence & Security Monitoring** (`/solutions/defence-security`): Generic public capability specifications only, air-gapped on-premise compute, dual-spectrum optical/thermal sensor support, and direct confidential engagement notice.
+    6. **Border Surveillance Intelligence** (`/solutions/border-surveillance`): Long-range boundary monitoring, tactical outpost edge inference, low-bandwidth telemetry packets (< 10 Kbps), and sparse power operating profiles.
+    7. **Smart City Video Intelligence** (`/solutions/smart-city-video-intelligence`): Municipal traffic congestion scoring, transit concourse crowd density estimation, ICCC API interoperability, and explicit public privacy policy review notice.
+    8. **ANPR & Vehicle Intelligence** (`/solutions/anpr-vehicle-intelligence`): Indian license plate recognition (HSRP), commercial vehicle classification, gate boom barrier automation, turnaround tracking, and optical approach angle constraints (< 30°).
+    9. **Centralized Video Intelligence** (`/solutions/centralized-video-intelligence`): Multi-site camera health matrix, silent dropout alerts, cross-branch indexed event search, and centralized RBAC fleet management.
+  - Implemented universal 12-stage `<SolutionTemplate>` component in `components/sections/SolutionTemplate.tsx`:
+    1. Breadcrumbs, H1, StatusBadge, and 40-60 word answer-first definition block.
+    2. Buyer problem narrative and concrete operational pain points.
+    3. Dedicated 4-to-5 step `StepFlow` pipeline for that specific solution.
+    4. Detection capabilities and operator deliverables (alert, snapshot, clip, log).
+    5. Requirements and compatibility table with permanent verification notice (*"Compatibility is confirmed during a site assessment"*).
+    6. Deployment options (Local Edge Server, On-Premise, Hybrid, Cloud) with honest operational fit descriptions.
+    7. 4 to 6 concrete real-world use cases with scenarios, detections, and outcomes.
+    8. What we validate in a pilot vs. honest optical and physical limitations.
+    9. Where it fits links to relevant industry vertical pages.
+    10. Accessible FAQ accordion (5 to 7 high-intent questions per solution).
+    11. Companion solutions and technical guides cross-links.
+    12. Intent-matched dual CTA block (`Request a Demo`, `Request a Pilot Program`).
+  - Redesigned `/solutions` hub page (`app/solutions/page.tsx`) with 3 logical tiers, pilot callout, and comprehensive capability cards.
+  - Added Section 9 to `docs/OPEN_ITEMS.md` logging technical optical parameters (mounting angles, IPD pixel thresholds, GPU channel sizing, relay modules) requiring founder verification.
+  - Successfully validated `npm run lint` (0 errors, 0 warnings) and Turbopack static generation for all 45 routes.
 

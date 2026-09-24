@@ -89,3 +89,15 @@ Per brief rules, team members cannot be publicly displayed until role and explic
 
 - [ ] **Master Explainer Video (`/public/video/resurgenix-what-resurgenix-can-do.mp4`):** Final joined 60-second MP4 video combining the 8 generated scene clips with voice-over audio and logo card.
   - _Current Fallback:_ The `VideoPlayer` component renders with the verified poster frame (`/images/resurgenix-video-poster.jpg`), `.vtt` captions, and an accessible `<details>` transcript disclosure without faking an MP4 file. `VideoObject` Schema JSON-LD will be injected once the video file is present.
+
+---
+
+## 9. Technical Specifications & Optical Thresholds (From Step 8)
+
+The following operational engineering guidelines are stated on the solution pages as baseline compatibility parameters and need founder confirmation:
+
+- [ ] **ANPR Optical Thresholds:** Confirm that "mounting angle under 30 degrees", "vehicle approach speed under 25 km/h at gates", and "minimum 150 pixels across the license plate" match internal optical testing benchmarks.
+- [ ] **Attendance Inter-Pupillary Distance (IPD):** Confirm that "minimum 80 pixels between eye centers at 1080p resolution" is the recommended baseline for contactless optical attendance verification.
+- [ ] **Edge GPU Channel Capacities:** Confirm recommended channel sizing per edge workstation (e.g., 8 streams on RTX 3060 vs. 16/32 streams on RTX 4080 / A2000 industrial edge boxes) before publishing a dedicated hardware compatibility matrix.
+- [ ] **Relay Output Support:** Confirm the specific network I/O relay modules (e.g., Advantech ADAM / generic Modbus TCP relays) currently validated for triggering physical sirens, strobe lights, and boom barrier closures.
+

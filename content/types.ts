@@ -10,6 +10,42 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface SolutionRequirementRow {
+  parameter: string;
+  specification: string;
+  notes: string;
+}
+
+export interface DeploymentOption {
+  model: string;
+  fit: string;
+  details: string;
+}
+
+export interface SolutionUseCase {
+  title: string;
+  scenario: string;
+  detection: string;
+  outcome: string;
+}
+
+export interface SolutionOperatorDeliverable {
+  item: string;
+  detail: string;
+}
+
+export interface SolutionStepItem {
+  step: string;
+  title: string;
+  description: string;
+}
+
+export interface SolutionSpecialNotice {
+  type: "privacy" | "engagement" | "smart-city" | "anpr" | "under-development";
+  title: string;
+  content: string;
+}
+
 export interface SolutionEntry {
   slug: string;
   title: string;
@@ -19,17 +55,30 @@ export interface SolutionEntry {
   primaryKeyword: string;
   secondaryKeywords: string[];
   shortAnswer: string; // Answer-first 40 to 60 word concise definition
+  problemTitle: string;
   problem: string;
-  capabilities: string[];
-  howItWorks: string[];
-  requirements: string[];
-  useCases: string[];
+  problemPoints: string[];
+  stepFlow: SolutionStepItem[];
+  capabilities: { title: string; description: string }[];
+  operatorReceives: SolutionOperatorDeliverable[];
+  requirementsTable: SolutionRequirementRow[];
+  deploymentOptions: DeploymentOption[];
+  useCases: SolutionUseCase[];
+  pilotValidation: string[];
   limitations: string[];
+  relevantIndustries: { name: string; slug: string; context: string }[];
   faqs: FAQItem[];
-  relatedSlugs: string[];
+  relatedSolutions: {
+    title: string;
+    slug: string;
+    status: CapabilityStatus;
+    description: string;
+  }[];
+  relatedResources: { title: string; href: string; type: "guide" | "comparison" }[];
   ctaPrimary: CTAConfig;
-  ctaSecondary: CTAConfig;
+  ctaSecondary?: CTAConfig;
   status: CapabilityStatus;
+  specialNotice?: SolutionSpecialNotice;
 }
 
 export interface IndustryEntry {
