@@ -362,38 +362,43 @@ export default function DesignSystemPage() {
 
         {/* 11. IconBox & VideoPlayer */}
         <section className="mb-16">
-          <h2 className="text-fluid-h3 font-bold text-[#0B1F3A] mb-4">11. IconBox &amp; Video Player</h2>
+          <h2 className="text-fluid-h3 font-bold text-[#0B1F3A] mb-4">
+            11. IconBox &amp; Video Player
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div className="p-6 rounded-[12px] border border-[#E2E8F0] bg-white space-y-4">
               <h3 className="text-sm font-bold text-[#0B1F3A]">IconBox Variants</h3>
               <div className="flex flex-wrap gap-4 items-center">
-                <IconBox
-                  variant="blue"
-                  size="md"
-                  icon={
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  }
-                />
-                <IconBox
-                  variant="cyan"
-                  size="md"
-                  icon={
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  }
-                />
-                <IconBox
-                  variant="neutral"
-                  size="md"
-                  icon={
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  }
-                />
+                <IconBox variant="blue" size="md">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
+                  </svg>
+                </IconBox>
+                <IconBox variant="cyan" size="md">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </IconBox>
+                <IconBox variant="neutral" size="md">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </IconBox>
               </div>
             </div>
 
@@ -409,7 +414,9 @@ export default function DesignSystemPage() {
 
         {/* 12. Section Layout Component Example */}
         <section className="mb-16">
-          <h2 className="text-fluid-h3 font-bold text-[#0B1F3A] mb-4">12. Section Container System</h2>
+          <h2 className="text-fluid-h3 font-bold text-[#0B1F3A] mb-4">
+            12. Section Container System
+          </h2>
           <div className="border border-[#E2E8F0] rounded-[12px] overflow-hidden">
             <Section
               background="soft"

@@ -75,3 +75,10 @@ Per brief rules, team members cannot be publicly displayed until role and explic
 - [ ] **Standard Pilot Evaluation Parameters:** Confirm whether describing a typical pilot as "3 to 5 high-priority camera streams for 14 to 30 days" aligns with operational delivery bandwidth, or if wording should remain strictly open-ended.
 - [ ] **Kalyani Operational Footprint:** Confirm whether Kalyani should be described as an R&D/academic collaboration center or an operational branch alongside the Kolkata headquarters.
 - [ ] **System Integrator Channel Policy:** Confirm whether Resurgenix provides formal Manufacturer Authorization Forms (MAF) and lead protection for regional security system integrators bidding on enterprise and public RFPs.
+
+---
+
+## 7. Brand Assets Required from Founder (From Step 6)
+
+- [ ] **Official Master Vector Logo:** High-resolution SVG file of the official Resurgenix brandmark and wordmark. (Currently using an inline SVG optical aperture monogram and typography placeholder in `/components/layout/Header.tsx`).
+- [ ] **Favicon & Web App Icons:** Master `favicon.ico`, `icon.svg`, and `apple-touch-icon.png` (180x180) based on the approved brandmark. (Currently using default Next.js icon assets until supplied).

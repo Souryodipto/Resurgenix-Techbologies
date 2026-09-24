@@ -12,15 +12,14 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 | **Step 2**  | **Research, Market & Competitive Architecture**           | **Completed** | 2026-09-24      | Created `/docs/strategy/{market-language,competitors,icp,positioning,keyword-map,content-gaps,priorities}.md`, appended items to `OPEN_ITEMS.md`                                                                                      |
 | **Step 3**  | **Information Architecture & Content Model**              | **Completed** | 2026-09-24      | Created `/docs/sitemap.md`, `/docs/navigation.md`, `/docs/internal-linking.md`, `/content/{types,solutions,industries,faqs,resources,glossary,nav}.ts`, dynamic static routes, 44/44 pages built                                      |
 | **Step 4**  | **Design System & UI Components**                         | **Completed** | 2026-09-24      | White-theme tokens, typography (Manrope, Inter, JetBrains Mono), 18 accessible UI primitives, 2 responsive SVG brand graphics, `/design-system` showcase page                                                                         |
-| **Step 5**  | Global Layouts, Navigation & Footer                       | Pending       | -               | Header, mobile navigation, footer, WhatsApp floating trigger, legal notices                                                                                                                                                           |
-| **Step 6**  | Homepage (Conversion & Positioning Engine)                | Pending       | -               | Hero, trust strip, problem/solution, capability grid, workflow, FAQ, CTA                                                                                                                                                              |
-| **Step 7**  | Core Solution Pages                                       | Pending       | -               | Dedicated solution routes with status badges & technical specifications                                                                                                                                                               |
-| **Step 8**  | Industry Vertical Pages                                   | Pending       | -               | Vertical-specific pages (Enterprise, Manufacturing, Defence, Smart City, etc.)                                                                                                                                                        |
-| **Step 9**  | Pilot & Demo Lead Generation Engine                       | Pending       | -               | Request Demo & Request Pilot flows, qualification forms, API routes                                                                                                                                                                   |
-| **Step 10** | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                            |
-| **Step 11** | Company, Founder & Ethics / Privacy Pages                 | Pending       | -               | About, founder background, consent-based verification & data governance                                                                                                                                                               |
-| **Step 12** | Supporting Content, Guides & Comparison Pages             | Pending       | -               | Comparison pages, educational guides, glossary, and FAQ hub expansion                                                                                                                                                                 |
-| **Step 13** | 90-Day Organic & GEO Growth Engine                        | Pending       | -               | Content plan, BOFU/MOFU/TOFU clusters, founder distribution framework                                                                                                                                                                 |
+| **Step 5/6**| **Global Layout, Navigation & Footer**                    | **Completed** | 2026-09-24      | Sticky header with 9-solution mega menu & StatusBadges, mobile drawer, 5-col footer, WhatsApp floating button, mobile sticky CTA bar, JSON-LD breadcrumbs, helpful 404 page, cookie notice                                         |
+| **Step 7**  | Homepage (Conversion & Positioning Engine)                | Pending       | -               | Hero, trust strip, problem/solution, capability grid, workflow, FAQ, CTA                                                                                                                                                              |
+| **Step 8**  | Core Solution Pages                                       | Pending       | -               | Dedicated solution routes with status badges & technical specifications                                                                                                                                                               |
+| **Step 9**  | Industry Vertical Pages                                   | Pending       | -               | Vertical-specific pages (Enterprise, Manufacturing, Defence, Smart City, etc.)                                                                                                                                                        |
+| **Step 10** | Pilot & Demo Lead Generation Engine                       | Pending       | -               | Request Demo & Request Pilot flows, qualification forms, API routes                                                                                                                                                                   |
+| **Step 11** | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                            |
+| **Step 12** | Company, Founder & Ethics / Privacy Pages                 | Pending       | -               | About, founder background, consent-based verification & data governance                                                                                                                                                               |
+| **Step 13** | Supporting Content, Guides & Comparison Pages             | Pending       | -               | Comparison pages, educational guides, glossary, and FAQ hub expansion                                                                                                                                                                 |
 | **Step 14** | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Static build audit, accessibility review, zero-lint verification                                                                                                                                                                      |
 
 ---
@@ -102,7 +101,45 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     19. `FormField.tsx`: accessible form components (`FormField`, `Input`, `Select`, `Textarea`, `Checkbox`) with `aria-describedby` linking errors and hints.
   - Authored two responsive, inline SVG brand visual components:
     1. `PipelineDiagram.tsx`: 6-stage architecture flow (`Existing CCTV Cameras` > `NVR / DVR / RTSP Feeds` > `Resurgenix AI Vision Layer` > `Intelligent Detection Engine` > `Sub-Second Real-Time Alert` > `SOC / VMS Dashboard`), rendered in thin navy lines with electric blue and cyan accents on white.
-    2. `IllustrativeDashboard.tsx`: clean, generic event console mockup featuring camera feeds with thin cyan detection boxes, real-time alert log, and a permanent caption: *"Illustrative interface — generic layout demonstration without real entity names or simulated production telemetry."*
+    2. `IllustrativeDashboard.tsx`: clean, generic event console mockup featuring camera feeds with thin cyan detection boxes, real-time alert log, and a permanent caption: _"Illustrative interface — generic layout demonstration without real entity names or simulated production telemetry."_
   - Built interactive showcase page at `/app/design-system/page.tsx` marked `noindex` displaying all components, tokens, and responsive brand visuals.
   - Successfully validated `npm run lint` (0 errors, 0 warnings) and `npm run build` (all 45 static routes compiled cleanly).
+
+### Step 5/6: Global Layout, Navigation & Footer
+
+- **Completed Actions:**
+  - Upgraded root layout (`app/layout.tsx`):
+    - Configured `lang="en-IN"`, `metadataBase: new URL(siteConfig.siteUrl)`, OpenGraph & Twitter tags with default social preview image.
+    - Added high-visibility accessible skip-to-content link pointing to `<main id="main-content">`.
+    - Integrated sticky `<Header />`, landmark `<main>`, and full corporate `<Footer />`.
+  - Built sticky corporate `<Header />` (`components/layout/Header.tsx`):
+    - Clean white theme with dynamic scroll border (`border-b border-[#E2E8F0]` on scroll, no blur/glass).
+    - Precision SVG brand monogram and wordmark placeholder linking to `/`.
+    - Desktop 3-column Solutions mega menu categorizing all 9 capabilities with live `StatusBadge` components.
+    - Dropdowns for Industries, Resources, and Company & Governance, plus direct link to `/how-it-works`.
+    - Keyboard accessibility (Esc to close, outside-click listener, proper ARIA attributes, auto-close on route transitions).
+    - Full-height mobile drawer with touch-friendly accordions (min 44px) and pinned bottom CTAs ("Request a Demo", "Request a Pilot").
+  - Built global `<Footer />` (`components/layout/Footer.tsx`):
+    - White / soft grey layout (`#F7F9FC`) with crisp top border.
+    - 5 comprehensive columns: Solutions, Industries, Resources, Company & Governance, Contact & Operations.
+    - Verified contact details: `contact@resurgenixtechnologies.com`, `+91 6290985464`, "Kolkata, West Bengal, India".
+    - Official LinkedIn and Instagram social links (`rel="noopener noreferrer"`).
+    - Corporate entity statement and dynamic year copyright.
+  - Built floating `<WhatsAppButton />` (`components/layout/WhatsAppButton.tsx`):
+    - Pre-filled URL-encoded message dynamically referencing the active page context.
+    - Responsive styling: icon + text on desktop, compact circular icon on mobile.
+    - Mobile vertical coordination: automatically floats above `<MobileStickyCta />` without overlap.
+    - Dispatches custom `whatsapp_click` analytics event (ready for Step 14).
+  - Built `<MobileStickyCta />` (`components/layout/MobileStickyCta.tsx`):
+    - Displays past 250px scroll on mobile devices (< 768px).
+    - Direct "Request a Demo" button and one-touch telephone dialer.
+    - Automatically suppresses on conversion form pages (`/request-demo`, `/request-pilot`, `/contact`).
+  - Enhanced `<Breadcrumbs />` (`components/ui/Breadcrumbs.tsx`):
+    - Embedded automatic Schema.org `BreadcrumbList` JSON-LD generation for search engines and GEO agents.
+  - Built comprehensive 404 page (`app/not-found.tsx`):
+    - Non-alarming white-theme design with primary navigation recovery buttons and search-free categorized directory of all 9 solutions and 7 industries.
+  - Built lightweight `<CookieNotice />` (`components/layout/CookieNotice.tsx`):
+    - Transparent non-alarming notice respecting user choice via `localStorage` and setting `window.__resurgenix_consent`.
+  - Logged official SVG logo and favicon requirements in `docs/OPEN_ITEMS.md`.
+  - Verified clean compilation with zero ESLint errors and 100% static HTML generation (45/45 routes).
 
