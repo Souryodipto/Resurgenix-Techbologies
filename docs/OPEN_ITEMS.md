@@ -82,3 +82,10 @@ Per brief rules, team members cannot be publicly displayed until role and explic
 
 - [ ] **Official Master Vector Logo:** High-resolution SVG file of the official Resurgenix brandmark and wordmark. (Currently using an inline SVG optical aperture monogram and typography placeholder in `/components/layout/Header.tsx`).
 - [ ] **Favicon & Web App Icons:** Master `favicon.ico`, `icon.svg`, and `apple-touch-icon.png` (180x180) based on the approved brandmark. (Currently using default Next.js icon assets until supplied).
+
+---
+
+## 8. Video Production Assets (From Step 7)
+
+- [ ] **Master Explainer Video (`/public/video/resurgenix-what-resurgenix-can-do.mp4`):** Final joined 60-second MP4 video combining the 8 generated scene clips with voice-over audio and logo card.
+  - _Current Fallback:_ The `VideoPlayer` component renders with the verified poster frame (`/images/resurgenix-video-poster.jpg`), `.vtt` captions, and an accessible `<details>` transcript disclosure without faking an MP4 file. `VideoObject` Schema JSON-LD will be injected once the video file is present.
