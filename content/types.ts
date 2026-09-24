@@ -147,6 +147,23 @@ export interface IndustryEntry {
   status: CapabilityStatus;
 }
 
+export interface ArticleAuthor {
+  name: string;
+  role: string;
+  company: string;
+  bio: string;
+}
+
+export interface ArticleContentSection {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  subsections?: {
+    subtitle: string;
+    text: string;
+  }[];
+}
+
 export interface ResourceArticle {
   slug: string;
   title: string;
@@ -154,10 +171,26 @@ export interface ResourceArticle {
   metaDescription: string;
   h1: string;
   primaryKeyword: string;
-  category: "guide" | "compliance" | "architecture";
+  category: "guide" | "compliance" | "architecture" | "technology" | "strategy";
+  funnelStage: "TOFU" | "MOFU" | "BOFU";
   publishDate: string;
+  updatedDate?: string;
   readTime: string;
-  shortSummary: string;
+  shortSummary: string; // concise overview
+  shortAnswer: string; // 2 to 3 sentences an AI can quote
+  author?: ArticleAuthor;
+  toc?: { id: string; title: string }[];
+  contentSections?: ArticleContentSection[];
+  keyTakeaways?: string[];
+  faqs?: FAQItem[];
+  relatedSolutions?: { title: string; href: string }[];
+  relatedArticles?: { title: string; href: string }[];
+  cta?: {
+    headline: string;
+    text: string;
+    primaryButton: { label: string; href: string };
+    secondaryButton?: { label: string; href: string };
+  };
   relatedSlugs: string[];
 }
 

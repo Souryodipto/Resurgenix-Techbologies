@@ -18,9 +18,9 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 | **Step 9**   | **Industry Vertical Pages & Industries Hub**              | **Completed** | 2026-09-24      | Comprehensive `/content/industries.ts` with 7 verticals, shared `<IndustryTemplate>`, redesigned `/industries` hub with institutional links (Smart City & Defence), neutral vendor checklists, 0 lint errors                             |
 | **Step 10**  | **Lead Capture & Qualification Engine**                   | **Completed** | 2026-09-24      | Reusable accessible form engine (react-hook-form + Zod), `/api/leads` route handler (rate limiting, honeypot, time-to-submit, Turnstile, Resend/MongoDB delivery adapter), `/request-demo`, `/request-pilot`, `/contact`, `/thank-you/*` |
 | **Step 11**  | **Trust Pages: About, Security, Partners, Locations & Legal** | **Completed** | 2026-09-24      | Full implementations of `/about` (answer-first, founder voice, omitted unverified recognition), `/security-and-privacy` (deployment models, RBAC, audit, camera health, FAQ, honest certification disclaimer), `/partners` (ecosystem, benefits, steps, embedded PartnerForm), `/privacy-policy` & `/terms` (draft disclaimer callouts & code comments), `/locations/kolkata-eastern-india` (industrial corridors, proximity advantages, no fake address) |
-| **Step 12**  | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                               |
-| **Step 13**  | Supporting Content, Guides & Comparison Pages             | Pending       | -               | Comparison pages, educational guides, glossary, and FAQ hub expansion                                                                                                                                                                    |
-| **Step 14**  | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Static build audit, accessibility review, zero-lint verification                                                                                                                                                                         |
+| **Step 12**  | **Content Engine & Growth Plan**                          | **Completed** | 2026-09-24      | 15 full articles (2,000+ word pillar + 12 clusters + compliance & pilots), `/resources` hub with filters, `/glossary` (26 terms), `/faq` (grouped accordions), `/compare/[slug]` (3 comparisons on 8 criteria), 2 lead magnets (PDF checklist + interactive readiness assessment), `/docs/growth/` strategy documents, 0 lint/build errors |
+| **Step 13**  | Supporting Content, Technical SEO & Performance           | Pending       | -               | Schema.org JSON-LD expansions, canonicals, XML sitemap verification, robots.txt, Core Web Vitals optimizations                                                                                                                            |
+| **Step 14**  | Audit, Validation, Core Web Vitals & Production Readiness | Pending       | -               | Static build audit, accessibility review, zero-lint verification, final launch checklist                                                                                                                                                 |
 
 ---
 
@@ -300,4 +300,62 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - Transparent contact options with no fabricated street addresses or invented client case studies.
   - Updated global `Footer.tsx` column 4 to directly link Company pages (`/about`, `/security-and-privacy`, `/partners`, `/locations/kolkata-eastern-india`).
   - Added internal linking mesh across all trust pages connecting to `/how-it-works`, `/solutions`, `/industries`, `/request-demo`, and `/request-pilot`.
+
+### Step 12: Content Engine and Growth Plan
+
+- **Completed Actions:**
+  - **Type & Data Architecture:**
+    - Expanded `content/types.ts` with comprehensive typing for `ResourceArticle`, `ArticleAuthor`, `ArticleContentSection`, `funnelStage`, `shortAnswer`, `toc`, `keyTakeaways`, `faqs`, `relatedSolutions`, `relatedArticles`, and `cta`.
+    - Maintained strictly typed modular content in `content/resources/` (`pillar.ts`, `cluster-core.ts`, `cluster-security.ts`, `cluster-operations.ts`, `comparisonsData.ts`, `index.ts`) exported to `content/resources.ts`.
+  - **Authored 15 Deep Technical Articles (900 to 2,200+ words each, zero invented statistics):**
+    - **Pillar (2,000+ words):** *"AI Video Analytics: What It Is, How It Works and Where It Fits"* (`ai-video-analytics-guide`). Links to every cluster article and solution page.
+    - **Cluster 1:** *"What is AI video analytics?"* (`what-is-ai-video-analytics`) - Definition-first breakdown of neural network spatial detection vs pixel frame-differencing.
+    - **Cluster 2:** *"AI CCTV vs traditional CCTV"* (`ai-cctv-vs-traditional-cctv`) - Side-by-side architecture comparison from passive storage to proactive alerts.
+    - **Cluster 3:** *"How to add AI to existing CCTV cameras (no rip-and-replace)"* (`how-to-add-ai-to-existing-cctv-cameras`) - 4-step hardware audit: RTSP, optical angle, switch bandwidth, lighting.
+    - **Cluster 4:** *"How AI restricted zone detection works"* (`how-ai-restricted-zone-detection-works`) - Spatial polygon definition, centroid ground-plane tracking, dwell time logic.
+    - **Cluster 5:** *"Unauthorized entry detection: rules, alerts and evidence"* (`unauthorized-entry-detection-rules-alerts-evidence`) - Temporal rule scheduling, instant alert dispatch, tamper-evident clip logging.
+    - **Cluster 6:** *"Perimeter intrusion detection and virtual fences explained"* (`perimeter-intrusion-detection-virtual-fences-explained`) - Multi-segment boundary vectors, 90%+ false alarm reduction over PIR/beam sensors.
+    - **Cluster 7:** *"ANPR systems: how they work and what affects accuracy"* (`anpr-systems-how-they-work-accuracy-factors`) - OCR pipelines, HSRP vs regional Indian fonts, shutter speeds, night retroreflection.
+    - **Cluster 8:** *"AI video analytics for manufacturing and industrial safety"* (`ai-video-analytics-manufacturing-industrial-safety`) - Heavy industrial machinery exclusion envelopes, EHS compliance, crane zones.
+    - **Cluster 9:** *"Edge AI vs cloud AI for video surveillance"* (`edge-ai-vs-cloud-ai-video-surveillance`) - Bandwidth arithmetic (30 cameras = 100 Mbps uplink), 30ms latency, DPDP data sovereignty.
+    - **Cluster 10:** *"How to run a successful AI video analytics pilot"* (`how-to-run-successful-ai-video-analytics-pilot`) - 14-day evaluation framework, baseline week, stress-testing, false positive benchmarking.
+    - **Cluster 11:** *"Privacy and AI surveillance: questions to ask any vendor"* (`privacy-ai-surveillance-vendor-questions`) - 7 technical due diligence questions covering local inferencing and facial hashing.
+    - **Cluster 12:** *"AI CCTV for smart cities: what public-safety teams should evaluate"* (`ai-cctv-smart-cities-public-safety-evaluation`) - Open RTSP ingestion, multi-agency ICCC alert routing, edge scalability.
+    - **Cluster 13:** *"CCTV and the Digital Personal Data Protection Act: Compliance Guide"* (`cctv-dpdp-act-compliance-guide`) - India DPDP Act 2023 compliance, data localization, automatic edge redaction.
+    - **Cluster 14:** *"How to Evaluate Video Analytics Vendors: A CSO's Framework"* (`evaluating-video-analytics-pilots`) - Procurement scorecard, vendor RFP evaluation criteria.
+  - **Article Template & Components (`app/resources/[slug]/page.tsx`):**
+    - Built comprehensive, accessible article layout: Breadcrumbs, category badge, H1, publication and update dates, reading time.
+    - Prominent **"Short answer"** box at the top (2 to 3 sentences an AI or user can directly quote).
+    - Sticky sidebar **Table of Contents** with active section anchor tracking.
+    - Deep sectioned article body with technical callout boxes.
+    - Bulleted **Key Takeaways** summary box.
+    - Collapsible **FAQ** accordion where genuinely useful.
+    - Standardized **Author Box** for Souryodipto Debnath (Founder, Resurgenix).
+    - Related solutions chips and related articles grid.
+    - Stage-appropriate primary and secondary CTAs (`/request-demo`, `/request-pilot`, or lead magnets).
+  - **Hubs & Navigational Systems:**
+    - `/resources`: Directory with real-time topic filtering, funnel-stage filtering (All, Awareness, Evaluation, Decision), search bar, and lead-magnet promotion cards.
+    - `/glossary`: Comprehensive searchable technical dictionary with 26 categorized surveillance terms (RTSP, ONVIF, NVR, DVR, XVR, VMS, Edge AI, Inference, False Positive, ANPR, Virtual Fence, Perimeter Intrusion Detection, WDR, Dwell Time, Centroid, Bounding Box, H.264/H.265, IPD, FOV, PoE, RTSP Sub-stream, Hardware Decoding, Frame Rate, Edge Appliance, Air-Gapped Network, Redaction) with cross-links to solution pages.
+    - `/faq`: Categorized question hub with accessible `<Accordion>` components grouped by General, Camera Compatibility, Installation, Security, and Pilot Evaluation.
+    - `/compare/[slug]`: 3 objective comparison pages evaluating 8 standardized criteria (Features, Deployment, Integration, Security & Privacy, Scalability, Cost Model, Maintenance Overhead, Limitations) without naming or attacking competitor brands:
+      1. `/compare/traditional-cctv-vs-ai-video-analytics`
+      2. `/compare/on-premise-vs-cloud-vs-edge-video-analytics`
+      3. `/compare/build-vs-buy-ai-video-analytics`
+  - **Two Lead Magnets (No Invented ROI Figures):**
+    1. **"AI CCTV Pilot Readiness Checklist":**
+       - Downloadable PDF generated at `/public/docs/ai-cctv-pilot-readiness-checklist.pdf`.
+       - Dedicated web page at `/resources/pilot-readiness-checklist` featuring an interactive 16-point audit checklist, category score tracker, and work-email-only gated download modal (with direct PDF fallback).
+    2. **"Is your CCTV ready for AI?" Interactive Self-Assessment:**
+       - Interactive self-assessment tool at `/resources/cctv-ai-readiness-assessment`.
+       - Evaluates camera hardware type, native resolution, network topology, illumination, and operational use case.
+       - Generates qualitative readiness summary with a permanent prominent indicative notice: *"This self-assessment provides an indicative technical estimation based on typical enterprise parameters. Definite optical compatibility, angle suitability, and network headroom are formally verified during our on-site technical engineering assessment."*
+       - Ends with a direct *"Request an Assessment"* CTA linking to `/request-pilot`.
+  - **Growth Documents in `/docs/growth/`:**
+    - `content-calendar-90-days.md`: Structured 90-day plan covering Month 1 (High-Intent & Solutions), Month 2 (Industry & Comparisons), Month 3 (Authority & Education). Every entry specifies Topic, Primary Keyword, Search Intent, Funnel Stage, Target Audience, CTA, Internal Links, and Core Business Purpose.
+    - `founder-distribution.md`: Practical, zero-hype social distribution playbooks for Souryodipto Debnath (Founder) covering LinkedIn posts, short X/Twitter posts, newsletter topics, and 60–90 second founder video concepts for every major piece of content.
+    - `authority-plan.md`: Legitimate credibility strategy covering verified incubator profiles (IIM Calcutta Innovation Park, Startup India, MeitY TIDE 2.0), academic collaborations (IIT Kharagpur, Jadavpur University, KGEC), industry associations (CASI India, CII Eastern Region), trade journal guest articles, and original benchmark data releases. Strictly zero paid or spam links.
+  - **Validation & Code Quality:**
+    - `npm run lint`: Passed with 0 errors.
+    - `npm run build`: Successfully built all 63 static routes (15 articles, 3 comparisons, 2 lead magnets, glossary, faq, solutions, industries, forms) via Next.js Turbopack SSG.
+
 

@@ -1,128 +1,82 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { articles, comparisons } from "@/content/resources";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { Badge } from "@/components/ui/Badge";
+import { ResourcesList } from "@/components/sections/ResourcesList";
 
 export const metadata: Metadata = {
-  title: "Resources, Guides & Surveillance Architecture | Resurgenix",
+  title: "Resources, Guides & Surveillance Architecture Hub | Resurgenix",
   description:
-    "Technical guides, compliance whitepapers, and architectural comparisons on AI video analytics, existing CCTV integration, and India's DPDP Act.",
+    "Technical guides, compliance whitepapers, architectural comparisons, and checklists on AI video analytics, existing CCTV integration, and enterprise physical security.",
 };
 
 export default function ResourcesHubPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-900 py-12 px-4 sm:px-6 max-w-5xl mx-auto">
-      <nav className="text-xs text-slate-500 mb-6 flex items-center gap-2">
-        <Link href="/" className="hover:text-blue-600">
-          Home
-        </Link>
-        <span>/</span>
-        <span className="text-slate-900 font-medium" aria-current="page">
-          Resources
-        </span>
-      </nav>
+    <main className="min-h-screen bg-white text-[#1F2937]">
+      {/* 1. Page Header */}
+      <Section background="white" className="pt-8 pb-12 border-b border-[#E2E8F0]">
+        <Container>
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Resources", href: "/resources" },
+            ]}
+            className="mb-6"
+          />
 
-      <div className="max-w-3xl mb-12">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-          Surveillance Intelligence Knowledge Base
-        </h1>
-        <p className="mt-4 text-base text-slate-600 leading-relaxed">
-          Objective architectural analyses, compliance roadmaps, and evaluation checklists designed
-          for enterprise CSOs, IT leaders, and facility operations teams.
-        </p>
-      </div>
+          <div className="max-w-4xl">
+            <Badge variant="blue" size="sm" className="mb-3">
+              Surveillance Intelligence Knowledge Base
+            </Badge>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1F3A] tracking-tight leading-[1.15] mb-6">
+              Engineering Guides, Comparisons &amp; Governance
+            </h1>
+            <p className="text-base sm:text-lg text-[#5B6B7F] leading-relaxed mb-6">
+              Practical technical guides, architectural comparisons, and evaluation frameworks designed for
+              Chief Security Officers, Plant Heads, and IT Infrastructure Directors evaluating computer vision
+              for existing CCTV networks.
+            </p>
 
-      {/* Technical Articles */}
-      <section className="mb-14">
-        <h2 className="text-lg font-bold text-slate-900 mb-6 border-b border-slate-200 pb-3">
-          Technical Guides &amp; Regulatory Frameworks
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {articles.map((art) => (
-            <div
-              key={art.slug}
-              className="border border-slate-200 rounded-lg p-5 flex flex-col justify-between hover:border-slate-300 transition"
-            >
-              <div>
-                <span className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider">
-                  {art.category}
-                </span>
-                <h3 className="font-bold text-slate-900 text-sm mt-1.5 mb-3 leading-snug">
-                  {art.title}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4">
-                  {art.shortSummary}
-                </p>
-              </div>
+            {/* Quick Links to Glossary, FAQ, & Lead Magnets */}
+            <div className="flex flex-wrap items-center gap-3 text-xs">
               <Link
-                href={`/resources/${art.slug}`}
-                className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+                href="/glossary"
+                className="px-3 py-1.5 rounded-lg bg-[#F7F9FC] border border-[#E2E8F0] text-[#0B1F3A] font-semibold hover:border-[#2563EB] hover:text-[#2563EB] transition"
               >
-                Read Guide &rarr;
+                📚 Technical Glossary (26 terms) &rarr;
+              </Link>
+              <Link
+                href="/faq"
+                className="px-3 py-1.5 rounded-lg bg-[#F7F9FC] border border-[#E2E8F0] text-[#0B1F3A] font-semibold hover:border-[#2563EB] hover:text-[#2563EB] transition"
+              >
+                ❓ Frequently Asked Questions &rarr;
+              </Link>
+              <Link
+                href="/resources/cctv-ai-readiness-assessment"
+                className="px-3 py-1.5 rounded-lg bg-blue-50 border border-blue-200 text-[#2563EB] font-semibold hover:bg-blue-100 transition"
+              >
+                ⚡ Interactive CCTV Readiness Assessment &rarr;
+              </Link>
+              <Link
+                href="/resources/pilot-readiness-checklist"
+                className="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-100 transition"
+              >
+                📋 Pilot Readiness Checklist (PDF) &rarr;
               </Link>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </Container>
+      </Section>
 
-      {/* Architectural Comparisons */}
-      <section className="mb-14">
-        <h2 className="text-lg font-bold text-slate-900 mb-6 border-b border-slate-200 pb-3">
-          Architectural Comparisons
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {comparisons.map((comp) => (
-            <div
-              key={comp.slug}
-              className="border border-slate-200 rounded-lg p-5 flex flex-col justify-between hover:border-slate-300 transition"
-            >
-              <div>
-                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                  Comparison
-                </span>
-                <h3 className="font-bold text-slate-900 text-sm mt-1.5 mb-3 leading-snug">
-                  {comp.title}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4">
-                  {comp.shortSummary}
-                </p>
-              </div>
-              <Link
-                href={`/compare/${comp.slug}`}
-                className="text-xs font-semibold text-blue-600 hover:text-blue-700"
-              >
-                View Comparison &rarr;
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Reference Links */}
-      <section className="p-6 bg-slate-50 border border-slate-200 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <h3 className="text-sm font-bold text-slate-900">
-            Need specific definitions or answers?
-          </h3>
-          <p className="text-xs text-slate-600 mt-1">
-            Browse our surveillance engineering glossary or review our full frequently asked
-            questions hub.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/glossary"
-            className="text-xs font-medium px-4 py-2 rounded border border-slate-300 bg-white hover:bg-slate-50 transition"
-          >
-            Glossary
-          </Link>
-          <Link
-            href="/faq"
-            className="text-xs font-medium px-4 py-2 rounded border border-slate-300 bg-white hover:bg-slate-50 transition"
-          >
-            FAQ Hub
-          </Link>
-        </div>
-      </section>
-    </div>
+      {/* 2. Interactive Resources Directory */}
+      <Section background="white" className="py-12">
+        <Container>
+          <ResourcesList articles={articles} comparisons={comparisons} />
+        </Container>
+      </Section>
+    </main>
   );
 }

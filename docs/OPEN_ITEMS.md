@@ -122,3 +122,13 @@ The following operational rules, temporal thresholds, and integration points wer
 
 - [ ] **Privacy Policy (`/privacy-policy`) & Terms of Service (`/terms`):** Draft, requires legal review before launch. Must be reviewed by qualified Indian corporate legal counsel for formal compliance under the Digital Personal Data Protection (DPDP) Act, 2023, Information Technology Act, 2000, and Indian Contract Act, 1872.
 
+---
+
+## 12. Content Engine, Growth Plan & Lead Magnets (From Step 12)
+
+- [ ] **Founder Distribution Voice Review:** Confirm tone and messaging in `docs/growth/founder-distribution.md` across LinkedIn, X/Twitter, and short founder video topics before recording clips.
+- [ ] **90-Day Content Calendar Cadence:** Review publication dates and prioritized themes in `docs/growth/content-calendar-90-days.md`.
+- [ ] **Academic & Institutional Partnerships:** Confirm status of outreach to IIT Kharagpur, Jadavpur University, CASI India, and CII Eastern Region as outlined in `docs/growth/authority-plan.md`.
+- [ ] **Lead Magnet Pilot Checklist & Self-Assessment:** Confirm that the 16 checklist audit points in `/public/docs/ai-cctv-pilot-readiness-checklist.pdf` and the scoring weights in `/resources/cctv-ai-readiness-assessment` accurately represent current field deployment criteria.
+
+
