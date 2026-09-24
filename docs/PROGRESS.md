@@ -14,8 +14,8 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
 | **Step 4**   | **Design System & UI Components**                         | **Completed** | 2026-09-24      | White-theme tokens, typography (Manrope, Inter, JetBrains Mono), 18 accessible UI primitives, 2 responsive SVG brand graphics, `/design-system` showcase page                                                                         |
 | **Step 5/6** | **Global Layout, Navigation & Footer**                    | **Completed** | 2026-09-24      | Sticky header with 9-solution mega menu & StatusBadges, mobile drawer, 5-col footer, WhatsApp floating button, mobile sticky CTA bar, JSON-LD breadcrumbs, helpful 404 page, cookie notice                                            |
 | **Step 7**   | **Homepage (Conversion & Positioning Engine)**            | **Completed** | 2026-09-24      | 13 structured sections in `/app/page.tsx`, `/content/home.ts`, single H1, answer-first GEO copy, video player with captions/transcript disclosure, low-risk pilot pathway, 0 lint errors                                              |
-| **Step 8**   | **Core Solution Pages & Solutions Hub**                   | **Completed** | 2026-09-24      | Comprehensive `/content/solutions.ts` with 9 solutions, shared 12-stage `<SolutionTemplate>`, 9 dynamic routes, redesigned `/solutions` hub, requirements tables, honest limitations, 0 lint errors |
-| **Step 9**   | Industry Vertical Pages                                   | Pending       | -               | Vertical-specific pages (Enterprise, Manufacturing, Defence, Smart City, etc.)                                                                                                                                                        |
+| **Step 8**   | **Core Solution Pages & Solutions Hub**                   | **Completed** | 2026-09-24      | Comprehensive `/content/solutions.ts` with 9 solutions, shared 12-stage `<SolutionTemplate>`, 9 dynamic routes, redesigned `/solutions` hub, requirements tables, honest limitations, 0 lint errors                                   |
+| **Step 9**   | **Industry Vertical Pages & Industries Hub**              | **Completed** | 2026-09-24      | Comprehensive `/content/industries.ts` with 7 verticals, shared `<IndustryTemplate>`, redesigned `/industries` hub with institutional links (Smart City & Defence), neutral vendor checklists, 0 lint errors                          |
 | **Step 10**  | Pilot & Demo Lead Generation Engine                       | Pending       | -               | Request Demo & Request Pilot flows, qualification forms, API routes                                                                                                                                                                   |
 | **Step 11**  | Technical SEO, GEO & Schema.org System                    | Pending       | -               | JSON-LD schemas, AI search direct answers, canonicals, sitemap, robots.txt                                                                                                                                                            |
 | **Step 12**  | Company, Founder & Ethics / Privacy Pages                 | Pending       | -               | About, founder background, consent-based verification & data governance                                                                                                                                                               |
@@ -182,7 +182,7 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     2. Buyer problem narrative and concrete operational pain points.
     3. Dedicated 4-to-5 step `StepFlow` pipeline for that specific solution.
     4. Detection capabilities and operator deliverables (alert, snapshot, clip, log).
-    5. Requirements and compatibility table with permanent verification notice (*"Compatibility is confirmed during a site assessment"*).
+    5. Requirements and compatibility table with permanent verification notice (_"Compatibility is confirmed during a site assessment"_).
     6. Deployment options (Local Edge Server, On-Premise, Hybrid, Cloud) with honest operational fit descriptions.
     7. 4 to 6 concrete real-world use cases with scenarios, detections, and outcomes.
     8. What we validate in a pilot vs. honest optical and physical limitations.
@@ -194,3 +194,33 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
   - Added Section 9 to `docs/OPEN_ITEMS.md` logging technical optical parameters (mounting angles, IPD pixel thresholds, GPU channel sizing, relay modules) requiring founder verification.
   - Successfully validated `npm run lint` (0 errors, 0 warnings) and Turbopack static generation for all 45 routes.
 
+### Step 9: Industry Vertical Pages & Industries Hub
+
+- **Completed Actions:**
+  - Expanded `content/types.ts` with structured domain interfaces (`IndustryStruggle`, `IndustryRelevantSolution`, `IndustryScenario`, `IndustryBuyerDecision`, `IndustryPrivacyOps`, `IndustryPilotScope`, `IndustryRelatedArticle`).
+  - Implemented universal 10-section `<IndustryTemplate>` component in `components/sections/IndustryTemplate.tsx`:
+    1. Breadcrumbs, H1, StatusBadge, and 40-60 word answer-first definition block.
+    2. "What teams struggle with today" in sector-specific terminology (4 operational pain points per industry).
+    3. Relevant Resurgenix solutions (linked, with StatusBadge and 1-sentence sector explanation).
+    4. Configurable operational scenarios (4 per industry, framed as "what the system can be configured to detect", with trigger conditions and operator actions).
+    5. Buyer roles and decision dynamics plus a neutral "What to ask any AI video analytics vendor" checklist.
+    6. Sector-specific privacy and operational considerations with prominent regulatory governance note (_"Check applicable statutory regulations, local labor laws, and internal corporate data protection policies"_).
+    7. Suggested pilot scope described generally (recommended focus area, camera footprint, validation objectives, zero promised results).
+    8. Accessible FAQ accordion (4 sector-specific questions per industry).
+    9. Related technical articles and guides cross-links.
+    10. Matched-intent conversion CTA block (`Request a Demo`, `Request a Pilot`, and WhatsApp direct).
+  - Populated `content/industries.ts` with authentic, differentiated content for all 7 industry verticals:
+    1. **Corporate & Commercial Campuses** (`/industries/corporate-enterprise`): Server room unauthorized entry, executive floor loitering, turnstile tailgating, fire exit corridor obstruction.
+    2. **Manufacturing & Industrial Facilities** (`/industries/manufacturing`): Hazardous machinery exclusion envelopes, night-time plant boundary intrusion, overhead crane suspended load warnings, raw material yard protection.
+    3. **Government & Public Safety** (`/industries/government-public-safety`): Civic concourse crowd density surges, secretariat boundary line-crossing, emergency response corridor obstruction, public surveillance camera tampering.
+    4. **Logistics & Warehousing** (`/industries/logistics-warehousing`): Trailer staging apron dwell alerts, pedestrian incursion in forklift corridors, bonded inventory cage breaches, container yard perimeter fencing.
+    5. **Healthcare & Hospitals** (`/industries/healthcare`): Sterile ICU corridor access breaches, emergency ambulance bay obstruction, narcotics pharmacy after-hours entry, unattended patient exit loitering.
+    6. **Retail & Commercial Spaces** (`/industries/retail`): Back-of-house stockroom unauthorized access, POS checkout queue length alerts, after-hours storefront tampering, delivery alley arrival chimes.
+    7. **Hospitality & Hotels** (`/industries/hospitality`): Swimming pool after-hours intrusion, food & beverage storage breaches, guest floor elevator lobby loitering, portico drop-off dwell alerts.
+  - Redesigned `/industries` hub page (`app/industries/page.tsx`):
+    - Clean white-theme layout with breadcrumbs, sector grid, key struggles preview, and applicable solution tags.
+    - Two prominent institutional cards directly linking to `/solutions/smart-city-video-intelligence` and `/solutions/defence-security` to prevent keyword cannibalization while ensuring full discoverability.
+    - Sector evaluation advisory highlighting optical verification, data sovereignty, and controlled 14-day trials.
+    - Bottom conversion CTA block.
+  - Added Section 10 to `docs/OPEN_ITEMS.md` logging operational thresholds (tailgating delay, safety envelope radius, crowd density triggers, dock dwell limits, ambulance bay thresholds) requiring founder verification.
+  - Validated clean code quality: `npm run lint` (0 errors, 0 warnings) and Next.js Turbopack `npm run build` (all 45 static routes compiled cleanly).

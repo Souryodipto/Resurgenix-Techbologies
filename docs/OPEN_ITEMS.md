@@ -101,3 +101,16 @@ The following operational engineering guidelines are stated on the solution page
 - [ ] **Edge GPU Channel Capacities:** Confirm recommended channel sizing per edge workstation (e.g., 8 streams on RTX 3060 vs. 16/32 streams on RTX 4080 / A2000 industrial edge boxes) before publishing a dedicated hardware compatibility matrix.
 - [ ] **Relay Output Support:** Confirm the specific network I/O relay modules (e.g., Advantech ADAM / generic Modbus TCP relays) currently validated for triggering physical sirens, strobe lights, and boom barrier closures.
 
+---
+
+## 10. Industry Vertical Operational Scenarios & Thresholds (From Step 9)
+
+The following operational rules, temporal thresholds, and integration points were included in the industry pages as realistic baseline configurations and require founder verification:
+
+- [ ] **Corporate Turnstile Tailgating Logic:** Confirm that "two distinct bounding boxes within 1.2 seconds of single badge authorization" matches planned access control integration logic.
+- [ ] **Manufacturing Safety Exclusion Envelopes:** Confirm that dynamic 2-meter virtual exclusion envelopes around stamping presses/robotic arms and direct relay beacon triggering reflect current pilot configurations.
+- [ ] **Government & Smart City Crowd Thresholds:** Confirm that "3 persons per square meter" is the default trigger threshold for civic transit concourse density alerts, and that REST/MQTT schema matches common Smart Cities Mission ICCC standards.
+- [ ] **Logistics Loading Dock Dwell Timing:** Confirm that 45-minute dock dwell alerts and pedestrian exclusion warnings in active forklift aisles reflect target warehouse pilot workflows.
+- [ ] **Healthcare Ambulance Bay Dwell Limits:** Confirm that 2-minute stationary vehicle alert thresholds for emergency drop-off bays and silent visual alerts on nursing stations reflect intended hospital operations.
+- [ ] **Retail Checkout Queue Alert Parameters:** Confirm that "queue count exceeding 5 people for more than 90 seconds" is the recommended operational alert threshold for retail store managers.
+- [ ] **Hospitality Pool After-Hours Safety:** Confirm that time-scheduled virtual boundaries (e.g., 22:00 to 06:00) with silent security dispatch match standard hotel deployment practices.

@@ -81,6 +81,49 @@ export interface SolutionEntry {
   specialNotice?: SolutionSpecialNotice;
 }
 
+export interface IndustryStruggle {
+  title: string;
+  description: string;
+}
+
+export interface IndustryRelevantSolution {
+  title: string;
+  slug: string;
+  status: CapabilityStatus;
+  oneLiner: string;
+}
+
+export interface IndustryScenario {
+  title: string;
+  description: string;
+  triggerCondition: string;
+  operatorAction: string;
+}
+
+export interface IndustryBuyerDecision {
+  keyRoles: string[];
+  evaluationProcess: string;
+  vendorChecklist: string[];
+}
+
+export interface IndustryPrivacyOps {
+  considerations: string[];
+  policyNote: string;
+}
+
+export interface IndustryPilotScope {
+  focusArea: string;
+  cameraFootprint: string;
+  objectives: string[];
+  assessmentNote: string;
+}
+
+export interface IndustryRelatedArticle {
+  title: string;
+  slug: string;
+  description: string;
+}
+
 export interface IndustryEntry {
   slug: string;
   title: string;
@@ -89,14 +132,15 @@ export interface IndustryEntry {
   h1: string;
   primaryKeyword: string;
   secondaryKeywords: string[];
-  shortAnswer: string; // Answer-first 40 to 60 word concise definition
-  problem: string;
-  capabilities: string[];
-  howItWorks: string[];
-  requirements: string[];
-  useCases: string[];
-  limitations: string[];
+  shortAnswer: string; // Answer-first 40 to 60 word concise summary
+  struggles: IndustryStruggle[];
+  relevantSolutions: IndustryRelevantSolution[];
+  scenarios: IndustryScenario[];
+  buyerDecision: IndustryBuyerDecision;
+  privacyAndOperations: IndustryPrivacyOps;
+  pilotScope: IndustryPilotScope;
   faqs: FAQItem[];
+  relatedArticles: IndustryRelatedArticle[];
   relatedSlugs: string[];
   ctaPrimary: CTAConfig;
   ctaSecondary: CTAConfig;
