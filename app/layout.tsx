@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/content/site.config";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const manrope = Manrope({
+  variable: "--font-heading",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,8 +35,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-slate-900">{children}</body>
+    <html
+      lang="en"
+      className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-white text-charcoal font-sans">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-[10px] focus:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 text-sm font-medium"
+        >
+          Skip to content
+        </a>
+        <div id="main-content" className="flex-1 flex flex-col">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
