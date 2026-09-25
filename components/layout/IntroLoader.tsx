@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback, useSyncExternalStore } from "react";
+import Image from "next/image";
 
 const emptySubscribe = () => () => {};
 
@@ -365,11 +366,16 @@ export function IntroLoader() {
               <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
             </svg>
           </div>
-          <div className="text-xl font-heading font-extrabold text-[#0B1F3A] tracking-tight">
-            Resurgenix
-          </div>
-          <div className="text-xs font-mono text-[#5B6B7F] tracking-wide">
-            AI Video Intelligence
+          <Image
+            src="/images/resurgenix-logo.png"
+            alt="Resurgenix"
+            width={180}
+            height={45}
+            priority
+            className="h-9 w-auto object-contain"
+          />
+          <div className="text-xs font-mono text-[#5B6B7F] tracking-wide mt-1">
+            AI Video Intelligence Layer
           </div>
         </div>
       ) : (
@@ -377,15 +383,17 @@ export function IntroLoader() {
            FULL ANIMATED SEQUENCE (~3.6s)
            ========================================================================= */
         <div className="relative flex flex-col items-center justify-center max-w-xl w-full px-6">
-          {/* Brand Header: Prestigious and clear, placed above the scene with zero collision */}
-          <div className="flex flex-col items-center mb-6 text-center select-none anim-wordmark">
-            <div className="flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB] shadow-xs" />
-              <span className="text-2xl sm:text-3xl font-heading font-extrabold text-[#0B1F3A] tracking-tight">
-                Resurgenix
-              </span>
-            </div>
-            <p className="text-xs font-mono font-medium text-[#5B6B7F] tracking-wide mt-1">
+          {/* Brand Header: Official Company Logo, placed above the scene with zero collision */}
+          <div className="flex flex-col items-center mb-5 text-center select-none anim-wordmark">
+            <Image
+              src="/images/resurgenix-logo.png"
+              alt="Resurgenix - Physical Infrastructure Intelligence"
+              width={220}
+              height={55}
+              priority
+              className="h-10 sm:h-12 w-auto object-contain"
+            />
+            <p className="text-[11px] sm:text-xs font-mono font-medium text-[#5B6B7F] tracking-wider uppercase mt-1.5">
               AI Video Intelligence Layer
             </p>
             {/* Expanding Underline Rule */}

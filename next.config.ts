@@ -104,6 +104,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/sites.xml",
+        destination: "/sitemap.xml",
+      },
+      {
+        source: "/robot.txt",
+        destination: "/robots.txt",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

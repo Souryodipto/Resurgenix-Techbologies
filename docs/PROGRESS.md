@@ -507,3 +507,29 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - `npm run lint`: Passed with 0 errors.
     - `npm run build`: Compiled all 66 static routes with 0 errors.
     - Production server running and verified at `http://localhost:3000`.
+
+### Step 17: Official Brand Logo Integration, Universal Robots, & Dual-Sitemap GEO Architecture
+
+- **Completed Actions:**
+  - **1. Official Company Logo Integration:**
+    - Incorporated the official Resurgenix brand logo (orbital globe emblem with dynamic blue swooshes + uppercase shadowed "RESUR" and electric-blue "GENIX" wordmark).
+    - Saved official asset to `/public/images/resurgenix-logo.png`, `/public/images/logo.png`, and `/public/logo.png`.
+    - Generated square high-resolution brand icons from the orbital globe emblem: `/app/icon.png`, `/app/apple-icon.png`, `/public/icon.png`, `/app/favicon.ico`, and `/public/favicon.ico`.
+    - Updated `components/layout/Header.tsx` `<ResurgenixLogo>` to render the official logo with Next.js optimized `<Image priority>`.
+    - Updated `components/layout/Footer.tsx` brand anchor to render the official logo.
+    - Updated `components/layout/IntroLoader.tsx` brand header and reduced-motion fallback to render the official logo.
+    - Updated `components/seo/schema.ts` Organization schema `logo` and `image` properties to `https://resurgenixtechnologies.com/images/resurgenix-logo.png`.
+  - **2. Full Robots Directives (`/robots.txt` and `/robot.txt`):**
+    - Updated `app/robots.ts` with universal wildcard (`User-agent: *`, `Allow: /`) and explicit rules for 21 leading AI search & GEO indexing agents: `Googlebot`, `Google-Extended`, `OAI-SearchBot`, `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `anthropic-ai`, `Claude-Web`, `PerplexityBot`, `Bingbot`, `msnbot`, `Applebot`, `Applebot-Extended`, `Meta-ExternalAgent`, `FacebookBot`, `cohere-ai`, `Diffbot`, `YouBot`, `Amazonbot`, `Bytespider`, and `CCBot`.
+    - Created dedicated route handler `app/robot.txt/route.ts` and Next.js internal rewrites ensuring any bot querying `/robot.txt` (singular) immediately receives direct 200 OK text/plain directives without redirect failures.
+    - Both sitemaps referenced in robots: `https://resurgenixtechnologies.com/sitemap.xml` and `https://resurgenixtechnologies.com/sites.xml`.
+  - **3. Dual-Sitemap Architecture (`/sitemap.xml` and `/sites.xml`):**
+    - `app/sitemap.ts` populates all 52 public canonical routes (18 static pages, 9 solutions, 7 industries, 3 comparisons, 15 resource articles) while strictly excluding private/thank-you routes.
+    - Created `app/sites.xml/route.ts` delivering direct 200 OK XML sitemap output with `<urlset>`, `<loc>`, `<lastmod>`, `<changefreq>`, and `<priority>` for crawlers requesting `/sites.xml`.
+    - Configured Next.js rewrites in `next.config.ts` mapping `/sites.xml` $\rightarrow$ `/sitemap.xml` and `/robot.txt` $\rightarrow$ `/robots.txt`.
+  - **4. Verification & Validation:**
+    - `npm run lint`: Passed with 0 errors.
+    - `npm run build`: Compiled all 70 static routes in 2.9s with 0 errors.
+    - Verified HTTP 200 OK across `/robots.txt`, `/robot.txt`, `/sitemap.xml`, `/sites.xml`, `/images/resurgenix-logo.png`, `/icon.png`, and `/`.
+    - Active on production server at `http://localhost:3000`.
+

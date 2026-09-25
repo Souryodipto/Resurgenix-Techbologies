@@ -15,7 +15,8 @@ export function getOrganizationSchema() {
     name: companyFacts.legalName,
     alternateName: companyFacts.brandName,
     url: baseUrl,
-    logo: `${baseUrl}/images/resurgenix-video-poster.jpg`,
+    logo: `${baseUrl}/images/resurgenix-logo.png`,
+    image: `${baseUrl}/images/resurgenix-logo.png`,
     description: companyFacts.description,
     sameAs: [companyFacts.social.linkedin, companyFacts.social.instagram],
     contactPoint: {

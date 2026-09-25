@@ -7,53 +7,24 @@ import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { headerNav } from "@/content/nav";
+import Image from "next/image";
 import { siteConfig } from "@/content/site.config";
 
 /**
- * Resurgenix SVG Wordmark + Monogram Component
- * Temporary vector placeholder until official master SVG logo asset is provided.
+ * Official Resurgenix Brand Logo Component
+ * Features the official orbital globe emblem and custom stylized wordmark.
  */
 export function ResurgenixLogo({ className = "h-8" }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-2.5 select-none ${className}`}>
-      {/* Precision Camera/AI Monogram Icon */}
-      <svg
-        className="w-8 h-8 flex-shrink-0"
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <rect width="36" height="36" rx="8" fill="#0B1F3A" />
-        {/* Optical Sensor Aperture */}
-        <circle cx="18" cy="18" r="11" stroke="#2563EB" strokeWidth="2" strokeDasharray="3 2" />
-        <circle
-          cx="18"
-          cy="18"
-          r="6"
-          fill="#06B6D4"
-          fillOpacity="0.25"
-          stroke="#06B6D4"
-          strokeWidth="1.5"
-        />
-        <circle cx="18" cy="18" r="2.5" fill="#2563EB" />
-        {/* Precision Target Accents */}
-        <path
-          d="M18 4V8M18 28V32M4 18H8M28 18H32"
-          stroke="#2563EB"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-      {/* Wordmark */}
-      <div className="flex flex-col">
-        <span className="font-heading font-extrabold text-[1.125rem] leading-none tracking-tight text-[#0B1F3A]">
-          {siteConfig.company.brandName}
-        </span>
-        <span className="font-mono text-[0.625rem] tracking-wider text-[#5B6B7F] uppercase mt-0.5">
-          Video Intelligence
-        </span>
-      </div>
+    <div className={`flex items-center select-none ${className}`}>
+      <Image
+        src="/images/resurgenix-logo.png"
+        alt={`${siteConfig.company.brandName} - Video Intelligence Layer`}
+        width={180}
+        height={45}
+        priority
+        className="h-8 sm:h-9 w-auto object-contain"
+      />
     </div>
   );
 }
