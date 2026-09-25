@@ -12,18 +12,22 @@ import { siteConfig } from "@/content/site.config";
 
 /**
  * Official Resurgenix Brand Logo Component
- * Features the official orbital globe emblem and custom stylized wordmark.
+ * Encapsulated in an executive Deep Navy (#0B1F3A) capsule badge so that
+ * the white orbital globe, white "RESUR", and electric-blue "GENIX" are
+ * 100% crystal-clear, high-contrast, and prominently visible on white backgrounds.
  */
-export function ResurgenixLogo({ className = "h-8" }: { className?: string }) {
+export function ResurgenixLogo({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex items-center select-none ${className}`}>
+    <div
+      className={`inline-flex items-center px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#0B1F3A] border border-[#1E293B] shadow-xs hover:border-[#2563EB]/60 hover:shadow-sm transition-all select-none ${className}`}
+    >
       <Image
         src="/images/resurgenix-logo.png"
         alt={`${siteConfig.company.brandName} - Video Intelligence Layer`}
-        width={180}
-        height={45}
+        width={150}
+        height={38}
         priority
-        className="h-8 sm:h-9 w-auto object-contain"
+        className="h-7 sm:h-7.5 w-auto object-contain"
       />
     </div>
   );

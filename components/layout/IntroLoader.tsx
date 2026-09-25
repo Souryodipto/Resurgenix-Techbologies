@@ -349,31 +349,16 @@ export function IntroLoader() {
            PREFERS-REDUCED-MOTION FALLBACK: Static Crisp Presentation
            ========================================================================= */
         <div className="flex flex-col items-center justify-center space-y-3">
-          <div className="w-12 h-12 rounded-xl bg-[#0B1F3A] flex items-center justify-center shadow-xs">
-            <svg
-              className="w-7 h-7 text-[#06B6D4]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="3" />
-              <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-              <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-              <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-              <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-            </svg>
+          <div className="inline-flex items-center px-4 py-2 rounded-xl bg-[#0B1F3A] border border-[#1E293B] shadow-sm">
+            <Image
+              src="/images/resurgenix-logo.png"
+              alt="Resurgenix"
+              width={180}
+              height={45}
+              priority
+              className="h-8 w-auto object-contain"
+            />
           </div>
-          <Image
-            src="/images/resurgenix-logo.png"
-            alt="Resurgenix"
-            width={180}
-            height={45}
-            priority
-            className="h-9 w-auto object-contain"
-          />
           <div className="text-xs font-mono text-[#5B6B7F] tracking-wide mt-1">
             AI Video Intelligence Layer
           </div>
@@ -383,17 +368,19 @@ export function IntroLoader() {
            FULL ANIMATED SEQUENCE (~3.6s)
            ========================================================================= */
         <div className="relative flex flex-col items-center justify-center max-w-xl w-full px-6">
-          {/* Brand Header: Official Company Logo, placed above the scene with zero collision */}
+          {/* Brand Header: Official Company Logo in Executive Dark Capsule */}
           <div className="flex flex-col items-center mb-5 text-center select-none anim-wordmark">
-            <Image
-              src="/images/resurgenix-logo.png"
-              alt="Resurgenix - Physical Infrastructure Intelligence"
-              width={220}
-              height={55}
-              priority
-              className="h-10 sm:h-12 w-auto object-contain"
-            />
-            <p className="text-[11px] sm:text-xs font-mono font-medium text-[#5B6B7F] tracking-wider uppercase mt-1.5">
+            <div className="inline-flex items-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-[#0B1F3A] border border-[#1E293B] shadow-md hover:border-[#2563EB]/50 transition-colors">
+              <Image
+                src="/images/resurgenix-logo.png"
+                alt="Resurgenix - Physical Infrastructure Intelligence"
+                width={200}
+                height={50}
+                priority
+                className="h-9 sm:h-11 w-auto object-contain"
+              />
+            </div>
+            <p className="text-[11px] sm:text-xs font-mono font-medium text-[#5B6B7F] tracking-wider uppercase mt-2">
               AI Video Intelligence Layer
             </p>
             {/* Expanding Underline Rule */}
