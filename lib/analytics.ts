@@ -22,7 +22,13 @@ export type AnalyticsEventType =
   | "video_complete"
   | "resource_download"
   | "assessment_complete"
-  | "outbound_click";
+  | "outbound_click"
+  | "chat_open"
+  | "chat_message_sent"
+  | "chat_fallback_shown"
+  | "chat_source_click"
+  | "chat_cta_click"
+  | "chat_callback_submitted";
 
 export interface AnalyticsEventPayload {
   // Navigation & CTAs
@@ -213,4 +219,29 @@ export function trackFormError(formId: string, errorField: string) {
     formId,
     errorField,
   });
+}
+
+// Step 17 Chatbot Telemetry Hooks
+export function trackChatOpen() {
+  trackEvent("chat_open", { location: "floating_action_button" });
+}
+
+export function trackChatMessageSent(queryLength: number) {
+  trackEvent("chat_message_sent", { queryLength });
+}
+
+export function trackChatFallbackShown(query?: string) {
+  trackEvent("chat_fallback_shown", { queryLength: query?.length });
+}
+
+export function trackChatSourceClick(sourceTitle: string, sourceUrl: string) {
+  trackEvent("chat_source_click", { label: sourceTitle, href: sourceUrl });
+}
+
+export function trackChatCtaClick(label: string, href: string) {
+  trackEvent("chat_cta_click", { label, href, location: "chatbot_panel" });
+}
+
+export function trackChatCallbackSubmitted() {
+  trackEvent("chat_callback_submitted", { location: "chatbot_mini_form" });
 }

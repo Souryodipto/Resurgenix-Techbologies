@@ -131,4 +131,15 @@ The following operational rules, temporal thresholds, and integration points wer
 - [ ] **Academic & Institutional Partnerships:** Confirm status of outreach to IIT Kharagpur, Jadavpur University, CASI India, and CII Eastern Region as outlined in `docs/growth/authority-plan.md`.
 - [ ] **Lead Magnet Pilot Checklist & Self-Assessment:** Confirm that the 16 checklist audit points in `/public/docs/ai-cctv-pilot-readiness-checklist.pdf` and the scoring weights in `/resources/cctv-ai-readiness-assessment` accurately represent current field deployment criteria.
 
+---
+
+## 13. Chatbot Content Gaps & Grounding Verification (From Step 17)
+
+The following content gaps were identified during chatbot corpus indexing and test queries. While the assistant strictly falls back to "Contact our team / Request a Demo" rather than guessing, adding explicit answers to `/content/*.ts` will expand verified self-service coverage:
+
+- [ ] **Certified Edge Server Hardware Models:** Inbound technical buyers ask whether specific edge appliance vendors (e.g., Advantech MIC-770, Dell PowerEdge XR, Lenovo ThinkEdge, or NVIDIA Jetson AGX Orin) are certified out-of-the-box. Current corpus states generic hardware requirements (NVIDIA GPU with 8GB+ VRAM, RTSP/ONVIF streams).
+- [ ] **Exact Firmware & Legacy DVR Compatibility:** Inbound queries ask about specific legacy DVR models (e.g., CP Plus Orange series, older analog H.264 DVRs). Current corpus confirms support for RTSP-enabled DVRs/XVRs but recommends validation during the initial technical assessment.
+- [ ] **Pilot Turnaround & Setup Logistics:** Inbound queries ask how quickly an on-site pilot can begin after signing. Corpus documents the 14-day protocol duration; confirm typical lead time between agreement signing and camera calibration.
+- [ ] **Cloud VPC Data Egress Specs:** For hybrid deployments, confirm average monthly outbound metadata egress size (estimated at ~50MB/camera/month for JSON telemetry without continuous raw video streaming).
+
 

@@ -122,6 +122,16 @@ export default function PrivacyPolicyPage() {
                       <li>Timestamps and form interaction telemetry (e.g. anti-bot timing checks)</li>
                     </ul>
                   </div>
+
+                  <div>
+                    <h3 className="text-sm font-semibold text-[#0B1F3A]">C. Resurgenix Website Assistant (Chatbot)</h3>
+                    <p className="text-xs text-[#5B6B7F]">
+                      Conversations with the Resurgenix Website Assistant are strictly session-only and retained
+                      solely in ephemeral browser memory. Conversations are never recorded into model training
+                      sets, never retained as permanent transcripts, and never linked to your personal identity
+                      unless you explicitly submit an inquiry through the &ldquo;Request a Callback&rdquo; mini-form.
+                    </p>
+                  </div>
                 </div>
               </section>
 

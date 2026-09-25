@@ -508,28 +508,42 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - `npm run build`: Compiled all 66 static routes with 0 errors.
     - Production server running and verified at `http://localhost:3000`.
 
-### Step 17: Official Brand Logo Integration, Universal Robots, & Dual-Sitemap GEO Architecture
+### Step 17 (Continued): Grounded AI Website Assistant & Knowledge Corpus Engine
 
 - **Completed Actions:**
-  - **1. Official Company Logo Integration:**
-    - Incorporated the official Resurgenix brand logo (orbital globe emblem with dynamic blue swooshes + uppercase shadowed "RESUR" and electric-blue "GENIX" wordmark).
-    - Saved official asset to `/public/images/resurgenix-logo.png`, `/public/images/logo.png`, and `/public/logo.png`.
-    - Generated square high-resolution brand icons from the orbital globe emblem: `/app/icon.png`, `/app/apple-icon.png`, `/public/icon.png`, `/app/favicon.ico`, and `/public/favicon.ico`.
-    - Updated `components/layout/Header.tsx` `<ResurgenixLogo>` to render the official logo with Next.js optimized `<Image priority>`.
-    - Updated `components/layout/Footer.tsx` brand anchor to render the official logo.
-    - Updated `components/layout/IntroLoader.tsx` brand header and reduced-motion fallback to render the official logo.
-    - Updated `components/seo/schema.ts` Organization schema `logo` and `image` properties to `https://resurgenixtechnologies.com/images/resurgenix-logo.png`.
-  - **2. Full Robots Directives (`/robots.txt` and `/robot.txt`):**
-    - Updated `app/robots.ts` with universal wildcard (`User-agent: *`, `Allow: /`) and explicit rules for 21 leading AI search & GEO indexing agents: `Googlebot`, `Google-Extended`, `OAI-SearchBot`, `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `anthropic-ai`, `Claude-Web`, `PerplexityBot`, `Bingbot`, `msnbot`, `Applebot`, `Applebot-Extended`, `Meta-ExternalAgent`, `FacebookBot`, `cohere-ai`, `Diffbot`, `YouBot`, `Amazonbot`, `Bytespider`, and `CCBot`.
-    - Created dedicated route handler `app/robot.txt/route.ts` and Next.js internal rewrites ensuring any bot querying `/robot.txt` (singular) immediately receives direct 200 OK text/plain directives without redirect failures.
-    - Both sitemaps referenced in robots: `https://resurgenixtechnologies.com/sitemap.xml` and `https://resurgenixtechnologies.com/sites.xml`.
-  - **3. Dual-Sitemap Architecture (`/sitemap.xml` and `/sites.xml`):**
-    - `app/sitemap.ts` populates all 52 public canonical routes (18 static pages, 9 solutions, 7 industries, 3 comparisons, 15 resource articles) while strictly excluding private/thank-you routes.
-    - Created `app/sites.xml/route.ts` delivering direct 200 OK XML sitemap output with `<urlset>`, `<loc>`, `<lastmod>`, `<changefreq>`, and `<priority>` for crawlers requesting `/sites.xml`.
-    - Configured Next.js rewrites in `next.config.ts` mapping `/sites.xml` $\rightarrow$ `/sitemap.xml` and `/robot.txt` $\rightarrow$ `/robots.txt`.
-  - **4. Verification & Validation:**
-    - `npm run lint`: Passed with 0 errors.
-    - `npm run build`: Compiled all 70 static routes in 2.9s with 0 errors.
-    - Verified HTTP 200 OK across `/robots.txt`, `/robot.txt`, `/sitemap.xml`, `/sites.xml`, `/images/resurgenix-logo.png`, `/icon.png`, and `/`.
-    - Active on production server at `http://localhost:3000`.
+  - **1. Build-Time Content Corpus Pipeline (`scripts/build-chat-corpus.ts`):**
+    - Created build script that reads `/content/solutions.ts`, `/content/industries.ts`, `/content/faqs.ts`, `/content/glossary.ts`, `/content/facts.ts`, `/content/capabilities.ts`, `/content/resources/*.ts`, and any `/content/resources/*.mdx` files.
+    - Compiled 273 structured knowledge chunks into `/content/generated/chat-corpus.json` with canonical `id`, `sourceTitle`, `sourceUrl`, `text`, and `type`.
+    - Added `"prebuild": "tsx scripts/build-chat-corpus.ts"` in `package.json` to automatically keep the corpus synchronized whenever code changes or builds occur.
+  - **2. Dependency-Free BM25 Retrieval Engine (`lib/chat/retrieve.ts`):**
+    - Built a zero-external-dependency keyword & BM25 ranking algorithm with query tokenization, stopword elimination, stemming normalization, term frequency, and document frequency IDF weighting ($k_1=1.2, b=0.75$).
+    - Added domain boosts for title matches and verified pricing inquiries.
+    - Added term coverage ratio gating: multi-word queries require >=50% coverage to eliminate random keyword matches.
+    - Added strict out-of-scope query filtering for jailbreaks, prompt injection, unrelated coding help, and general chit-chat.
+    - Normalized score to 0.0–1.0 with a calibrated 0.35 threshold.
+  - **3. Dual-Mode API Route (`app/api/chat/route.ts`):**
+    - Rate-limiting (per-IP sliding window via `checkRateLimit`), input character cap (500 chars), and HTML/script tag stripping.
+    - Dual mode auto-selection:
+      - Default mode (retrieval-only, no LLM key required): returns single best-matching chunk with verified `Source: [Page Name]` link and 1-2 related navigation pills. Falls back cleanly to official team contact channels if score < 0.35.
+      - Claude mode (activated when `ANTHROPIC_API_KEY` is present): prompts Claude with strict site-only system prompt and top retrieved chunks. Server-side validation strips hallucinated numbers, dates, or non-enterprise pricing.
+    - Logs queries and matched source URLs for telemetry and corpus refinement.
+  - **4. Accessible Floating Chatbot Widget (`components/chat/ChatWidget.tsx`):**
+    - Positioned at **bottom-left** (58px navy `#0B1F3A` circle, pulsing cyan dot, chat-bubble icon).
+    - SessionStorage-gated nudge bubble ("Ask me anything about Resurgenix") appearing after 1.4s on first visit.
+    - Single source of truth Z-index ordering:
+      - Header / Navigation: `z-40`
+      - Mobile Sticky CTA & WhatsApp button: `z-45`
+      - Chatbot FAB & Nudge: `z-[46]`
+      - Chatbot Open Panel: `z-[48]`
+      - Fullscreen Modals & Overlays: `z-50` to `z-[100]`
+    - Mobile non-collision: raises by `bottom-[76px]` past hero to float cleanly above the mobile sticky conversion bar.
+    - Starter chips from high-traffic FAQs, typing indicator (three bouncing dots), white bot bubbles, electric-blue user bubbles, persistent grounding disclaimer footer.
+    - Inline "Request a Callback" mini-form connecting directly to `/api/leads`.
+    - Accessibility: `role="dialog"`, `aria-live="polite"`, focus trapping with Tab, Escape to close, focus return to FAB, 44px minimum touch targets, and `prefers-reduced-motion` compliance.
+  - **5. Analytics Telemetry & Documentation:**
+    - Updated `lib/analytics.ts` with hooks: `chat_open`, `chat_message_sent`, `chat_fallback_shown`, `chat_source_click`, `chat_cta_click`, `chat_callback_submitted`.
+    - Updated `app/privacy-policy/page.tsx` and `app/security-and-privacy/page.tsx` with disclosures that chat conversations are session-only and never silently harvested as leads.
+    - Authored `/docs/chat-corpus.md` detailing corpus generation, BM25 retrieval, guardrails, and maintenance workflows.
+    - Logged content gap observations in `/docs/OPEN_ITEMS.md`.
+
 

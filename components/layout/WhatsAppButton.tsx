@@ -58,7 +58,7 @@ export function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleWhatsAppClick}
-        className={`fixed z-40 flex items-center gap-2 px-3.5 sm:px-4 py-3 sm:py-2.5 rounded-full bg-[#25D366] hover:bg-[#20BD5C] text-white shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 select-none group ${bottomPositionClass}`}
+        className={`fixed z-45 flex items-center gap-2 px-3.5 sm:px-4 py-3 sm:py-2.5 rounded-full bg-[#25D366] hover:bg-[#20BD5C] text-white shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 select-none group ${bottomPositionClass}`}
         aria-label="Chat with Resurgenix via WhatsApp (opens in new window)"
       >
         {/* Official WhatsApp Vector Icon */}

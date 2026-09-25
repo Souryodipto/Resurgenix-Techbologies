@@ -35,7 +35,7 @@ export function MobileStickyCta() {
 
   return (
     <div
-      className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-[#E2E8F0] shadow-lg p-3 flex items-center gap-3 animate-in slide-in-from-bottom duration-200"
+      className="md:hidden fixed bottom-0 inset-x-0 z-45 bg-white border-t border-[#E2E8F0] shadow-lg p-3 flex items-center gap-3 animate-in slide-in-from-bottom duration-200"
       role="region"
       aria-label="Quick Conversion Bar"
     >

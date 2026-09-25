@@ -7,6 +7,7 @@ import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import { CookieNotice } from "@/components/layout/CookieNotice";
 import { IntroLoader } from "@/components/layout/IntroLoader";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { SitewideJsonLd } from "@/components/seo/SitewideJsonLd";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import "./globals.css";
@@ -127,6 +128,9 @@ export default function RootLayout({
 
         {/* Mobile Sticky Conversion Action Bar */}
         <MobileStickyCta />
+
+        {/* Global Floating AI Assistant Chatbot (Bottom-Left) */}
+        <ChatWidget />
 
         {/* Privacy & Performance Consent Notice */}
         <CookieNotice />

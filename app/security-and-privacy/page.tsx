@@ -41,6 +41,11 @@ const securityFaqs = [
       "No. Resurgenix explicitly does not build or position software for indiscriminate public crowd identification or unconsented mass surveillance. Facial verification capabilities are strictly confined to consent-based operational workflows, such as voluntary employee shift attendance and verified contractor access.",
   },
   {
+    question: "How are website chat conversations and assistant queries handled regarding privacy?",
+    answer:
+      "Website Assistant conversations are strictly session-only and ephemeral. We do not silently harvest or store transcripts as leads, nor do we feed conversations into external AI model training sets. Information is only retained if a visitor explicitly opts into follow-up contact by submitting a 'Request a Callback' or contact form.",
+  },
+  {
     question: "What network bandwidth is required between cameras and the edge appliance?",
     answer:
       "Because video feeds are ingested locally over your facility LAN via standard RTSP/ONVIF streams, zero external internet bandwidth is consumed for video processing. Local network load is equivalent to standard camera-to-NVR streaming (typically 2 to 4 Mbps per 1080p H.264/H.265 stream).",

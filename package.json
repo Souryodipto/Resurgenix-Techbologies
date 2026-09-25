@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/build-chat-corpus.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -27,6 +28,7 @@
     "eslint-config-next": "16.3.6",
     "prettier": "^3.9.9",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
