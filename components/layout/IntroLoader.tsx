@@ -32,25 +32,18 @@ function usePrefersReducedMotion() {
 }
 
 /**
- * IntroLoader - High-Fidelity First-Load Intro Animation (Step 16)
+ * IntroLoader - High-Fidelity First-Load Intro Animation (Step 16 Refinement)
  *
- * Visual Components:
- * - CAMERA: Realistic bullet CCTV camera with wall mount plate, swivel arm, rounded body,
- *   lens housing ring with 5 IR-LED dots, inner glass lens with glare ellipse, and blinking status LED.
- * - LINK: Dual-rail bezier conduit (primary blue, secondary cyan offset by 6px with 120ms stagger),
- *   with 3 glowing packets traveling the primary rail via animateMotion.
- * - BRAIN: Organic silhouette with central sulcus fissure, 6 curved gyri folds, distinct cerebellar lobe,
- *   and internal neural net (7 contour nodes, 10 synapse lines cascading in ~60ms intervals).
- * - FLASH: Soft radial cyan flash at 2.15s marking scene "understood".
- * - WORDMARK: Fades in at 2.25s with expanding electric-blue underline rule.
- * - STATUS LINE: Cross-fades through "Connecting camera feed", "Analyzing in real time", "Understanding the scene".
- *
- * Constraints & Invariants:
- * - Session-scoped: plays once per session via sessionStorage("introPlayed").
- * - Client-only: returns null during SSR, never appears in server HTML or delays LCP.
- * - Accessible: role="status", aria-label="Loading Resurgenix", unmounted on exit.
- * - Reduced motion: skips animation, displays static brand mark hold for 550ms.
- * - Escape / click skips immediately; all timers and listeners cleaned up on unmount.
+ * Sequence Highlights:
+ * 1. CCTV Camera: realistic bullet housing, wall plate, arm, IR LEDs, inner glass with glare, blinking LED.
+ * 2. Dual-Rail Link: parallel blue & cyan paths with 3 glowing data packets.
+ * 3. Organic Brain: central sulcus, 6 gyri fold marks, cerebellar lobe, 7 nodes & 10 synapses cascading.
+ * 4. Radial Flash: soft cyan completion pulse at 2.15s.
+ * 5. Wordmark: reveals at 2.25s with expanding electric-blue underline rule.
+ * 6. Status Line: 3 executive-console pills:
+ *    - "Connecting camera feed" (0.0s – 1.05s)
+ *    - "Analyzing in real time" (1.05s – 2.05s)
+ *    - "Understanding the scene" (2.05s – 3.4s) — high-contrast bold navy text on ice-blue pill with pulsing cyan indicator and checkmark. Persists at full opacity so it is crystal-clear and prominent.
  */
 export function IntroLoader() {
   const isClient = useIsClient();
@@ -85,8 +78,8 @@ export function IntroLoader() {
       setVisible(true);
     }, 10);
 
-    // Sequence duration: ~3.05s standard sequence vs 550ms reduced motion
-    const autoDismissDuration = reducedMotion ? 550 : 3050;
+    // Sequence duration: ~3.6s standard sequence (generous 1.65s hold for full scene understanding) vs 550ms reduced motion
+    const autoDismissDuration = reducedMotion ? 550 : 3600;
     const autoDismissTimer = setTimeout(() => {
       dismiss();
     }, autoDismissDuration);
@@ -226,23 +219,12 @@ export function IntroLoader() {
         }
 
         /* =========================================================================
-           SCENE TRANSITION & WORDMARK REVEAL
+           BRAND HEADER ANIMATION
            ========================================================================= */
-        @keyframes sceneRetract {
-          0% {
-            opacity: 1;
-            transform: scale(1);
-          }
-          100% {
-            opacity: 0.22;
-            transform: scale(0.96);
-          }
-        }
-
         @keyframes wordmarkEntrance {
           0% {
             opacity: 0;
-            transform: translateY(8px);
+            transform: translateY(-6px);
           }
           100% {
             opacity: 1;
@@ -260,50 +242,47 @@ export function IntroLoader() {
         }
 
         /* =========================================================================
-           STATUS PHRASE CROSS-FADES (3 Phrases across 3.0s)
+           STATUS PHRASE CROSS-FADES (3 Stages across 3.6s)
            ========================================================================= */
         @keyframes phraseOne {
           0% {
             opacity: 0;
-            transform: translateY(3px);
+            transform: translateY(4px) scale(0.97);
           }
-          12%, 80% {
+          15%, 82% {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
           }
-          95%, 100% {
+          96%, 100% {
             opacity: 0;
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(0.97);
           }
         }
 
         @keyframes phraseTwo {
           0% {
             opacity: 0;
-            transform: translateY(3px);
+            transform: translateY(4px) scale(0.97);
           }
-          12%, 80% {
+          15%, 82% {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
           }
-          95%, 100% {
+          96%, 100% {
             opacity: 0;
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(0.97);
           }
         }
 
+        /* Phrase Three: Enters at 1.95s and holds firmly at opacity 1.0 until overlay lifts */
         @keyframes phraseThree {
           0% {
             opacity: 0;
-            transform: translateY(3px);
-          }
-          15%, 85% {
-            opacity: 1;
-            transform: translateY(0);
+            transform: translateY(5px) scale(0.95);
           }
           100% {
-            opacity: 0;
-            transform: translateY(-2px);
+            opacity: 1;
+            transform: translateY(0) scale(1);
           }
         }
 
@@ -336,32 +315,28 @@ export function IntroLoader() {
         }
 
         .anim-radial-flash {
-          animation: radialUnderstandFlash 0.75s ease-out 2.15s forwards;
-        }
-
-        .anim-scene-fade {
-          animation: sceneRetract 0.55s cubic-bezier(0.4, 0, 0.2, 1) 2.25s forwards;
+          animation: radialUnderstandFlash 0.75s ease-out 1.95s forwards;
         }
 
         .anim-wordmark {
-          animation: wordmarkEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 2.28s forwards;
+          animation: wordmarkEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
         }
 
         .anim-underline {
           transform-origin: center;
-          animation: underlineGrow 0.5s cubic-bezier(0.16, 1, 0.3, 1) 2.38s forwards;
+          animation: underlineGrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
         }
 
         .anim-phrase-1 {
-          animation: phraseOne 0.95s ease-in-out 0.05s forwards;
+          animation: phraseOne 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.05s forwards;
         }
 
         .anim-phrase-2 {
-          animation: phraseTwo 0.95s ease-in-out 1.05s forwards;
+          animation: phraseTwo 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.98s forwards;
         }
 
         .anim-phrase-3 {
-          animation: phraseThree 0.95s ease-in-out 2.05s forwards;
+          animation: phraseThree 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.95s forwards;
         }
       `}</style>
 
@@ -399,14 +374,29 @@ export function IntroLoader() {
         </div>
       ) : (
         /* =========================================================================
-           FULL ANIMATED SEQUENCE (~3.0-3.1s)
+           FULL ANIMATED SEQUENCE (~3.6s)
            ========================================================================= */
         <div className="relative flex flex-col items-center justify-center max-w-xl w-full px-6">
-          {/* Main SVG Artwork with subtle corporate drop shadow */}
+          {/* Brand Header: Prestigious and clear, placed above the scene with zero collision */}
+          <div className="flex flex-col items-center mb-6 text-center select-none anim-wordmark">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB] shadow-xs" />
+              <span className="text-2xl sm:text-3xl font-heading font-extrabold text-[#0B1F3A] tracking-tight">
+                Resurgenix
+              </span>
+            </div>
+            <p className="text-xs font-mono font-medium text-[#5B6B7F] tracking-wide mt-1">
+              AI Video Intelligence Layer
+            </p>
+            {/* Expanding Underline Rule */}
+            <div className="w-24 sm:w-28 h-0.5 mt-2 bg-gradient-to-r from-transparent via-[#2563EB] to-transparent anim-underline" />
+          </div>
+
+          {/* Main SVG Artwork: 100% visible throughout, fully active during Understanding phase */}
           <div className="relative w-full flex items-center justify-center drop-shadow-[0_4px_16px_rgba(11,31,58,0.06)]">
             <svg
               viewBox="0 0 520 190"
-              className="w-full max-w-[500px] h-auto overflow-visible anim-scene-fade"
+              className="w-full max-w-[500px] h-auto overflow-visible"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -626,14 +616,32 @@ export function IntroLoader() {
                   3. ORGANIC BRAIN SILHOUETTE & NEURAL NETWORK (7 Nodes, 10 Synapses)
                  ================================================================= */}
               <g transform="translate(0, 0)">
-                {/* Soft Radial Cyan Flash (at 2.15s) */}
+                {/* Soft Radial Cyan Comprehension Wave (at 1.95s marking Understanding moment) */}
                 <circle
                   cx="424"
                   cy="96"
-                  r="0"
+                  r="6"
                   fill="url(#understandFlashGrad)"
-                  className="anim-radial-flash"
-                />
+                  opacity="0"
+                  className="pointer-events-none"
+                >
+                  <animate
+                    attributeName="r"
+                    values="6; 28; 85; 120"
+                    keyTimes="0; 0.25; 0.7; 1"
+                    dur="1.1s"
+                    begin="1.95s"
+                    fill="freeze"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0; 0.85; 0.4; 0"
+                    keyTimes="0; 0.2; 0.65; 1"
+                    dur="1.1s"
+                    begin="1.95s"
+                    fill="freeze"
+                  />
+                </circle>
 
                 {/* Organic Brain Silhouette Outline with Cerebellar Lobe */}
                 <path
@@ -743,36 +751,50 @@ export function IntroLoader() {
                 <circle cx="446" cy="126" r="3.8" className="anim-node" style={{ animationDelay: "1.81s" }} />
               </g>
             </svg>
-
-            {/* Wordmark Reveal Container (Overlaid seamlessly at 2.25s) */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none anim-wordmark opacity-0">
-              <div className="flex items-center gap-2.5">
-                <span className="w-3 h-3 rounded-full bg-[#2563EB] shadow-xs" />
-                <span className="text-2xl sm:text-3xl font-heading font-extrabold text-[#0B1F3A] tracking-tight">
-                  Resurgenix
-                </span>
-              </div>
-              <p className="text-xs font-mono font-medium text-[#5B6B7F] tracking-wide mt-1">
-                AI Video Intelligence Layer
-              </p>
-              {/* Expanding Underline Rule */}
-              <div className="w-28 h-0.5 mt-2 bg-gradient-to-r from-transparent via-[#2563EB] to-transparent anim-underline" />
-            </div>
           </div>
 
           {/* =========================================================================
-              4. STATUS LINE (Cross-fading 3 phrases, absolute layout, zero layout shift)
+              3. STATUS LINE PILL (Cross-fading 3 stages, zero layout shift)
              ========================================================================= */}
-          <div className="relative h-6 w-full max-w-xs mt-3 flex items-center justify-center overflow-hidden">
-            <span className="absolute text-xs font-mono text-[#5B6B7F] tracking-wide whitespace-nowrap opacity-0 anim-phrase-1">
-              Connecting camera feed
-            </span>
-            <span className="absolute text-xs font-mono text-[#2563EB] font-medium tracking-wide whitespace-nowrap opacity-0 anim-phrase-2">
-              Analyzing in real time
-            </span>
-            <span className="absolute text-xs font-mono text-[#06B6D4] font-medium tracking-wide whitespace-nowrap opacity-0 anim-phrase-3">
-              Understanding the scene
-            </span>
+          <div className="relative h-10 w-full max-w-sm mt-5 flex items-center justify-center overflow-visible">
+            {/* Phrase 1: Connecting camera feed (0.05s – 0.95s) */}
+            <div className="absolute inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] shadow-xs opacity-0 anim-phrase-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#94A3B8]" />
+              <span className="text-xs font-mono font-medium text-[#475569] tracking-wide whitespace-nowrap">
+                Connecting camera feed
+              </span>
+            </div>
+
+            {/* Phrase 2: Analyzing in real time (0.95s – 1.95s) */}
+            <div className="absolute inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] shadow-xs opacity-0 anim-phrase-2">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#2563EB]"></span>
+              </span>
+              <span className="text-xs font-mono font-semibold text-[#1D4ED8] tracking-wide whitespace-nowrap">
+                Analyzing in real time
+              </span>
+            </div>
+
+            {/* Phrase 3: Understanding the scene (1.95s – 3.6s) — Prominent, High-Contrast, Crystal Clear */}
+            <div className="absolute inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-gradient-to-r from-[#F0F9FF] via-[#E0F2FE] to-[#EFF6FF] border border-[#0284C7] shadow-sm opacity-0 anim-phrase-3">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06B6D4] opacity-80"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#2563EB]"></span>
+              </span>
+              <span className="text-sm font-mono font-bold text-[#0B1F3A] tracking-wide whitespace-nowrap">
+                Understanding the scene
+              </span>
+              <svg
+                className="w-4 h-4 text-[#0284C7] flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
           </div>
         </div>
       )}

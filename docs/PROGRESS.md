@@ -486,16 +486,18 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
       - 6 curved gyri fold marks rendered with low-opacity navy strokes (`#0B1F3A` opacity 0.22–0.32).
       - Internal neural net: 7 contour-following nodes connected by 10 synapse lines cascading in ~60ms intervals (1.45s–2.05s) from ingress to cerebellum.
     - **Completion & Reveal:**
-      - Soft radial cyan flash at 2.15s behind the brain marking "understood".
-      - Smooth scene fade and scale-down at 2.25s as the Resurgenix wordmark and aperture icon enter with an expanding electric-blue underline rule.
-    - **Status Line Caption:**
-      - Fixed-height, absolute-positioned container cross-fading smoothly through 3 sentence-case phrases without layout shift:
-        1. *"Connecting camera feed"* (0.0s – 1.0s)
-        2. *"Analyzing in real time"* (1.0s – 2.0s)
-        3. *"Understanding the scene"* (2.0s – 3.0s)
+      - Soft radial cyan comprehension wave (`<animate>` radial bloom from brain center at 1.95s) marking the moment of spatial understanding.
+      - Prestigious Resurgenix brand header anchored cleanly above the visualization with an expanding electric-blue underline rule, eliminating visual obstruction.
+      - The entire CCTV-to-Neural-Brain pipeline remains **100% visible, unobscured, and radiant** throughout the understanding phase.
+    - **Status Line Caption & Console Badge:**
+      - Zero-layout-shift `h-10` container cross-fading through 3 sentence-case console states:
+        1. *"Connecting camera feed"* (0.05s – 0.95s, neutral slate badge)
+        2. *"Analyzing in real time"* (0.95s – 1.95s, active blue badge with pulsing dot)
+        3. *"Understanding the scene"* (1.95s – 3.6s, prominent ice-blue console badge with `#0B1F3A` bold navy typography, outer cyan pulsing beacon, inner solid blue dot, and verification checkmark)
+      - The phrase locks at `opacity: 1` indefinitely, providing a generous **1.65-second** hold window for user absorption before the overlay lifts.
     - **Visual Polish:**
-      - Light corporate drop-shadow (`drop-shadow-[0_4px_16px_rgba(11,31,58,0.06)]`) on the SVG artwork.
-      - Overlay lifts cleanly at ~3.05s, unmounting completely from the DOM after 300ms transition.
+      - Subtle corporate drop-shadow (`drop-shadow-[0_4px_16px_rgba(11,31,58,0.06)]`) on the SVG artwork.
+      - Overlay dissolves gracefully at ~3.6s (`transition-opacity duration-300`), completely unmounting from the DOM.
   - **2. Invariant & Accessibility Guarantees:**
     - Session-scoped: plays once per session via `sessionStorage.getItem("introPlayed")`.
     - `prefers-reduced-motion`: skips animations and shows a static brand card for 550ms.
@@ -503,5 +505,5 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - SSR-safe via `useSyncExternalStore` and `useIsClient()`, ensuring zero SSR presence and zero LCP delay.
   - **3. Validation & Quality Audit:**
     - `npm run lint`: Passed with 0 errors.
-    - `npm run build`: Compiled all 66 static routes in 2.3s with 0 errors.
-    - Server active at `http://localhost:3000`.
+    - `npm run build`: Compiled all 66 static routes with 0 errors.
+    - Production server running and verified at `http://localhost:3000`.
