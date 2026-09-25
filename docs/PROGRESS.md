@@ -572,4 +572,25 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - Verified **zero** Certificate of Incorporation, CIN, PAN, TAN, or registered/mailing street addresses anywhere in site code, content files, or structured data.
     - Updated `/docs/OPEN_ITEMS.md` marking both recognitions as **VERIFIED & APPROVED**.
 
+### Step 19: Founders Slide & Verified Core Leadership Showcase
+
+- **Completed Actions:**
+  - **1. Typed Content Layer (`/content/team.ts`):**
+    - Created typed data model for verified team members:
+      1. **Souryodipto Debnath**: Founder & CEO ("Driving the vision behind AI-powered infrastructure intelligence and leading product strategy.")
+      2. **Anushka Mukherjee**: Creative Technologist ("Shaping the future of intelligent infrastructure through AI and product innovation.")
+      3. **Ayush Kumar Das**: Backend Developer ("Building highly optimized real-time event engines and scalable backend infrastructure.")
+      4. **Mayank Bhardwaj**: Business Developer ("Leading enterprise partnerships, strategic operations, and business development across markets.")
+  - **2. Interactive Founders & Leadership Slide Component (`components/sections/FoundersSlide.tsx`):**
+    - Built responsive carousel/slide and grid view with tabbed member selection, monogram initials with gradient badges, keyboard navigation (Left/Right arrows), auto-advance with pause-on-hover, and direct contact CTAs.
+  - **3. Page Integration:**
+    - Integrated `<FoundersSlide id="leadership" />` on `/about` (replacing the single-founder card with the 4 verified members).
+    - Integrated `<FoundersSlide id="founders-slide" />` on the homepage (`/`) between Why Resurgenix and Pilot Proof for high-prominence visitor visibility.
+  - **4. AI Chatbot Corpus Synchronization:**
+    - Updated `scripts/build-chat-corpus.ts` to index all 4 team members with verified roles and bios into `/content/generated/chat-corpus.json`.
+  - **5. Documentation & Verification:**
+    - Updated `docs/OPEN_ITEMS.md` Section 4: Marked Souryodipto Debnath, Anushka Mukherjee, Ayush Kumar Das, and Mayank Bhardwaj as **VERIFIED & APPROVED**.
+    - Ran `npm run lint` and `npm run build` with 0 errors across 70 routes.
+
+
 

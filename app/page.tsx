@@ -10,6 +10,7 @@ import { IllustrativeDashboard } from "@/components/ui/IllustrativeDashboard";
 import { homeContent } from "@/content/home";
 import { siteConfig } from "@/content/site.config";
 import { RecognitionStrip } from "@/components/sections/RecognitionStrip";
+import { FoundersSlide } from "@/components/sections/FoundersSlide";
 
 const VideoPlayer = dynamic(
   () => import("@/components/ui/VideoPlayer").then((mod) => mod.VideoPlayer),
@@ -476,6 +477,15 @@ export default function HomePage() {
           ))}
         </div>
       </Section>
+
+      {/* =========================================================================
+          10b. FOUNDERS & LEADERSHIP SLIDE
+          ========================================================================= */}
+      <section id="founders" className="py-14 sm:py-16 bg-[#F7F9FC] border-b border-[#E2E8F0]">
+        <Container size="lg">
+          <FoundersSlide id="founders-slide" />
+        </Container>
+      </section>
 
       {/* =========================================================================
           11. PILOT PROOF (LOW-RISK PATHWAY)

@@ -8,6 +8,7 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAboutPageSchema, getBreadcrumbListSchema } from "@/components/seo/schema";
 import { RecognitionStrip } from "@/components/sections/RecognitionStrip";
+import { FoundersSlide } from "@/components/sections/FoundersSlide";
 
 export const metadata: Metadata = {
   title: "About Resurgenix: Practical AI Video Systems | Resurgenix",
@@ -412,56 +413,10 @@ export default function AboutPage() {
       {/* 8. Recognition and Programs (Verified Credentials) */}
       <RecognitionStrip size="large" id="recognition" showHeading className="border-b border-[#E2E8F0]" />
 
-      {/* 9. Founder Leadership Profile */}
+      {/* 9. Founders & Leadership Slide */}
       <Section background="soft" className="py-14 sm:py-16 border-b border-[#E2E8F0]">
         <Container>
-          <div className="max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB] block mb-2 text-center">
-              Leadership
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F3A] tracking-tight text-center mb-8">
-              Engineering Leadership
-            </h2>
-
-            <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 sm:p-8 shadow-sm">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-[#E2E8F0]">
-                <div>
-                  <h3 className="text-xl font-extrabold text-[#0B1F3A]">Souryodipto Debnath</h3>
-                  <p className="text-xs font-semibold text-[#2563EB] mt-0.5">
-                    Founder, Resurgenix Technologies Pvt. Ltd.
-                  </p>
-                </div>
-                <Badge variant="blue" size="sm">
-                  Kolkata, West Bengal
-                </Badge>
-              </div>
-
-              <div className="space-y-3 text-xs sm:text-sm text-[#5B6B7F] leading-relaxed mb-6">
-                <p>
-                  Background in Electronics &amp; Computer Science, Artificial Intelligence, Computer Vision,
-                  Robotics, Edge Computing, and Product Development.
-                </p>
-                <p>
-                  Focused on building practical, reliable AI systems that turn existing physical infrastructure
-                  into intelligent operational assets. Leads architecture, model optimization, and edge pipeline
-                  engineering at Resurgenix.
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between pt-2 text-xs text-[#5B6B7F]">
-                <span>Technical Feasibility &amp; Pilot Architecture</span>
-                <Link
-                  href="/contact"
-                  className="font-semibold text-[#2563EB] hover:text-[#1D4ED8]"
-                >
-                  Contact Founder &rarr;
-                </Link>
-              </div>
-            </div>
-
-            {/* Note: Other team members are intentionally omitted per brief rules until explicit role and consent are verified in docs/OPEN_ITEMS.md */}
-            {/* Note: Personal LinkedIn is omitted per brief instructions as only company LinkedIn URL is provided */}
-          </div>
+          <FoundersSlide id="leadership" />
         </Container>
       </Section>
 

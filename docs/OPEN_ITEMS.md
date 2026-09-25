@@ -61,11 +61,11 @@ Participation in an event or incubation program must never imply government proc
 
 Per brief rules, team members cannot be publicly displayed until role and explicit written consent are confirmed.
 
-- [ ] **Founder:** Souryodipto Debnath (Approved for display: Electronics & Computer Science, AI, Computer Vision, Robotics, Edge Computing).
-- [ ] **Anushka Mukherjee:** Role title and consent to display publicly on the website.
-- [ ] **Syed Md Farhan E Azam:** Role title and consent to display publicly on the website.
-- [ ] **Mayank Bhardwaj:** Role title and consent to display publicly on the website.
-- [ ] **Ayush Kumar Das:** Role title and consent to display publicly on the website.
+- [x] **Founder & CEO:** Souryodipto Debnath (**VERIFIED & APPROVED** - Founder & CEO: "Driving the vision behind AI-powered infrastructure intelligence and leading product strategy.")
+- [x] **Creative Technologist:** Anushka Mukherjee (**VERIFIED & APPROVED** - Creative Technologist at Resurgenix Technologies: "Shaping the future of intelligent infrastructure through AI and product innovation.")
+- [x] **Backend Developer:** Ayush Kumar Das (**VERIFIED & APPROVED** - Backend Developer: "Building highly optimized real-time event engines and scalable backend infrastructure.")
+- [x] **Business Developer:** Mayank Bhardwaj (**VERIFIED & APPROVED** - Business Developer at Resurgenix Technologies: "Leading enterprise partnerships, strategic operations, and business development across markets.")
+- [ ] **Syed Md Farhan E Azam:** Role title and consent to display publicly on the website (remains withheld pending explicit confirmation).
 
 ---
 

@@ -8,6 +8,7 @@ import { companyFacts } from "../content/facts";
 import { capabilities } from "../content/capabilities";
 import { allArticles, comparisons } from "../content/resources";
 import { recognitionData } from "../content/recognition";
+import { teamMembers } from "../content/team";
 
 export interface CorpusChunk {
   id: string;
@@ -89,6 +90,22 @@ export function buildCorpus(): CorpusChunk[] {
         Programme: ${rec.programme}.
         Certificate Number: ${rec.certificateNumber}.
         Details: ${rec.description}
+      `),
+    });
+  });
+
+  // Team & Leadership
+  teamMembers.forEach((member) => {
+    corpus.push({
+      id: `team-${member.id}`,
+      sourceTitle: `Leadership & Team: ${member.name} (${member.role})`,
+      sourceUrl: "/about#leadership",
+      type: "fact",
+      text: cleanText(`
+        Team Member: ${member.name}.
+        Role: ${member.role} at Resurgenix Technologies.
+        Summary: ${member.bio}
+        Focus: ${member.focus}.
       `),
     });
   });
