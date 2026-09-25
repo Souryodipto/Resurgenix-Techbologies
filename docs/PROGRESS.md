@@ -436,4 +436,32 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - Authored `docs/FINAL_AUDIT.md` covering SEO, GEO, CRO, UX, Performance, Accessibility, and Security with comprehensive pass/fail matrices, remaining operational risks, and the top 10 highest-impact post-launch improvements for the first 30 days.
   - **Validation & Code Quality:**
     - `npm run lint`: Passed with 0 errors.
-    - `npm run build`: Compiled all 65 static routes and API endpoints successfully.
+    - `npm run build`: Compiled all 66 static routes and API endpoints successfully.
+
+### Step 15 (Extends Step 6): First-Load Introduction Animation
+
+- **Completed Actions:**
+  - **1. Component Architecture (`components/layout/IntroLoader.tsx`):**
+    - Built client-only, session-scoped SVG loader displaying the CCTV-to-Neural-Brain connection sequence using the brand design tokens: Navy `#0B1F3A`, Electric Blue `#2563EB`, Cyan `#06B6D4`, and Pure White `#FFFFFF`.
+    - **Animation Sequence:**
+      1. Optical camera lens pulses with cyan glow.
+      2. Bezier link path draws itself from the camera lens to the neural ingress node over 1.1s.
+      3. Data packets (`<animateMotion>`) travel along the link path in staggered intervals.
+      4. Brain neural nodes and synapse lines ignite in a coordinated sequence across lobes.
+      5. Soft radial flash marks completion at 2.1s.
+      6. Resurgenix wordmark and aperture icon fade in smoothly at 2.25s.
+      7. White overlay lifts gracefully at 2.8s to reveal the rendered page beneath. Total sequence: ~2.8s.
+  - **2. Session-Scope & Performance Safeguards:**
+    - Checks `sessionStorage.getItem("introPlayed")`. Plays exactly once per browser session; subsequent route changes or page reloads within the same session skip the overlay completely.
+    - Uses `useSyncExternalStore` and `useIsClient()` to guarantee zero server-side rendering footprint. The overlay never appears in server-generated HTML, ensuring Googlebot/crawlers see complete page content immediately and LCP is completely unaffected.
+  - **3. Accessibility & Controls:**
+    - Explicit `role="status"` and `aria-label="Loading Resurgenix"` with a polite screen reader notification.
+    - Automatically checks `window.matchMedia("(prefers-reduced-motion: reduce)")` via reactive hook. When reduced motion is requested, animated transitions are completely bypassed in favor of a static logo card held for 550ms before dismiss.
+    - Interactive skip controls: Click anywhere on the overlay or press `Escape` key to instantly dismiss.
+    - Once dismissed, the component is completely unmounted from the DOM, guaranteeing zero keyboard focus traps or layout shifts.
+  - **4. Global Mount:**
+    - Mounted once in `app/layout.tsx` directly above `<Header />`.
+  - **Validation & Code Quality:**
+    - `npm run lint`: Passed with 0 errors.
+    - `npm run build`: Compiled all 66 static routes and API endpoints successfully.
+    - Verified raw server response (`curl`) contains full homepage content (H1, eyebrow, solutions) with zero intro loader HTML blocking SSR.

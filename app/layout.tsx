@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import { CookieNotice } from "@/components/layout/CookieNotice";
+import { IntroLoader } from "@/components/layout/IntroLoader";
 import { SitewideJsonLd } from "@/components/seo/SitewideJsonLd";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import "./globals.css";
@@ -106,6 +107,9 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+
+        {/* First-load Interactive Introduction Sequence */}
+        <IntroLoader />
 
         {/* Global Sticky Header */}
         <Header />
