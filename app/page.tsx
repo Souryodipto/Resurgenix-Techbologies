@@ -6,7 +6,6 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Accordion } from "@/components/ui/Accordion";
 import dynamic from "next/dynamic";
-import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
 import { IllustrativeDashboard } from "@/components/ui/IllustrativeDashboard";
 import { homeContent } from "@/content/home";
 import { siteConfig } from "@/content/site.config";
@@ -70,65 +69,47 @@ export default function HomePage() {
           ========================================================================= */}
       <section className="pt-12 pb-16 md:pt-20 md:pb-24 bg-white border-b border-[#E2E8F0]">
         <Container size="lg">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Column: Value Proposition & CTAs */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F7F9FC] border border-[#E2E8F0] text-[#0B1F3A] text-xs font-mono font-medium">
-                <span className="w-2 h-2 rounded-full bg-[#2563EB]" aria-hidden="true" />
-                <span>{hero.eyebrow}</span>
-              </div>
-
-              <h1 className="text-fluid-h1 font-heading font-extrabold text-[#0B1F3A] tracking-tight leading-[1.12]">
-                {hero.h1}
-              </h1>
-
-              <p className="text-base sm:text-lg text-[#5B6B7F] leading-relaxed max-w-2xl">
-                {hero.subhead}
-              </p>
-
-              {/* Direct Actions */}
-              <div className="pt-2 flex flex-wrap items-center gap-3.5">
-                <LinkButton href={hero.primaryCta.href} variant="primary" size="lg">
-                  {hero.primaryCta.label}
-                </LinkButton>
-                <LinkButton href={hero.secondaryCta.href} variant="secondary" size="lg">
-                  {hero.secondaryCta.label}
-                </LinkButton>
-              </div>
-
-              {/* Compatibility Notice */}
-              <div className="pt-2 flex items-start gap-2 text-xs text-[#5B6B7F]">
-                <svg
-                  className="w-4 h-4 text-[#2563EB] flex-shrink-0 mt-0.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <p className="leading-normal">{hero.compatibilityNotice}</p>
-              </div>
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F7F9FC] border border-[#E2E8F0] text-[#0B1F3A] text-xs font-mono font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#2563EB]" aria-hidden="true" />
+              <span>{hero.eyebrow}</span>
             </div>
 
-            {/* Right Column: Visual Architecture Flow */}
-            <div className="lg:col-span-5">
-              <div className="bg-[#F7F9FC] p-4 sm:p-6 rounded-[14px] border border-[#E2E8F0] shadow-xs">
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#E2E8F0]">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0B1F3A]">
-                    Architecture Overview
-                  </span>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-white border border-[#E2E8F0] text-[#5B6B7F]">
-                    RTSP Ingest
-                  </span>
-                </div>
-                <PipelineDiagram />
-              </div>
+            <h1 className="text-fluid-h1 font-heading font-extrabold text-[#0B1F3A] tracking-tight leading-[1.12]">
+              {hero.h1}
+            </h1>
+
+            <p className="text-base sm:text-lg text-[#5B6B7F] leading-relaxed max-w-2xl mx-auto">
+              {hero.subhead}
+            </p>
+
+            {/* Direct Actions */}
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3.5">
+              <LinkButton href={hero.primaryCta.href} variant="primary" size="lg">
+                {hero.primaryCta.label}
+              </LinkButton>
+              <LinkButton href={hero.secondaryCta.href} variant="secondary" size="lg">
+                {hero.secondaryCta.label}
+              </LinkButton>
+            </div>
+
+            {/* Compatibility Notice */}
+            <div className="pt-2 inline-flex items-center justify-center gap-2 text-xs text-[#5B6B7F]">
+              <svg
+                className="w-4 h-4 text-[#2563EB] flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <p className="leading-normal">{hero.compatibilityNotice}</p>
             </div>
           </div>
         </Container>
