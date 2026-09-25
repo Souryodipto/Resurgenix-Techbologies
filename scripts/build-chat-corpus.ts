@@ -7,6 +7,7 @@ import { glossaryTerms } from "../content/glossary";
 import { companyFacts } from "../content/facts";
 import { capabilities } from "../content/capabilities";
 import { allArticles, comparisons } from "../content/resources";
+import { recognitionData } from "../content/recognition";
 
 export interface CorpusChunk {
   id: string;
@@ -73,6 +74,23 @@ export function buildCorpus(): CorpusChunk[] {
       Pre-requisites: Working RTSP stream credentials, stable local network switch, designated optical view angle, and agreed KPI benchmarks.
       Deliverables: Real-time alert calibration, false-positive elimination rate analysis, latency verification report, and executive proof-of-value summary.
     `),
+  });
+
+  // Verified Recognition & Credentials
+  recognitionData.forEach((rec) => {
+    corpus.push({
+      id: `recognition-${rec.id}`,
+      sourceTitle: `Company Recognition: ${rec.title}`,
+      sourceUrl: "/about#recognition",
+      type: "fact",
+      text: cleanText(`
+        Official Credential: ${rec.title}.
+        Issuer: ${rec.issuer}.
+        Programme: ${rec.programme}.
+        Certificate Number: ${rec.certificateNumber}.
+        Details: ${rec.description}
+      `),
+    });
   });
 
   // 2. Capabilities (with exact life-cycle status)

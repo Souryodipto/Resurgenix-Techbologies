@@ -38,14 +38,21 @@ Verify the current lifecycle status for each platform capability (currently conf
 
 ## 3. Traction, Recognition & Proof Claims
 
-Participation in an event or incubation program must never imply government procurement, military deployment, official endorsement, or partnership. Confirm exact approved wording and supporting documentation for:
+Participation in an event or incubation program must never imply government procurement, military deployment, official endorsement, or partnership.
+
+### Officially Verified & Approved (Live on Site):
+
+- [x] **DPIIT Startup India Recognition:** **VERIFIED & APPROVED**. Certificate No. `DIPP253964`. Issued by Department for Promotion of Industry and Internal Trade (DPIIT), Ministry of Commerce & Industry, Government of India. Displayed in `RecognitionStrip` on homepage and `/about#recognition`.
+- [x] **Bharatiya Vyapar Mahotsav 2026:** **VERIFIED & APPROVED**. Certificate ID `BVM000SP02`. Exhibitor participation at nationwide multi-sectoral trade expo held in New Delhi as a joint initiative involving CAIT and ITPO. Displayed in `RecognitionStrip` on homepage and `/about#recognition`.
+- [x] _Step 18 Privacy & Disclosure Compliance:_ Certificate of Incorporation, CIN, PAN, TAN, and registered/mailing addresses have been intentionally excluded from all public pages, content files, and structured data.
+
+### Pending Verification (Omitted from Public Display):
 
 - [ ] **IIM Calcutta Innovation Park / MeitY TIDE 2.0:** Confirm exact nature of engagement (pre-incubation, incubation, grant recipient, or program participant).
 - [ ] **Techstorm Innovation Challenge 2026:** Confirm finalist status and project name.
 - [ ] **JC Bose Science Fair:** Confirm award/recognition title for Autonomous Disaster Drone project.
 - [ ] **SIGNASS-2026:** Confirm participation context and approved public summary.
 - [ ] **Smart Irrigation AI Research:** Confirm publication or institutional affiliation details if relevant to computer vision credibility.
-- [x] _Step 11 Implementation Log (About Page Recognition Block):_ Because none of the recognition or program items above have been marked as approved with verified wording, the "Recognition and programs" block on `/about` currently renders nothing, adhering strictly to the rule: "If none are approved yet, render nothing and log it."
 - [ ] _Note on Customer Proof:_ Until verified customer case studies are approved, trust sections will use a clearly marked placeholder (`[Add verified customer proof]`) that is excluded from production builds.
 
 ---

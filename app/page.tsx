@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import { IllustrativeDashboard } from "@/components/ui/IllustrativeDashboard";
 import { homeContent } from "@/content/home";
 import { siteConfig } from "@/content/site.config";
+import { RecognitionStrip } from "@/components/sections/RecognitionStrip";
 
 const VideoPlayer = dynamic(
   () => import("@/components/ui/VideoPlayer").then((mod) => mod.VideoPlayer),
@@ -49,7 +50,6 @@ export default function HomePage() {
   const {
     hero,
     videoSection,
-    trustStrip,
     problems,
     solution,
     capabilities,
@@ -169,27 +169,9 @@ export default function HomePage() {
       </Section>
 
       {/* =========================================================================
-          3. TRUST STRIP (VERIFIED ONLY)
+          3. TRUST & RECOGNITION STRIP (VERIFIED PROOF ONLY)
           ========================================================================= */}
-      <section
-        className="py-8 bg-white border-y border-[#E2E8F0]"
-        aria-label="Corporate Trust Indicators"
-      >
-        <Container size="lg">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {trustStrip.items.map((item, idx) => (
-              <div key={idx} className="space-y-1">
-                <div className="text-sm sm:text-base font-heading font-bold text-[#0B1F3A]">
-                  {item.value}
-                </div>
-                <div className="text-[11px] font-mono text-[#5B6B7F] uppercase tracking-wider">
-                  {item.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <RecognitionStrip size="compact" className="border-y border-[#E2E8F0]" />
 
       {/* =========================================================================
           4. PROBLEM SECTION

@@ -169,6 +169,17 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
+
+              {/* Condensed Verified Recognition Mention */}
+              <div className="mb-6 pt-3 border-t border-[#E2E8F0]">
+                <Link
+                  href="/about#recognition"
+                  className="block text-[11px] font-semibold text-[#0B1F3A] hover:text-[#2563EB] transition-colors leading-relaxed"
+                >
+                  DPIIT-recognized startup · Exhibitor, Bharatiya Vyapar Mahotsav 2026
+                </Link>
+              </div>
+
               <div className="space-y-3 text-xs text-[#5B6B7F] pt-2 border-t border-[#E2E8F0]">
                 <div>
                   <span className="block text-[11px] font-mono text-[#0B1F3A] font-semibold">

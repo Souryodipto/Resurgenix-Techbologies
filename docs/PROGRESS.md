@@ -546,4 +546,30 @@ This document tracks progress across the 14 sequential steps for the Resurgenix 
     - Authored `/docs/chat-corpus.md` detailing corpus generation, BM25 retrieval, guardrails, and maintenance workflows.
     - Logged content gap observations in `/docs/OPEN_ITEMS.md`.
 
+### Step 18: Verified Company Recognition, Credentials & Modal Proof Architecture
+
+- **Completed Actions:**
+  - **1. Assets Integration (`/public/images/certifications/`):**
+    - Placed high-resolution certificate images in `/public/images/certifications/`:
+      - `dpiit-startup-india-recognition.jpg` (1024 × 708 px, Certificate No. `DIPP253964`)
+      - `bharatiya-vyapar-mahotsav-2026-participation.jpg` (1024 × 724 px, Certificate ID `BVM000SP02`)
+  - **2. Typed Content Layer (`/content/recognition.ts`):**
+    - Exported `recognitionData` with exactly the 2 verified items with no invented credentials, numbers, or dates.
+    - Added recognition items to `scripts/build-chat-corpus.ts` so the AI assistant can reference them when asked about company credentials or DPIIT status.
+  - **3. Accessible Recognition UI Component (`components/sections/RecognitionStrip.tsx`):**
+    - Built row of 2 centered compact badge cards using `Card` and `Badge` primitives with zero awkward 3-card gaps.
+    - Interactive card triggers accessible full-size certificate modal using the design system's `Modal` component (WAI-ARIA dialog, focus trap, Escape to close, focus restored to active badge).
+    - Rendered exact mandatory disclaimer beneath the cards:
+      > *"Participation in programs, expos and recognitions listed here does not imply endorsement, procurement or partnership with any government body."*
+  - **4. Sitewide Placement:**
+    - Replaced the placeholder "Built in India. Founder-led. Pilot-stage" trust strip in `app/page.tsx` with `<RecognitionStrip size="compact" className="border-y border-[#E2E8F0]" />`.
+    - Added full `<RecognitionStrip size="large" id="recognition" showHeading className="border-b border-[#E2E8F0]" />` section to `app/about/page.tsx` after the company story and before the founder profile.
+    - Added condensed one-line footer mention in `components/layout/Footer.tsx`: *"DPIIT-recognized startup · Exhibitor, Bharatiya Vyapar Mahotsav 2026"* linking to `/about#recognition`.
+  - **5. Image SEO & Zero-CLS Compliance:**
+    - Documented both images in `/docs/image-seo.md` with explicit dimensions (`1024x708`, `1024x724`), descriptive alt text, and lazy loading below the fold.
+    - Maintained Step 13 JSON-LD as strictly visual trust only (no unverified schema awards added).
+  - **6. Privacy & Sensitive Data Audit:**
+    - Verified **zero** Certificate of Incorporation, CIN, PAN, TAN, or registered/mailing street addresses anywhere in site code, content files, or structured data.
+    - Updated `/docs/OPEN_ITEMS.md` marking both recognitions as **VERIFIED & APPROVED**.
+
 

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAboutPageSchema, getBreadcrumbListSchema } from "@/components/seo/schema";
+import { RecognitionStrip } from "@/components/sections/RecognitionStrip";
 
 export const metadata: Metadata = {
   title: "About Resurgenix: Practical AI Video Systems | Resurgenix",
@@ -408,7 +409,10 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      {/* 8. Founder Leadership Profile */}
+      {/* 8. Recognition and Programs (Verified Credentials) */}
+      <RecognitionStrip size="large" id="recognition" showHeading className="border-b border-[#E2E8F0]" />
+
+      {/* 9. Founder Leadership Profile */}
       <Section background="soft" className="py-14 sm:py-16 border-b border-[#E2E8F0]">
         <Container>
           <div className="max-w-2xl mx-auto">
@@ -460,16 +464,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </Section>
-
-      {/* 9. Recognition and Programs Block (Omitted pending founder verification per docs/OPEN_ITEMS.md) */}
-      {/*
-        RECOGNITION BLOCK RULE:
-        Per project guidelines, this block lists ONLY items marked approved in /docs/OPEN_ITEMS.md.
-        Currently, all traction and recognition items (IIM Calcutta Innovation Park, Techstorm 2026,
-        JC Bose Science Fair, SIGNASS-2026) remain unverified [ ] in docs/OPEN_ITEMS.md.
-        Per instructions: "If none are approved yet, render nothing and log it."
-        This block is rendered as nothing and logged in OPEN_ITEMS.md.
-      */}
 
       {/* 10. Call to Action */}
       <Section background="white" className="py-14 sm:py-16">

@@ -21,6 +21,20 @@
     "text": "14-Day Pilot Protocol: Evaluates 3 to 5 camera streams on existing infrastructure. Pre-requisites: Working RTSP stream credentials, stable local network switch, designated optical view angle, and agreed KPI benchmarks. Deliverables: Real-time alert calibration, false-positive elimination rate analysis, latency verification report, and executive proof-of-value summary."
   },
   {
+    "id": "recognition-dpiit",
+    "sourceTitle": "Company Recognition: DPIIT-Recognized Startup",
+    "sourceUrl": "/about#recognition",
+    "type": "fact",
+    "text": "Official Credential: DPIIT-Recognized Startup. Issuer: Department for Promotion of Industry and Internal Trade (DPIIT), Government of India. Programme: Startup India. Certificate Number: DIPP253964. Details: Resurgenix Technologies Private Limited is recognized as a startup by DPIIT under Startup India."
+  },
+  {
+    "id": "recognition-bvm2026",
+    "sourceTitle": "Company Recognition: Exhibitor, Bharatiya Vyapar Mahotsav 2026",
+    "sourceUrl": "/about#recognition",
+    "type": "fact",
+    "text": "Official Credential: Exhibitor, Bharatiya Vyapar Mahotsav 2026. Issuer: Bharatiya Vyapar Mission. Programme: Bharatiya Vyapar Mahotsav 2026, New Delhi. Certificate Number: BVM000SP02. Details: Resurgenix exhibited at Bharatiya Vyapar Mahotsav 2026, a nationwide multi-sectoral trade expo held as a joint initiative involving CAIT and ITPO."
+  },
+  {
     "id": "capability-ai-video-analytics",
     "sourceTitle": "AI Video Analytics (PILOT)",
     "sourceUrl": "/solutions/ai-video-analytics",
