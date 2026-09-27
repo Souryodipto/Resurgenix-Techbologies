@@ -4,6 +4,7 @@ export interface DeliveryResult {
   success: boolean;
   emailSent: boolean;
   dbStored: boolean;
+  googleSheetsSent: boolean;
   deliveryMethod: string;
   error?: string;
 }
@@ -135,6 +136,136 @@ async function sendViaResend(lead: AnyLeadInput, recipientEmail: string): Promis
   }
 }
 
+function getGoogleSheetPayload(lead: AnyLeadInput): {
+  sheetName: string;
+  data: Record<string, unknown>;
+} {
+  const recordedAt = new Date().toISOString();
+
+  switch (lead.leadType) {
+    case "pilot":
+      return {
+        sheetName: "pilot_form",
+        data: {
+          recorded_at: recordedAt,
+          consent: lead.consent,
+          Special_environmental_or_hardware_constraints: lead.message || "",
+          pilot_timeline: lead.timeline,
+          preferred_deployment_architecture: lead.preferredDeployment,
+          Designated_zones_or_scenarios_to_evaluate: lead.evaluationZones,
+          capabilities_for_pilot_evaluation: lead.mainNeeds.join(", "),
+          camera_or_nvr_brand: lead.currentSetupBrand || "",
+          current_cctv_infrastructure: lead.currentSetup,
+          number_of_sites: lead.siteCount,
+          approximate_camera_count: lead.cameraCount,
+          organization_sector: lead.orgType,
+          direct_phone: lead.phone || "",
+          full_name: lead.fullName,
+          work_email: lead.workEmail,
+          organization: lead.organization,
+          job_title: lead.jobTitle,
+        },
+      };
+    case "contact":
+      return {
+        sheetName: "contact_form",
+        data: {
+          full_name: lead.fullName,
+          email: lead.email,
+          message: lead.message,
+          inquiry_type: lead.inquiryType,
+          organization: lead.organization || "",
+          phone_number: lead.phone || "",
+          recorded_at: recordedAt,
+          consent: lead.consent,
+        },
+      };
+    case "demo":
+      return {
+        sheetName: "demo_form",
+        data: {
+          full_name: lead.fullName,
+          work_email: lead.workEmail,
+          organization: lead.organization,
+          job_title: lead.jobTitle,
+          direct_phone: lead.phone || "",
+          organization_sector: lead.orgType,
+          approximate_camera_count: lead.cameraCount,
+          number_of_sites: lead.siteCount,
+          current_cctv_infrastructure: lead.currentSetup,
+          camera_or_nvr_brand: lead.currentSetupBrand || "",
+          capabilities_for_pilot_evaluation: lead.mainNeeds.join(", "),
+          implementation_timeline: lead.timeline,
+          preferred_deployment_architecture: "",
+          pilot_timeline: "",
+          Special_environmental_or_hardware_constraints: lead.message || "",
+          consent: lead.consent,
+          recorded_at: recordedAt,
+        },
+      };
+    case "partner":
+      return {
+        sheetName: "partner_form",
+        data: {
+          full_name: lead.fullName,
+          work_email: lead.workEmail,
+          organization: lead.organization,
+          job_title: lead.jobTitle,
+          direct_phone: lead.phone,
+          coverage_region: lead.coverageRegion,
+          annual_camera_install_base: lead.annualCameraInstallBase || "",
+          message: lead.message || "",
+          consent: lead.consent,
+          honeypot: lead.honeypot || "",
+          rendered_at: lead.renderedAt,
+          recorded_at: recordedAt,
+        },
+      };
+  }
+}
+
+/**
+ * Sends a lead to the configured Google Apps Script web app.
+ */
+async function sendViaGoogleSheets(lead: AnyLeadInput): Promise<boolean> {
+  const scriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL;
+  if (!scriptUrl) return false;
+
+  const { sheetName, data } = getGoogleSheetPayload(lead);
+  const payload = {
+    formType: lead.leadType,
+    sheet: sheetName,
+    sheetName,
+    formName: sheetName,
+    data,
+    ...data,
+  };
+
+  try {
+    const res = await fetch(scriptUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(15_000),
+    });
+
+    if (!res.ok) return false;
+
+    const responseText = await res.text();
+    if (!responseText) return true;
+
+    try {
+      const responseData = JSON.parse(responseText) as { success?: unknown };
+      return responseData.success !== false;
+    } catch {
+      return true;
+    }
+  } catch (err) {
+    console.error("[Google Sheets Delivery Error]", err);
+    return false;
+  }
+}
+
 /**
  * Stores lead document into MongoDB if MONGODB_URI is configured.
  */
@@ -195,6 +326,7 @@ export async function deliverLead(lead: AnyLeadInput, clientIp?: string): Promis
 
   let emailSent = false;
   let dbStored = false;
+  let googleSheetsSent = false;
 
   // 1. Attempt Email delivery
   if (process.env.RESEND_API_KEY) {
@@ -206,8 +338,15 @@ export async function deliverLead(lead: AnyLeadInput, clientIp?: string): Promis
     dbStored = await storeInMongoDB(lead, clientIp);
   }
 
-  // 3. Fallback logic: check if at least one delivery destination worked
-  const isConfigured = Boolean(process.env.RESEND_API_KEY || process.env.MONGODB_URI);
+  // 3. Send to Google Sheets through the Apps Script web app
+  if (process.env.GOOGLE_APPS_SCRIPT_URL) {
+    googleSheetsSent = await sendViaGoogleSheets(lead);
+  }
+
+  // 4. Fallback logic: check if at least one delivery destination worked
+  const isConfigured = Boolean(
+    process.env.RESEND_API_KEY || process.env.MONGODB_URI || process.env.GOOGLE_APPS_SCRIPT_URL
+  );
 
   if (!isConfigured) {
     if (process.env.NODE_ENV !== "production") {
@@ -225,6 +364,7 @@ export async function deliverLead(lead: AnyLeadInput, clientIp?: string): Promis
         success: true,
         emailSent: false,
         dbStored: false,
+        googleSheetsSent: false,
         deliveryMethod: "dev-console-logger",
       };
     }
@@ -234,6 +374,7 @@ export async function deliverLead(lead: AnyLeadInput, clientIp?: string): Promis
       success: false,
       emailSent: false,
       dbStored: false,
+      googleSheetsSent: false,
       deliveryMethod: "none",
       error:
         "Lead dispatch service is currently awaiting administrator configuration. Please contact info@resurgenixtechnologies.com directly.",
@@ -241,10 +382,13 @@ export async function deliverLead(lead: AnyLeadInput, clientIp?: string): Promis
   }
 
   return {
-    success: emailSent || dbStored,
+    success: emailSent || dbStored || googleSheetsSent,
     emailSent,
     dbStored,
+    googleSheetsSent,
     deliveryMethod:
-      emailSent && dbStored ? "email+mongodb" : emailSent ? "resend-email" : "mongodb",
+      [emailSent && "resend-email", dbStored && "mongodb", googleSheetsSent && "google-sheets"]
+        .filter(Boolean)
+        .join("+") || "none",
   };
 }

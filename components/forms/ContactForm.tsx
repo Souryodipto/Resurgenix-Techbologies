@@ -35,7 +35,7 @@ export function ContactForm() {
       message: "",
       consent: true,
       honeypot: "",
-      renderedAt: 0,
+      renderedAt: 1,
     },
   });
 

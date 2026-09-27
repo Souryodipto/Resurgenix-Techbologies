@@ -38,7 +38,7 @@ export function PartnerForm() {
       message: "",
       consent: true,
       honeypot: "",
-      renderedAt: 0,
+      renderedAt: 1,
     },
   });
 

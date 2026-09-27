@@ -53,7 +53,7 @@ export function DemoForm() {
       message: "",
       consent: true,
       honeypot: "",
-      renderedAt: 0,
+      renderedAt: 1,
     },
   });
 
