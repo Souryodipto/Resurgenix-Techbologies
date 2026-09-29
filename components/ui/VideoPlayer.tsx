@@ -160,12 +160,13 @@ export function VideoPlayer({
         <>
           <video
             ref={videoRef}
+            src={src}
             className="w-full h-full object-cover"
             poster={poster}
             controls
             playsInline
             muted={isMuted}
-            preload="metadata"
+            preload="auto"
             onPlay={handlePlay}
             onPause={handlePause}
             onVolumeChange={handleVolumeChange}
@@ -194,6 +195,30 @@ export function VideoPlayer({
               {subtitle}
             </span>
           </div>
+
+          {/* Centered Play Button Overlay when paused */}
+          {!isPlaying && (
+            <button
+              type="button"
+              onClick={() => {
+                const video = videoRef.current;
+                if (!video) return;
+                userPausedRef.current = false;
+                video.play().then(() => setIsPlaying(true)).catch(() => {});
+              }}
+              className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950/30 hover:bg-slate-950/20 backdrop-blur-2xs transition-all cursor-pointer group/btn"
+              aria-label="Play video"
+            >
+              <div className="w-16 h-16 rounded-full bg-blue-600/90 group-hover/btn:bg-blue-600 group-hover/btn:scale-110 border border-white/30 flex items-center justify-center text-white shadow-xl transition-all duration-200">
+                <svg className="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <span className="mt-3 text-xs font-mono font-medium text-white/90 px-3 py-1 rounded-full bg-slate-900/70 border border-white/10">
+                Click to Watch 60-Second Overview
+              </span>
+            </button>
+          )}
 
           {/* Floating Unmute Button Overlay */}
           {isPlaying && isMuted && showUnmuteHint && (

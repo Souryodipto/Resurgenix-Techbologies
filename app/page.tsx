@@ -14,30 +14,8 @@ import { FoundersSlide } from "@/components/sections/FoundersSlide";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getVideoObjectSchema } from "@/components/seo/schema";
 
-const VideoPlayer = dynamic(
-  () => import("@/components/ui/VideoPlayer").then((mod) => mod.VideoPlayer),
-  {
-    loading: () => (
-      <div className="aspect-video w-full bg-slate-100 flex items-center justify-center text-xs text-[#5B6B7F]">
-        Loading video player...
-      </div>
-    ),
-  }
-);
-
-const ProductIntelligenceDemonstration = dynamic(
-  () =>
-    import("@/components/sections/ProductIntelligenceDemonstration").then(
-      (mod) => mod.ProductIntelligenceDemonstration
-    ),
-  {
-    loading: () => (
-      <div className="py-20 text-center text-xs text-[#5B6B7F] bg-[#F8FAFC]">
-        Loading live demonstration...
-      </div>
-    ),
-  }
-);
+import { VideoPlayer } from "@/components/ui/VideoPlayer";
+import { ProductIntelligenceDemonstration } from "@/components/sections/ProductIntelligenceDemonstration";
 
 
 export const metadata: Metadata = {

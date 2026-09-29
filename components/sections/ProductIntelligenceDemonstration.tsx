@@ -396,7 +396,7 @@ export function ProductIntelligenceDemonstration() {
                 playsInline
                 muted={isMuted}
                 loop
-                preload="metadata"
+                preload="auto"
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
                 onPlay={() => setIsPlaying(true)}
@@ -406,7 +406,10 @@ export function ProductIntelligenceDemonstration() {
                   trackVideoComplete("AI CCTV Intelligence - Live Product Demonstration");
                 }}
                 aria-label="Resurgenix AI CCTV Intelligence Video Demonstration"
-              />
+              >
+                <source src="/video/resurgenix-ai-cctv-intelligence.mp4" type="video/mp4" />
+                Your browser does not support HTML5 video playback.
+              </video>
 
               {/* Play / Pause Center Overlay Trigger */}
               {(!isPlaying || isAutoplayBlocked) && (
