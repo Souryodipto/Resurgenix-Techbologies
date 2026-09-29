@@ -95,8 +95,7 @@ Per brief rules, team members cannot be publicly displayed until role and explic
 
 ## 8. Video Production Assets (From Step 7)
 
-- [ ] **Master Explainer Video (`/public/video/resurgenix-what-resurgenix-can-do.mp4`):** Final joined 60-second MP4 video combining the 8 generated scene clips with voice-over audio and logo card.
-  - _Current Fallback:_ The `VideoPlayer` component renders with the verified poster frame (`/images/resurgenix-video-poster.jpg`), `.vtt` captions, and an accessible `<details>` transcript disclosure without faking an MP4 file. `VideoObject` Schema JSON-LD will be injected once the video file is present.
+- [x] **Master Explainer Video (`/public/video/resurgenix-what-resurgenix-can-do.mp4`):** Final joined 60-second MP4 video installed from `content/Untitled presentation (3).mp4`. VideoPlayer updated with scroll-based autoplay, tap-to-unmute audio toggle, accessible controls, and `VideoObject` Schema JSON-LD injected on homepage.
 
 ---
 

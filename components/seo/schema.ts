@@ -193,3 +193,22 @@ export function getAboutPageSchema() {
     },
   };
 }
+
+/**
+ * VideoObject Schema for the homepage 60-Second Video Overview
+ */
+export function getVideoObjectSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "What Resurgenix can do — 60-Second Video Overview",
+    description:
+      "A 60-second architectural overview explaining how the Resurgenix intelligence layer connects to existing camera infrastructure to deliver sub-second event alerts.",
+    thumbnailUrl: `${baseUrl}/images/resurgenix-video-poster.jpg`,
+    uploadDate: "2026-09-29T14:00:00+05:30",
+    duration: "PT1M00S",
+    contentUrl: `${baseUrl}/video/resurgenix-what-resurgenix-can-do.mp4`,
+    embedUrl: `${baseUrl}/#video-overview`,
+  };
+}
+

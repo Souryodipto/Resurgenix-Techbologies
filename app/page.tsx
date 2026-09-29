@@ -11,6 +11,8 @@ import { homeContent } from "@/content/home";
 import { siteConfig } from "@/content/site.config";
 import { RecognitionStrip } from "@/components/sections/RecognitionStrip";
 import { FoundersSlide } from "@/components/sections/FoundersSlide";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getVideoObjectSchema } from "@/components/seo/schema";
 
 const VideoPlayer = dynamic(
   () => import("@/components/ui/VideoPlayer").then((mod) => mod.VideoPlayer),
@@ -65,6 +67,8 @@ export default function HomePage() {
 
   return (
     <div className="bg-white text-[#1F2937] selection:bg-[#2563EB] selection:text-white">
+      {/* VideoObject Schema for the 60-Second Explainer Video */}
+      <JsonLd schema={getVideoObjectSchema()} />
       {/* =========================================================================
           1. HERO SECTION
           ========================================================================= */}
@@ -130,10 +134,13 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="rounded-[12px] overflow-hidden border border-[#E2E8F0] shadow-sm bg-white">
             <VideoPlayer
+              src="/video/resurgenix-what-resurgenix-can-do.mp4"
               poster="/images/resurgenix-video-poster.jpg"
               title="What Resurgenix can do — 60-Second Video Overview"
+              subtitle="Technical product walkthrough (Illustrative video asset)"
               captionSrc="/video/resurgenix-video-captions.vtt"
               captionLabel="English Captions"
+              autoPlayOnScroll={true}
             />
           </div>
 
