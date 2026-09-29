@@ -25,6 +25,21 @@ const VideoPlayer = dynamic(
   }
 );
 
+const ProductIntelligenceDemonstration = dynamic(
+  () =>
+    import("@/components/sections/ProductIntelligenceDemonstration").then(
+      (mod) => mod.ProductIntelligenceDemonstration
+    ),
+  {
+    loading: () => (
+      <div className="py-20 text-center text-xs text-[#5B6B7F] bg-[#F8FAFC]">
+        Loading live demonstration...
+      </div>
+    ),
+  }
+);
+
+
 export const metadata: Metadata = {
   title: "Resurgenix — AI Video Intelligence for Existing CCTV Infrastructure",
   description:
@@ -314,6 +329,11 @@ export default function HomePage() {
           </LinkButton>
         </div>
       </Section>
+
+      {/* =========================================================================
+          6b. LIVE TECHNICAL PRODUCT DEMONSTRATION — SCROLL-DRIVEN AI CCTV INTELLIGENCE
+          ========================================================================= */}
+      <ProductIntelligenceDemonstration />
 
       {/* =========================================================================
           7. HOW IT WORKS (5 STEPS)
