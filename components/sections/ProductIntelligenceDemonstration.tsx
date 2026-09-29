@@ -5,40 +5,6 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { trackVideoPlay, trackVideoComplete } from "@/lib/analytics";
 
-interface PipelineStage {
-  id: string;
-  name: string;
-  subtext: string;
-  indicator: string;
-}
-
-const PIPELINE_STAGES: PipelineStage[] = [
-  {
-    id: "feed",
-    name: "Camera Feed",
-    subtext: "Existing RTSP / ONVIF stream ingestion",
-    indicator: "RTSP 1080p",
-  },
-  {
-    id: "detection",
-    name: "AI Detection",
-    subtext: "Real-time edge neural inference",
-    indicator: "< 50ms Inference",
-  },
-  {
-    id: "intelligence",
-    name: "Intelligence",
-    subtext: "Spatial logic, tracking & dwell counting",
-    indicator: "Spatial Engine",
-  },
-  {
-    id: "analytics",
-    name: "Analytics",
-    subtext: "Structured events, alerts & dashboard telemetry",
-    indicator: "Instant Metadata",
-  },
-];
-
 const CAPABILITIES = [
   {
     id: "attendance",
@@ -90,6 +56,26 @@ const CAPABILITIES = [
   },
 ];
 
+/**
+ * Clean cross-browser fullscreen helper
+ * Fully compatible with Chrome, Edge, Firefox, Safari (desktop), and iOS Safari (iPhone/iPad)
+ */
+function enterVideoFullscreen(video: HTMLVideoElement | null) {
+  if (!video) return;
+  const anyVideo = video as any;
+  if (video.requestFullscreen) {
+    video.requestFullscreen().catch(() => {});
+  } else if (anyVideo.webkitEnterFullscreen) {
+    anyVideo.webkitEnterFullscreen(); // iOS Safari specific
+  } else if (anyVideo.webkitRequestFullscreen) {
+    anyVideo.webkitRequestFullscreen();
+  } else if (anyVideo.mozRequestFullScreen) {
+    anyVideo.mozRequestFullScreen();
+  } else if (anyVideo.msRequestFullscreen) {
+    anyVideo.msRequestFullscreen();
+  }
+}
+
 export function ProductIntelligenceDemonstration() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -98,20 +84,7 @@ export function ProductIntelligenceDemonstration() {
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(true);
-  const [progress, setProgress] = useState<number>(0);
-  const [currentTimeStr, setCurrentTimeStr] = useState<string>("00:00");
-  const [durationStr, setDurationStr] = useState<string>("00:00");
-  const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
   const [selectedCapability, setSelectedCapability] = useState<string | null>(null);
-  const [isAutoplayBlocked, setIsAutoplayBlocked] = useState<boolean>(false);
-
-  // Format seconds to mm:ss
-  const formatTime = (secs: number) => {
-    if (isNaN(secs) || secs < 0) return "00:00";
-    const m = Math.floor(secs / 60);
-    const s = Math.floor(secs % 60);
-    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-  };
 
   // Viewport Scroll Autoplay (IntersectionObserver)
   useEffect(() => {
@@ -140,19 +113,17 @@ export function ProductIntelligenceDemonstration() {
                 .play()
                 .then(() => {
                   setIsPlaying(true);
-                  setIsAutoplayBlocked(false);
                   if (!hasTrackedPlayRef.current) {
                     hasTrackedPlayRef.current = true;
                     trackVideoPlay("AI CCTV Intelligence - Live Product Demonstration");
                   }
                 })
                 .catch((err) => {
-                  console.info("Autoplay restricted by browser, showing play trigger:", err?.message || err);
-                  setIsAutoplayBlocked(true);
+                  console.info("Autoplay deferred until user interaction:", err?.message || err);
                 });
             }
           } else if (!entry.isIntersecting || entry.intersectionRatio < 0.1) {
-            // Pause when scrolled sufficiently outside viewport to save resources
+            // Pause when scrolled outside viewport to save CPU and battery
             if (!video.paused) {
               video.pause();
               setIsPlaying(false);
@@ -172,52 +143,26 @@ export function ProductIntelligenceDemonstration() {
     };
   }, [isMuted]);
 
-  // Video Time Update & Stage Sync
-  const handleTimeUpdate = () => {
-    const video = videoRef.current;
-    if (!video || !video.duration) return;
-
-    const current = video.currentTime;
-    const dur = video.duration;
-    const pct = (current / dur) * 100;
-    setProgress(pct);
-    setCurrentTimeStr(formatTime(current));
-
-    // Map playback duration to 4 Pipeline Stages
-    const stageIdx = Math.min(3, Math.floor((current / dur) * 4));
-    setActiveStageIndex(stageIdx);
-  };
-
-  const handleLoadedMetadata = () => {
-    const video = videoRef.current;
-    if (video) {
-      setDurationStr(formatTime(video.duration));
+  const handlePlay = () => {
+    userPausedRef.current = false;
+    setIsPlaying(true);
+    if (!hasTrackedPlayRef.current) {
+      hasTrackedPlayRef.current = true;
+      trackVideoPlay("AI CCTV Intelligence - Live Product Demonstration");
     }
   };
 
-  const togglePlay = useCallback(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      userPausedRef.current = false;
-      video
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-          setIsAutoplayBlocked(false);
-          if (!hasTrackedPlayRef.current) {
-            hasTrackedPlayRef.current = true;
-            trackVideoPlay("AI CCTV Intelligence - Live Product Demonstration");
-          }
-        })
-        .catch(() => setIsAutoplayBlocked(true));
-    } else {
-      userPausedRef.current = true;
-      video.pause();
-      setIsPlaying(false);
+  const handlePause = () => {
+    // Check if pause occurred while in view (user intentional pause)
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        userPausedRef.current = true;
+      }
     }
-  }, []);
+    setIsPlaying(false);
+  };
 
   const toggleSound = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -233,31 +178,10 @@ export function ProductIntelligenceDemonstration() {
     }
   }, []);
 
-  const toggleFullscreen = useCallback((e: React.MouseEvent) => {
+  const handleFullscreenClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (!document.fullscreenElement) {
-      if (video.requestFullscreen) {
-        video.requestFullscreen().catch(() => {});
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
-      }
-    }
+    enterVideoFullscreen(videoRef.current);
   }, []);
-
-  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const video = videoRef.current;
-    if (!video || !video.duration) return;
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-    video.currentTime = ratio * video.duration;
-  };
 
   return (
     <section
@@ -268,7 +192,7 @@ export function ProductIntelligenceDemonstration() {
     >
       <Container size="lg">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563EB] text-xs font-mono font-semibold tracking-wide uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-pulse" aria-hidden="true" />
             AI CCTV INTELLIGENCE
@@ -283,192 +207,95 @@ export function ProductIntelligenceDemonstration() {
           </p>
         </div>
 
-        {/* Dynamic Pipeline Progression Strip */}
-        <div className="mb-8 max-w-4xl mx-auto">
-          <div className="bg-white rounded-[12px] border border-[#E2E8F0] p-3 sm:p-4 shadow-2xs">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 relative">
-              {PIPELINE_STAGES.map((stage, idx) => {
-                const isActive = activeStageIndex === idx;
-                const isPassed = activeStageIndex > idx;
-                return (
-                  <div
-                    key={stage.id}
-                    className={`relative p-3 rounded-[8px] transition-all duration-300 border ${
-                      isActive
-                        ? "bg-blue-50/80 border-[#2563EB]/40 shadow-xs"
-                        : isPassed
-                        ? "bg-slate-50 border-slate-200"
-                        : "bg-white border-transparent opacity-75"
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span
-                        className={`w-2 h-2 rounded-full transition-colors ${
-                          isActive
-                            ? "bg-[#2563EB] animate-pulse"
-                            : isPassed
-                            ? "bg-emerald-500"
-                            : "bg-slate-300"
-                        }`}
-                        aria-hidden="true"
-                      />
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0B1F3A]">
-                        {stage.name}
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-[#5B6B7F] leading-tight hidden sm:block">
-                      {stage.subtext}
-                    </p>
-                    <span className="mt-1.5 inline-block text-[9px] font-mono px-1.5 py-0.5 rounded bg-white border border-[#E2E8F0] text-[#2563EB] font-medium">
-                      {stage.indicator}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Video Player Display Container */}
+        {/* Clean Video Player Frame */}
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="relative rounded-[16px] overflow-hidden border border-[#CBD5E1] bg-slate-950 shadow-md group">
-            {/* Top Console Telemetry Header */}
-            <div className="absolute top-0 left-0 right-0 z-20 px-4 py-2.5 bg-slate-950/80 backdrop-blur-md border-b border-white/10 flex items-center justify-between text-xs text-slate-200 select-none">
-              <div className="flex items-center gap-2.5">
-                <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 font-mono text-[10px] font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  LIVE DEMO
-                </span>
-                <span className="text-slate-400 font-mono text-[11px] hidden sm:inline-block">
-                  RTSP 1080P &bull; 30 FPS &bull; EDGE INFERENCE
-                </span>
-              </div>
-
-              {/* Top Controls: Unmute / Mute / Fullscreen */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={toggleSound}
-                  className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium text-[11px] border border-white/15 transition-colors flex items-center gap-1.5 cursor-pointer"
-                  aria-label={isMuted ? "Unmute video audio" : "Mute video audio"}
-                >
-                  {isMuted ? (
-                    <>
-                      <svg className="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                      </svg>
-                      <span>Muted</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                      </svg>
-                      <span className="text-emerald-300">Sound On</span>
-                    </>
-                  )}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={toggleFullscreen}
-                  className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-colors cursor-pointer"
-                  aria-label="Toggle fullscreen"
-                >
-                  <svg className="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Video Element */}
-            <div
-              className="relative aspect-video w-full cursor-pointer bg-slate-950"
-              onClick={togglePlay}
+            {/* HTML5 Video Element with Full Native Controls & Seamless Fullscreen */}
+            <video
+              ref={videoRef}
+              src="/video/resurgenix-ai-cctv-intelligence.mp4"
+              poster="/images/resurgenix-video-poster.jpg"
+              className="w-full aspect-video object-cover block"
+              controls
+              controlsList="nodownload"
+              playsInline
+              muted={isMuted}
+              loop
+              preload="auto"
+              onPlay={handlePlay}
+              onPause={handlePause}
+              onVolumeChange={() => {
+                if (videoRef.current) {
+                  setIsMuted(videoRef.current.muted || videoRef.current.volume === 0);
+                }
+              }}
+              onEnded={() => {
+                setIsPlaying(false);
+                trackVideoComplete("AI CCTV Intelligence - Live Product Demonstration");
+              }}
+              aria-label="Resurgenix AI CCTV Intelligence Video Demonstration"
             >
-              <video
-                ref={videoRef}
-                src="/video/resurgenix-ai-cctv-intelligence.mp4"
-                poster="/images/resurgenix-video-poster.jpg"
-                className="w-full h-full object-cover"
-                playsInline
-                muted={isMuted}
-                loop
-                preload="auto"
-                onTimeUpdate={handleTimeUpdate}
-                onLoadedMetadata={handleLoadedMetadata}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                onEnded={() => {
-                  setIsPlaying(false);
-                  trackVideoComplete("AI CCTV Intelligence - Live Product Demonstration");
+              <source src="/video/resurgenix-ai-cctv-intelligence.mp4" type="video/mp4" />
+              Your browser does not support HTML5 video playback.
+            </video>
+
+            {/* Tap-to-Unmute Floating Quick Button (when playing muted) */}
+            {isPlaying && isMuted && (
+              <button
+                type="button"
+                onClick={toggleSound}
+                className="absolute top-4 right-4 z-20 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/90 hover:bg-blue-600 text-white text-xs font-semibold backdrop-blur-md shadow-lg transition-transform transform hover:scale-105 active:scale-95 border border-white/20 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-blue-400"
+                aria-label="Unmute video audio"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                  />
+                </svg>
+                <span>Tap for Sound</span>
+              </button>
+            )}
+
+            {/* Centered Play Button Trigger (when paused or before start) */}
+            {!isPlaying && (
+              <button
+                type="button"
+                onClick={() => {
+                  const video = videoRef.current;
+                  if (!video) return;
+                  userPausedRef.current = false;
+                  video
+                    .play()
+                    .then(() => setIsPlaying(true))
+                    .catch(() => {});
                 }}
-                aria-label="Resurgenix AI CCTV Intelligence Video Demonstration"
+                className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950/30 hover:bg-slate-950/20 backdrop-blur-2xs transition-all cursor-pointer group/btn"
+                aria-label="Play product video"
               >
-                <source src="/video/resurgenix-ai-cctv-intelligence.mp4" type="video/mp4" />
-                Your browser does not support HTML5 video playback.
-              </video>
-
-              {/* Play / Pause Center Overlay Trigger */}
-              {(!isPlaying || isAutoplayBlocked) && (
-                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-2xs transition-opacity">
-                  <div className="w-16 h-16 rounded-full bg-blue-600/90 border border-white/30 flex items-center justify-center text-white shadow-xl hover:scale-105 transition-transform duration-200">
-                    <svg className="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                  <span className="mt-3 text-xs font-mono font-medium text-white/90 px-3 py-1 rounded-full bg-slate-900/70 border border-white/10">
-                    Click to Play Live Demonstration
-                  </span>
+                <div className="w-16 h-16 rounded-full bg-blue-600/90 group-hover/btn:bg-blue-600 group-hover/btn:scale-110 border border-white/30 flex items-center justify-center text-white shadow-xl transition-all duration-200">
+                  <svg className="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </div>
-              )}
-            </div>
-
-            {/* Bottom Scrubber & Time Bar */}
-            <div className="absolute bottom-0 left-0 right-0 z-20 px-4 py-2 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
-              <div
-                className="w-full h-1.5 bg-white/20 hover:h-2 rounded-full cursor-pointer transition-all relative overflow-hidden mb-2"
-                onClick={handleSeek}
-              >
-                <div
-                  className="h-full bg-[#2563EB] transition-all duration-100 rounded-full"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-
-              <div className="flex items-center justify-between text-[11px] font-mono text-slate-300">
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      togglePlay();
-                    }}
-                    className="hover:text-white transition-colors cursor-pointer"
-                    aria-label={isPlaying ? "Pause video" : "Play video"}
-                  >
-                    {isPlaying ? (
-                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                      </svg>
-                    ) : (
-                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    )}
-                  </button>
-                  <span>
-                    {currentTimeStr} / {durationStr}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2 text-[10px] text-slate-400">
-                  <span>Detection Layer: Active</span>
-                </div>
-              </div>
-            </div>
+                <span className="mt-3 text-xs font-mono font-medium text-white/90 px-3 py-1 rounded-full bg-slate-900/70 border border-white/10">
+                  Click to Play Demonstration
+                </span>
+              </button>
+            )}
           </div>
 
           {/* Caption Notice */}
@@ -537,27 +364,7 @@ export function ProductIntelligenceDemonstration() {
             )}
           </div>
 
-          {/* Telemetry Footer Callout Strip */}
-          <div className="pt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
-            <div className="p-3 rounded-[8px] bg-white border border-[#E2E8F0]">
-              <div className="text-xs font-mono font-bold text-[#0B1F3A]">Sub-50ms</div>
-              <div className="text-[11px] text-[#5B6B7F]">Edge Latency</div>
-            </div>
-            <div className="p-3 rounded-[8px] bg-white border border-[#E2E8F0]">
-              <div className="text-xs font-mono font-bold text-[#0B1F3A]">Zero Hardware</div>
-              <div className="text-[11px] text-[#5B6B7F]">Rip &amp; Replace</div>
-            </div>
-            <div className="p-3 rounded-[8px] bg-white border border-[#E2E8F0]">
-              <div className="text-xs font-mono font-bold text-[#0B1F3A]">&lt; 50 Kbps</div>
-              <div className="text-[11px] text-[#5B6B7F]">Metadata Footprint</div>
-            </div>
-            <div className="p-3 rounded-[8px] bg-white border border-[#E2E8F0]">
-              <div className="text-xs font-mono font-bold text-[#0B1F3A]">100% On-Premise</div>
-              <div className="text-[11px] text-[#5B6B7F]">Data Privacy</div>
-            </div>
-          </div>
-
-          {/* Next Steps CTA */}
+          {/* Action Links */}
           <div className="pt-6 text-center flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/request-pilot"
